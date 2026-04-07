@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MMS101 Sensor Frontend</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    :root {
+      --bg: #f7f7f2;
+      --panel: #ffffff;
+      --ink: #1f2a37;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --danger: #b91c1c;
+      --muted: #6b7280;
+      --border: #d1d5db;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at top right, #fff3d6 0%, var(--bg) 45%);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      color: white;
+      transition: transform 0.12s ease, opacity 0.12s ease;
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .btn-open { background: var(--accent); }
+    .btn-start { background: var(--accent-2); }
+    .btn-stop { background: var(--danger); }
+    .btn-close { background: #374151; }
+
+    .status {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .mono { font-family: Consolas, Menlo, monospace; }
+    .ok { color: #047857; }
+    .warn { color: #b45309; }
+    .err { color: #b91c1c; }
+
+    #message {
+      margin-top: 10px;
+      min-height: 22px;
+      font-size: 14px;
+    }
+
+    #raw_plot, #fft_resample_plot, #fft_freq_plot {
+      width: 100%;
+      height: 340px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <h1>MMS101 Sensor Control Panel</h1>
+      <div class="grid">
+        <div>
+          <label for="port">Serial Port</label>
+          <input id="port" value="{{ default_port }}" />
+        </div>
+        <div>
+          <label for="medfilt_num">Median Filter Window (medfilt_num)</label>
+          <input id="medfilt_num" type="number" min="1" value="5" />
+        </div>
+        <div>
+          <label for="warmup_seconds">Warm-up Seconds (default 300)</label>
+          <input id="warmup_seconds" type="number" min="1" value="300" />
+        </div>
+        <div>
+          <label for="tare_samples">Tare Samples</label>
+          <input id="tare_samples" type="number" min="1" value="50" />
+        </div>
+        <div>
+          <label for="sample_interval">Sample Interval (seconds)</label>
+          <input id="sample_interval" type="number" min="0.001" step="0.001" value="0.05" />
+        </div>
+        <div>
+          <label for="csv_name">Raw CSV File Name (optional)</label>
+          <input id="csv_name" placeholder="Leave empty for auto raw_timestamp.csv" />
+        </div>
+        <div>
+          <label for="verbose">verbose</label>
+          <select id="verbose">
+            <option value="true" selected>true</option>
+            <option value="false">false</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <button id="btn_open" class="btn-open">Open Sensor</button>
+        <button id="btn_start" class="btn-start" disabled>Start Recording</button>
+        <button id="btn_stop" class="btn-stop" disabled>Stop Recording</button>
+        <button id="btn_close" class="btn-close" disabled>Close Sensor</button>
+      </div>
+
+      <div id="message" class="mono"></div>
+    </div>
+
+    <div class="panel status">
+      <div>Sensor State: <span id="sensor_state" class="mono">-</span></div>
+      <div>Warm-up Countdown: <span id="warmup_countdown" class="mono">-</span></div>
+      <div>Recording State: <span id="record_state" class="mono">-</span></div>
+      <div>Latest Force/Torque: <span id="latest_ft" class="mono">-</span></div>
+      <div>Latest Raw Output: <span id="last_file" class="mono">-</span></div>
+    </div>
+
+    <div class="panel">
+      <h2>Raw Data (data/force_raw)</h2>
+      <div class="grid">
+        <div>
+          <label for="raw_file_select">Raw CSV File</label>
+          <select id="raw_file_select"></select>
+        </div>
+        <div>
+          <label for="fft_cutoff_hz">FFT Low-pass Cutoff (Hz)</label>
+          <input id="fft_cutoff_hz" type="number" min="0.001" step="0.1" value="100" />
+        </div>
+        <div>
+          <label for="fft_output_name">FFT Output File Name (optional)</label>
+          <input id="fft_output_name" placeholder="Leave empty for auto naming" />
+        </div>
+      </div>
+      <div class="row">
+        <button id="btn_refresh_raw" class="btn-close">Refresh Raw List</button>
+        <button id="btn_load_raw" class="btn-open">Load Raw Waveform</button>
+        <button id="btn_run_fft" class="btn-stop">Run FFT Low-pass</button>
+      </div>
+      <div id="raw_plot"></div>
+    </div>
+
+    <div class="panel">
+      <h2>FFT Data (data/force_fft)</h2>
+      <div class="grid">
+        <div>
+          <label for="fft_file_select">FFT CSV File</label>
+          <select id="fft_file_select"></select>
+        </div>
+      </div>
+      <div class="row">
+        <button id="btn_refresh_fft" class="btn-close">Refresh FFT List</button>
+        <button id="btn_load_fft" class="btn-open">Load FFT Result</button>
+        <button id="btn_reset_zoom" class="btn-start">Reset Zoom</button>
+      </div>
+      <div id="fft_resample_plot"></div>
+      <div id="fft_freq_plot"></div>
+    </div>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    const ui = {
+      port: $("port"), medfiltNum: $("medfilt_num"), warmupSeconds: $("warmup_seconds"),
+      tareSamples: $("tare_samples"), sampleInterval: $("sample_interval"), csvName: $("csv_name"), verbose: $("verbose"),
+      btnOpen: $("btn_open"), btnStart: $("btn_start"), btnStop: $("btn_stop"), btnClose: $("btn_close"),
+      message: $("message"), sensorState: $("sensor_state"), warmupCountdown: $("warmup_countdown"),
+      recordState: $("record_state"), latestFt: $("latest_ft"), lastFile: $("last_file"),
+      rawFileSelect: $("raw_file_select"), fftFileSelect: $("fft_file_select"),
+      btnRefreshRaw: $("btn_refresh_raw"), btnLoadRaw: $("btn_load_raw"), btnRunFft: $("btn_run_fft"),
+      btnRefreshFft: $("btn_refresh_fft"), btnLoadFft: $("btn_load_fft"), btnResetZoom: $("btn_reset_zoom"),
+      rawPlot: $("raw_plot"), fftResamplePlot: $("fft_resample_plot"), fftFreqPlot: $("fft_freq_plot"),
+      fftCutoffHz: $("fft_cutoff_hz"), fftOutputName: $("fft_output_name"),
+    };
+
+    function setMessage(text, cls) {
+      ui.message.textContent = text || "";
+      ui.message.className = `mono ${cls || ""}`;
+    }
+
+    function fmtCountdown(sec) {
+      const s = Math.max(0, Number(sec) || 0);
+      const m = Math.floor(s / 60);
+      const r = s % 60;
+      return `${m}:${String(r).padStart(2, "0")}`;
+    }
+
+    async function postJson(url, data) {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data || {})
+      });
+      const body = await res.json();
+      if (!res.ok || !body.ok) {
+        throw new Error(body.message || "Request failed");
+      }
+      return body;
+    }
+
+    async function getJson(url) {
+      const res = await fetch(url);
+      const body = await res.json();
+      if (!res.ok || body.ok === false) {
+        throw new Error(body.message || "Request failed");
+      }
+      return body;
+    }
+
+    function renderLines(targetEl, payload, title, xLabel) {
+      const traces = [];
+      for (const [name, y] of Object.entries(payload.traces || {})) {
+        traces.push({ x: payload.x, y, name, mode: "lines", line: { width: 1.2 }, type: "scattergl" });
+      }
+      Plotly.newPlot(targetEl, traces, {
+        title,
+        xaxis: { title: xLabel || payload.x_col, zeroline: false },
+        yaxis: { title: "Value", zeroline: false },
+        dragmode: "zoom",
+        hovermode: "x unified",
+        margin: { l: 60, r: 18, t: 48, b: 50 },
+      }, { responsive: true, displaylogo: false });
+    }
+
+    function renderFft(fft) {
+      const traces = [];
+      for (const [name, y] of Object.entries(fft.magnitude || {})) {
+        traces.push({ x: fft.freqs || [], y, name, mode: "lines", line: { width: 1.2 }, type: "scattergl" });
+      }
+      Plotly.newPlot(ui.fftFreqPlot, traces, {
+        title: `FFT Frequency Spectrum (cutoff=${fft.cutoff_hz} Hz)`,
+        xaxis: { title: "Frequency (Hz)", zeroline: false },
+        yaxis: { title: "Magnitude", zeroline: false },
+        dragmode: "zoom",
+        hovermode: "x unified",
+        margin: { l: 60, r: 18, t: 48, b: 50 },
+      }, { responsive: true, displaylogo: false });
+    }
+
+    async function refreshRawList() {
+      const body = await getJson("/api/raw_files");
+      ui.rawFileSelect.innerHTML = "";
+      const files = body.files || [];
+      if (!files.length) {
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = "No raw CSV files in data/force_raw";
+        ui.rawFileSelect.appendChild(opt);
+        ui.btnLoadRaw.disabled = true;
+        ui.btnRunFft.disabled = true;
+        return;
+      }
+      for (const f of files) {
+        const opt = document.createElement("option");
+        opt.value = f;
+        opt.textContent = f;
+        ui.rawFileSelect.appendChild(opt);
+      }
+      ui.btnLoadRaw.disabled = false;
+      ui.btnRunFft.disabled = false;
+    }
+
+    async function refreshFftList() {
+      const body = await getJson("/api/fft_files");
+      ui.fftFileSelect.innerHTML = "";
+      const files = body.files || [];
+      if (!files.length) {
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = "No FFT CSV files in data/force_fft";
+        ui.fftFileSelect.appendChild(opt);
+        ui.btnLoadFft.disabled = true;
+        return;
+      }
+      for (const f of files) {
+        const opt = document.createElement("option");
+        opt.value = f;
+        opt.textContent = f;
+        ui.fftFileSelect.appendChild(opt);
+      }
+      ui.btnLoadFft.disabled = false;
+    }
+
+    async function loadRaw() {
+      const selected = ui.rawFileSelect.value;
+      if (!selected) throw new Error("Please choose a raw CSV file");
+      const payload = await getJson(`/api/raw_data?file=${encodeURIComponent(selected)}`);
+      renderLines(ui.rawPlot, payload, `Raw Waveform: ${payload.path}`, payload.x_col);
+    }
+
+    async function loadFft() {
+      const selected = ui.fftFileSelect.value;
+      if (!selected) throw new Error("Please choose an FFT CSV file");
+      const payload = await getJson(`/api/fft_data?file=${encodeURIComponent(selected)}`);
+      renderLines(ui.fftResamplePlot, payload, `Resampled / Filtered Waveform: ${payload.path}`, payload.x_col);
+      renderFft(payload.fft);
+      setMessage(`Loaded FFT file from raw source: ${payload.fft.source_raw_csv}`, "ok");
+    }
+
+    function applyStatus(s) {
+      ui.sensorState.textContent = s.sensor_open ? "OPEN" : "CLOSED";
+      ui.sensorState.className = `mono ${s.sensor_open ? "ok" : "warn"}`;
+      if (s.warmup_running) {
+        ui.warmupCountdown.textContent = `${fmtCountdown(s.warmup_remaining)} (warming up)`;
+        ui.warmupCountdown.className = "mono warn";
+      } else {
+        ui.warmupCountdown.textContent = "done";
+        ui.warmupCountdown.className = "mono ok";
+      }
+      ui.recordState.textContent = s.recording ? "RECORDING" : "IDLE";
+      ui.recordState.className = `mono ${s.recording ? "warn" : "ok"}`;
+
+      if (Array.isArray(s.latest_ft)) {
+        const [fx, fy, fz, mx, my, mz] = s.latest_ft;
+        ui.latestFt.textContent =
+          `Fx=${fx.toFixed(3)} Fy=${fy.toFixed(3)} Fz=${fz.toFixed(3)} ` +
+          `Mx=${mx.toFixed(5)} My=${my.toFixed(5)} Mz=${mz.toFixed(5)}`;
+      } else {
+        ui.latestFt.textContent = "-";
+      }
+      ui.lastFile.textContent = s.last_file || "-";
+
+      ui.btnStart.disabled = !s.can_start_recording;
+      ui.btnStop.disabled = !s.can_stop_recording;
+      ui.btnOpen.disabled = s.sensor_open;
+      ui.btnClose.disabled = !s.sensor_open;
+    }
+
+    async function refreshStatus() {
+      try {
+        const s = await getJson("/api/status");
+        applyStatus(s);
+      } catch (err) {
+        setMessage(`Status refresh failed: ${err.message}`, "err");
+      }
+    }
+
+    ui.btnOpen.addEventListener("click", async () => {
+      try {
+        setMessage("Opening sensor and starting warm-up...", "warn");
+        await postJson("/api/open_sensor", {
+          port: ui.port.value.trim(), medfilt_num: Number(ui.medfiltNum.value),
+          warmup_seconds: Number(ui.warmupSeconds.value), tare_samples: Number(ui.tareSamples.value),
+          verbose: ui.verbose.value === "true",
+        });
+        setMessage("Sensor opened. Warm-up countdown started.", "ok");
+        await refreshStatus();
+      } catch (err) {
+        setMessage(`Open Sensor failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnStart.addEventListener("click", async () => {
+      try {
+        setMessage("Starting recording...", "warn");
+        const ret = await postJson("/api/start_recording", {
+          csv_name: ui.csvName.value,
+          sample_interval: Number(ui.sampleInterval.value),
+        });
+        setMessage(`Recording started: ${ret.file}`, "ok");
+        await refreshStatus();
+        await refreshRawList();
+      } catch (err) {
+        setMessage(`Start Recording failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnStop.addEventListener("click", async () => {
+      try {
+        setMessage("Stopping recording...", "warn");
+        const ret = await postJson("/api/stop_recording", {});
+        setMessage(`Recording stopped. Saved raw file: ${ret.file}`, "ok");
+        await refreshStatus();
+        await refreshRawList();
+      } catch (err) {
+        setMessage(`Stop Recording failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnClose.addEventListener("click", async () => {
+      try {
+        setMessage("Closing sensor...", "warn");
+        await postJson("/api/close_sensor", {});
+        setMessage("Sensor closed.", "ok");
+        await refreshStatus();
+      } catch (err) {
+        setMessage(`Close Sensor failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnRefreshRaw.addEventListener("click", async () => {
+      try {
+        await refreshRawList();
+        setMessage("Raw list refreshed.", "ok");
+      } catch (err) {
+        setMessage(`Refresh raw list failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnLoadRaw.addEventListener("click", async () => {
+      try {
+        await loadRaw();
+        setMessage("Raw waveform loaded. Drag to zoom into a segment.", "ok");
+      } catch (err) {
+        setMessage(`Load raw waveform failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnRunFft.addEventListener("click", async () => {
+      try {
+        const selectedRaw = ui.rawFileSelect.value;
+        if (!selectedRaw) throw new Error("Please choose a raw CSV file");
+        const cutoff = Number(ui.fftCutoffHz.value);
+        if (!Number.isFinite(cutoff) || cutoff <= 0) throw new Error("Cutoff must be a positive number");
+
+        setMessage("Running FFT low-pass on selected raw file...", "warn");
+        const ret = await postJson("/api/fft_lowpass", {
+          file: selectedRaw,
+          cutoff_hz: cutoff,
+          output_name: ui.fftOutputName.value,
+        });
+
+        await refreshFftList();
+        if (ret.output_rel_path) {
+          ui.fftFileSelect.value = ret.output_rel_path;
+          await loadFft();
+        }
+        setMessage(`FFT done. Output: force_fft/${ret.output_rel_path}`, "ok");
+      } catch (err) {
+        setMessage(`Run FFT failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnRefreshFft.addEventListener("click", async () => {
+      try {
+        await refreshFftList();
+        setMessage("FFT list refreshed.", "ok");
+      } catch (err) {
+        setMessage(`Refresh FFT list failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnLoadFft.addEventListener("click", async () => {
+      try {
+        await loadFft();
+      } catch (err) {
+        setMessage(`Load FFT result failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnResetZoom.addEventListener("click", async () => {
+      try {
+        await Plotly.relayout(ui.rawPlot, { "xaxis.autorange": true, "yaxis.autorange": true });
+      } catch (_) {}
+      try {
+        await Plotly.relayout(ui.fftResamplePlot, { "xaxis.autorange": true, "yaxis.autorange": true });
+      } catch (_) {}
+      try {
+        await Plotly.relayout(ui.fftFreqPlot, { "xaxis.autorange": true, "yaxis.autorange": true });
+      } catch (_) {}
+      setMessage("Zoom reset.", "ok");
+    });
+
+    setInterval(refreshStatus, 1000);
+
+    Promise.all([refreshRawList(), refreshFftList(), refreshStatus()]).then(async () => {
+      if (ui.rawFileSelect.value) {
+        try { await loadRaw(); } catch (_) {}
+      }
+      if (ui.fftFileSelect.value) {
+        try { await loadFft(); } catch (_) {}
+      }
+    });
+  </script>
+</body>
+</html>
