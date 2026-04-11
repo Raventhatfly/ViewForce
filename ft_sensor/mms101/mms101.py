@@ -46,6 +46,7 @@ class MMS101:
 
         self._csv_file = None
         self._csv_writer = None
+        self._log_t0 = None
 
         self._elaps_time = 0.0
         self._interval_measure = INTERVAL_MEASURE_TIME
@@ -191,7 +192,7 @@ class MMS101:
                     self._data = parsed
                     self._data_que.append(parsed)
                     if self._csv_writer is not None:
-                        ts = time.time()
+                        ts = time.perf_counter() - self._log_t0
                         self._csv_writer.writerow([f"{ts:.6f}"] + [f"{v:.6f}" for v in parsed])
             except Exception as e:
                 if self._running:
@@ -213,6 +214,7 @@ class MMS101:
             self._csv_file = open(self.log_csv, 'w', newline='')
             self._csv_writer = csv.writer(self._csv_file)
             self._csv_writer.writerow(['timestamp', 'Fx', 'Fy', 'Fz', 'Mx', 'My', 'Mz'])
+            self._log_t0 = time.perf_counter()
 
         self._running = True
         self._thread = threading.Thread(target=self._thread_loop, daemon=True)

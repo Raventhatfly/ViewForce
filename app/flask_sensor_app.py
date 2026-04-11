@@ -1,14 +1,33 @@
 import csv
+import io
+import json
 import os
 import re
+import shutil
 import sys
 import threading
 import time
 from pathlib import Path
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 import numpy as np
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, Response, jsonify, render_template, request
+from werkzeug.exceptions import HTTPException
+
+try:
+    import pyrealsense2 as rs  # type: ignore
+except Exception:
+    rs = None
+
+try:
+    import cv2  # type: ignore
+except Exception:
+    cv2 = None
+
+try:
+    from PIL import Image  # type: ignore
+except Exception:
+    Image = None
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
@@ -21,6 +40,9 @@ app = Flask(__name__, template_folder="templates")
 DATA_DIR = ROOT_DIR / "data"
 FORCE_RAW_DIR = DATA_DIR / "force_raw"
 FORCE_FFT_DIR = DATA_DIR / "force_fft"
+EPISODE_DIR = DATA_DIR / "episodes"
+EPISODE_STAGING_DIR = EPISODE_DIR / "_staging"
+EPISODE_INDEX_FILE = EPISODE_DIR / "index.json"
 
 
 def default_port() -> str:
@@ -315,6 +337,10 @@ class SensorController:
         sensor = MMS101(port=port, medfilt_num=medfilt_num, verbose=verbose)
         sensor.start()
 
+        # Debug convenience: allow warmup_seconds=0 to skip countdown lock.
+        if warmup_seconds <= 0:
+            sensor.tare(n_samples=tare_samples)
+
         with self.lock:
             self.sensor = sensor
             self.sensor_open = True
@@ -332,10 +358,15 @@ class SensorController:
                 }
             )
 
-            self.warmup_running = True
-            self.warmup_end_ts = time.time() + float(warmup_seconds)
-            self.warmup_thread = threading.Thread(target=self._warmup_worker, args=(tare_samples,), daemon=True)
-            self.warmup_thread.start()
+            if warmup_seconds > 0:
+                self.warmup_running = True
+                self.warmup_end_ts = time.time() + float(warmup_seconds)
+                self.warmup_thread = threading.Thread(target=self._warmup_worker, args=(tare_samples,), daemon=True)
+                self.warmup_thread.start()
+            else:
+                self.warmup_running = False
+                self.warmup_end_ts = 0.0
+                self.warmup_thread = None
 
     def _record_worker(self, csv_path: Path, interval_s: float) -> None:
         with open(csv_path, "w", newline="") as f:
@@ -474,6 +505,466 @@ class SensorController:
 controller = SensorController()
 
 
+class RealSenseController:
+    def __init__(self) -> None:
+        self.lock = threading.Lock()
+        self.pipeline = None
+        self.running = False
+        self.last_error = ""
+        self.width = 640
+        self.height = 480
+        self.fps = 30
+
+    def _require_rs(self) -> None:
+        if rs is None:
+            raise RuntimeError("pyrealsense2 is not installed")
+
+    def start(self, width: int = 640, height: int = 480, fps: int = 30) -> None:
+        self._require_rs()
+        width = max(160, int(width))
+        height = max(120, int(height))
+        fps = max(1, int(fps))
+
+        with self.lock:
+            if self.running:
+                return
+
+            pipeline = rs.pipeline()
+            config = rs.config()
+            config.enable_stream(rs.stream.color, width, height, rs.format.bgr8, fps)
+            try:
+                pipeline.start(config)
+            except Exception as e:
+                self.last_error = str(e)
+                raise RuntimeError(f"Failed to start RealSense: {e}")
+
+            self.pipeline = pipeline
+            self.running = True
+            self.last_error = ""
+            self.width = width
+            self.height = height
+            self.fps = fps
+
+    def stop(self) -> None:
+        with self.lock:
+            pipeline = self.pipeline
+            self.pipeline = None
+            self.running = False
+        if pipeline is not None:
+            try:
+                pipeline.stop()
+            except Exception:
+                pass
+
+    def status(self) -> dict:
+        with self.lock:
+            return {
+                "available": rs is not None,
+                "running": self.running,
+                "width": self.width,
+                "height": self.height,
+                "fps": self.fps,
+                "last_error": self.last_error,
+                "encoder": "opencv" if cv2 is not None else ("pillow" if Image is not None else "none"),
+            }
+
+    def _encode_jpeg(self, frame_bgr: np.ndarray) -> bytes:
+        if cv2 is not None:
+            ok, enc = cv2.imencode(".jpg", frame_bgr, [int(cv2.IMWRITE_JPEG_QUALITY), 85])
+            if not ok:
+                raise RuntimeError("OpenCV JPEG encoding failed")
+            return enc.tobytes()
+
+        if Image is not None:
+            rgb = frame_bgr[:, :, ::-1]
+            im = Image.fromarray(rgb)
+            buf = io.BytesIO()
+            im.save(buf, format="JPEG", quality=85)
+            return buf.getvalue()
+
+        raise RuntimeError("No JPEG encoder available. Install opencv-python or pillow")
+
+    def get_frame_jpeg(self) -> bytes:
+        bgr, _ = self.get_frame_bgr()
+        return self._encode_jpeg(bgr)
+
+    def get_frame_bgr(self) -> tuple[np.ndarray, float]:
+        with self.lock:
+            if not self.running or self.pipeline is None:
+                raise RuntimeError("RealSense is not running")
+            pipeline = self.pipeline
+
+        try:
+            frames = pipeline.wait_for_frames(timeout_ms=1000)
+            color = frames.get_color_frame()
+            if not color:
+                raise RuntimeError("No color frame from RealSense")
+            bgr = np.asanyarray(color.get_data())
+            cam_ts_ms = float(color.get_timestamp())
+            return bgr, cam_ts_ms
+        except Exception as e:
+            with self.lock:
+                self.last_error = str(e)
+            raise
+
+
+camera = RealSenseController()
+
+
+class EpisodeController:
+    def __init__(self, sensor_controller: SensorController, camera_controller: RealSenseController) -> None:
+        self.sensor_controller = sensor_controller
+        self.camera_controller = camera_controller
+        self.lock = threading.Lock()
+        self.stop_event = threading.Event()
+
+        self.active = False
+        self.pending: Optional[Dict[str, Any]] = None
+        self.episode_thread_force: Optional[threading.Thread] = None
+        self.episode_thread_camera: Optional[threading.Thread] = None
+        self.current: Optional[Dict[str, Any]] = None
+        self.last_error = ""
+
+        EPISODE_DIR.mkdir(parents=True, exist_ok=True)
+        EPISODE_STAGING_DIR.mkdir(parents=True, exist_ok=True)
+
+    def _load_index(self) -> Dict[str, Any]:
+        if not EPISODE_INDEX_FILE.exists():
+            return {"next_episode_id": 1, "episodes": []}
+        try:
+            with open(EPISODE_INDEX_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            next_id = int(data.get("next_episode_id", 1))
+            episodes = data.get("episodes", [])
+            if not isinstance(episodes, list):
+                episodes = []
+            return {"next_episode_id": max(1, next_id), "episodes": episodes}
+        except Exception:
+            return {"next_episode_id": 1, "episodes": []}
+
+    def _save_index(self, data: Dict[str, Any]) -> None:
+        EPISODE_DIR.mkdir(parents=True, exist_ok=True)
+        with open(EPISODE_INDEX_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=True, indent=2)
+
+    @staticmethod
+    def _jsonable(value: Any) -> Any:
+        if isinstance(value, Path):
+            return str(value)
+        if isinstance(value, dict):
+            return {k: EpisodeController._jsonable(v) for k, v in value.items()}
+        if isinstance(value, list):
+            return [EpisodeController._jsonable(v) for v in value]
+        return value
+
+    def _current_next_id(self) -> int:
+        return int(self._load_index().get("next_episode_id", 1))
+
+    def _force_worker(self, csv_path: Path, t0_perf: float, sample_interval: float) -> None:
+        with open(csv_path, "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["sample_idx", "t_rel_s", "t_wall_s", "Fx", "Fy", "Fz", "Mx", "My", "Mz"])
+            idx = 0
+            while not self.stop_event.is_set():
+                status = self.sensor_controller.get_status()
+                if not status.get("sensor_open", False):
+                    self.last_error = "Sensor closed during episode capture"
+                    self.stop_event.set()
+                    break
+
+                ft = status.get("latest_ft")
+                if ft is None:
+                    try:
+                        with self.sensor_controller.lock:
+                            s = self.sensor_controller.sensor
+                        ft = [float(v) for v in s.get_ft_tared()] if s is not None else None
+                    except Exception:
+                        ft = None
+
+                if ft is not None:
+                    t_rel = time.perf_counter() - t0_perf
+                    t_wall = time.time()
+                    writer.writerow([idx, f"{t_rel:.6f}", f"{t_wall:.6f}"] + [f"{float(v):.6f}" for v in ft])
+                    if idx % 10 == 0:
+                        f.flush()
+                    idx += 1
+                    with self.lock:
+                        if self.current is not None:
+                            self.current["force_samples"] = idx
+                time.sleep(sample_interval)
+
+    def _camera_worker(self, video_path: Path, frame_csv_path: Path, t0_perf: float, fps: int, width: int, height: int) -> None:
+        if cv2 is None:
+            self.last_error = "opencv-python is required for episode video recording"
+            self.stop_event.set()
+            return
+
+        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+        writer = cv2.VideoWriter(str(video_path), fourcc, float(max(1, fps)), (int(width), int(height)))
+        if not writer.isOpened():
+            self.last_error = "Failed to open VideoWriter for episode video"
+            self.stop_event.set()
+            return
+
+        try:
+            with open(frame_csv_path, "w", newline="") as f:
+                csv_writer = csv.writer(f)
+                csv_writer.writerow(["frame_idx", "t_rel_s", "t_wall_s", "camera_ts_ms"])
+                frame_idx = 0
+                while not self.stop_event.is_set():
+                    try:
+                        frame_bgr, cam_ts_ms = self.camera_controller.get_frame_bgr()
+                    except Exception as e:
+                        self.last_error = str(e)
+                        self.stop_event.set()
+                        break
+
+                    if frame_bgr.shape[1] != width or frame_bgr.shape[0] != height:
+                        frame_bgr = cv2.resize(frame_bgr, (int(width), int(height)), interpolation=cv2.INTER_LINEAR)
+
+                    writer.write(frame_bgr)
+                    t_rel = time.perf_counter() - t0_perf
+                    t_wall = time.time()
+                    csv_writer.writerow([frame_idx, f"{t_rel:.6f}", f"{t_wall:.6f}", f"{cam_ts_ms:.3f}"])
+                    if frame_idx % 10 == 0:
+                        f.flush()
+                    frame_idx += 1
+                    with self.lock:
+                        if self.current is not None:
+                            self.current["frame_count"] = frame_idx
+        finally:
+            writer.release()
+
+    def start_episode(self, label: str = "", notes: str = "") -> Dict[str, Any]:
+        with self.lock:
+            if self.active:
+                raise RuntimeError("Episode is already running")
+            if self.pending is not None:
+                raise RuntimeError("Resolve pending episode first (keep/discard)")
+
+        sensor_status = self.sensor_controller.get_status()
+        camera_status = self.camera_controller.status()
+
+        if not sensor_status.get("sensor_open", False):
+            raise RuntimeError("Sensor is not open")
+        if sensor_status.get("warmup_running", False):
+            raise RuntimeError("Sensor warm-up is still running")
+        if sensor_status.get("recording", False):
+            raise RuntimeError("Raw recording is running; stop it before episode capture")
+        if not camera_status.get("running", False):
+            raise RuntimeError("RealSense camera is not running")
+
+        episode_id = self._current_next_id()
+        start_wall = time.time()
+        t0_perf = time.perf_counter()
+        staging_dir = EPISODE_STAGING_DIR / f"ep_{episode_id:06d}_{int(start_wall)}"
+        staging_dir.mkdir(parents=True, exist_ok=False)
+
+        fps = int(camera_status.get("fps", 30))
+        width = int(camera_status.get("width", 640))
+        height = int(camera_status.get("height", 480))
+        sample_interval = float(sensor_status.get("params", {}).get("sample_interval", 0.05))
+
+        meta = {
+            "episode_id": episode_id,
+            "status": "recording",
+            "keep": None,
+            "start_wall_time": start_wall,
+            "end_wall_time": None,
+            "duration_s": None,
+            "label": label,
+            "notes": notes,
+            "sensor": {
+                "port": sensor_status.get("params", {}).get("port"),
+                "medfilt_num": sensor_status.get("params", {}).get("medfilt_num"),
+                "sample_interval": sample_interval,
+            },
+            "camera": {"width": width, "height": height, "fps": fps},
+            "files": {
+                "video": "video.mp4",
+                "frame_timestamps": "frame_timestamps.csv",
+                "force": "force_timestamps.csv",
+            },
+        }
+
+        with open(staging_dir / "meta.json", "w", encoding="utf-8") as f:
+            json.dump(meta, f, ensure_ascii=True, indent=2)
+
+        self.stop_event.clear()
+        self.last_error = ""
+        with self.lock:
+            self.active = True
+            self.current = {
+                "episode_id": episode_id,
+                "staging_dir": staging_dir,
+                "start_wall": start_wall,
+                "t0_perf": t0_perf,
+                "force_samples": 0,
+                "frame_count": 0,
+                "sample_interval": sample_interval,
+                "camera_fps": fps,
+                "camera_width": width,
+                "camera_height": height,
+                "label": label,
+                "notes": notes,
+            }
+
+        self.episode_thread_force = threading.Thread(
+            target=self._force_worker,
+            args=(staging_dir / "force_timestamps.csv", t0_perf, sample_interval),
+            daemon=True,
+        )
+        self.episode_thread_camera = threading.Thread(
+            target=self._camera_worker,
+            args=(staging_dir / "video.mp4", staging_dir / "frame_timestamps.csv", t0_perf, fps, width, height),
+            daemon=True,
+        )
+        self.episode_thread_force.start()
+        self.episode_thread_camera.start()
+
+        return {"episode_id": episode_id, "staging_dir": staging_dir.name}
+
+    def stop_episode(self) -> Dict[str, Any]:
+        with self.lock:
+            if not self.active or self.current is None:
+                raise RuntimeError("No active episode")
+            cur = dict(self.current)
+
+        self.stop_event.set()
+
+        if self.episode_thread_force is not None:
+            self.episode_thread_force.join(timeout=8)
+        if self.episode_thread_camera is not None:
+            self.episode_thread_camera.join(timeout=8)
+
+        end_wall = time.time()
+        duration_s = max(0.0, end_wall - float(cur["start_wall"]))
+        staging_dir = Path(cur["staging_dir"])
+
+        meta_path = staging_dir / "meta.json"
+        meta = {}
+        if meta_path.exists():
+            try:
+                with open(meta_path, "r", encoding="utf-8") as f:
+                    meta = json.load(f)
+            except Exception:
+                meta = {}
+        meta.update(
+            {
+                "episode_id": int(cur["episode_id"]),
+                "status": "pending_decision",
+                "keep": None,
+                "end_wall_time": end_wall,
+                "duration_s": duration_s,
+                "force_samples": int(cur.get("force_samples", 0)),
+                "frame_count": int(cur.get("frame_count", 0)),
+                "last_error": self.last_error,
+            }
+        )
+        with open(meta_path, "w", encoding="utf-8") as f:
+            json.dump(meta, f, ensure_ascii=True, indent=2)
+
+        pending = {
+            "episode_id": int(cur["episode_id"]),
+            "staging_dir": staging_dir.name,
+            "duration_s": duration_s,
+            "force_samples": int(cur.get("force_samples", 0)),
+            "frame_count": int(cur.get("frame_count", 0)),
+            "last_error": self.last_error,
+            "label": cur.get("label", ""),
+            "notes": cur.get("notes", ""),
+        }
+
+        with self.lock:
+            self.active = False
+            self.current = None
+            self.pending = pending
+            self.episode_thread_force = None
+            self.episode_thread_camera = None
+
+        return pending
+
+    def commit_episode(self, keep: bool) -> Dict[str, Any]:
+        with self.lock:
+            if self.active:
+                raise RuntimeError("Cannot commit while an episode is still running")
+            if self.pending is None:
+                raise RuntimeError("No pending episode to commit")
+            pending = dict(self.pending)
+
+        episode_id = int(pending["episode_id"])
+        staging_dir = EPISODE_STAGING_DIR / str(pending["staging_dir"])
+
+        if keep:
+            final_dir = EPISODE_DIR / f"EP{episode_id:06d}"
+            if final_dir.exists():
+                suffix = int(time.time())
+                final_dir = EPISODE_DIR / f"EP{episode_id:06d}_{suffix}"
+
+            shutil.move(str(staging_dir), str(final_dir))
+
+            meta_path = final_dir / "meta.json"
+            meta = {}
+            if meta_path.exists():
+                with open(meta_path, "r", encoding="utf-8") as f:
+                    meta = json.load(f)
+            meta.update({"keep": True, "status": "saved", "saved_dir": final_dir.name})
+            with open(meta_path, "w", encoding="utf-8") as f:
+                json.dump(meta, f, ensure_ascii=True, indent=2)
+
+            index = self._load_index()
+            episodes = index.get("episodes", [])
+            episodes.append(
+                {
+                    "episode_id": episode_id,
+                    "dir": final_dir.name,
+                    "created_at": time.time(),
+                    "duration_s": pending.get("duration_s"),
+                    "frame_count": pending.get("frame_count"),
+                    "force_samples": pending.get("force_samples"),
+                    "label": pending.get("label", ""),
+                }
+            )
+            index["episodes"] = episodes
+            index["next_episode_id"] = max(int(index.get("next_episode_id", 1)), episode_id + 1)
+            self._save_index(index)
+
+            result = {"kept": True, "episode_id": episode_id, "saved_dir": final_dir.name}
+        else:
+            if staging_dir.exists():
+                shutil.rmtree(staging_dir, ignore_errors=True)
+            result = {"kept": False, "episode_id": episode_id}
+
+        with self.lock:
+            self.pending = None
+
+        return result
+
+    def status(self) -> Dict[str, Any]:
+        with self.lock:
+            active = self.active
+            current = dict(self.current) if self.current is not None else None
+            pending = dict(self.pending) if self.pending is not None else None
+            last_error = self.last_error
+
+        index = self._load_index()
+        episodes = index.get("episodes", [])
+        recent = episodes[-5:]
+
+        return {
+            "active": active,
+            "current": self._jsonable(current),
+            "pending": self._jsonable(pending),
+            "next_episode_id": int(index.get("next_episode_id", 1)),
+            "episode_count": len(episodes),
+            "recent_episodes": self._jsonable(recent),
+            "last_error": last_error,
+        }
+
+
+episodes = EpisodeController(sensor_controller=controller, camera_controller=camera)
+
+
 @app.get("/")
 def index():
     return render_template("sensor_ui.html", default_port=default_port())
@@ -603,8 +1094,8 @@ def api_open_sensor():
 
         if medfilt_num < 1:
             raise ValueError("medfilt_num must be >= 1")
-        if warmup_seconds < 1:
-            raise ValueError("warmup_seconds must be >= 1")
+        if warmup_seconds < 0:
+            raise ValueError("warmup_seconds must be >= 0")
         if tare_samples < 1:
             raise ValueError("tare_samples must be >= 1")
 
@@ -648,10 +1139,112 @@ def api_stop_recording():
 @app.post("/api/close_sensor")
 def api_close_sensor():
     try:
+        if episodes.status().get("active", False):
+            return jsonify({"ok": False, "message": "Stop episode capture before closing sensor"}), 400
         controller.close_sensor()
         return jsonify({"ok": True, "message": "Sensor closed."})
     except Exception as e:
         return jsonify({"ok": False, "message": str(e)}), 400
+
+
+@app.get("/api/episode_status")
+def api_episode_status():
+    st = episodes.status()
+    st["ok"] = True
+    return jsonify(st)
+
+
+@app.post("/api/episode_start")
+def api_episode_start():
+    payload = request.get_json(silent=True) or {}
+    try:
+        label = str(payload.get("label", "")).strip()
+        notes = str(payload.get("notes", "")).strip()
+        ret = episodes.start_episode(label=label, notes=notes)
+        return jsonify({"ok": True, "message": "Episode started.", **ret})
+    except Exception as e:
+        return jsonify({"ok": False, "message": str(e)}), 400
+
+
+@app.post("/api/episode_stop")
+def api_episode_stop():
+    try:
+        ret = episodes.stop_episode()
+        return jsonify({"ok": True, "message": "Episode stopped. Please decide keep/discard.", **ret})
+    except Exception as e:
+        return jsonify({"ok": False, "message": str(e)}), 400
+
+
+@app.post("/api/episode_commit")
+def api_episode_commit():
+    payload = request.get_json(silent=True) or {}
+    try:
+        keep = bool(payload.get("keep", False))
+        ret = episodes.commit_episode(keep=keep)
+        msg = "Episode kept." if keep else "Episode discarded."
+        return jsonify({"ok": True, "message": msg, **ret})
+    except Exception as e:
+        return jsonify({"ok": False, "message": str(e)}), 400
+
+
+@app.get("/api/realsense_status")
+def api_realsense_status():
+    st = camera.status()
+    st["ok"] = True
+    return jsonify(st)
+
+
+@app.post("/api/realsense_start")
+def api_realsense_start():
+    payload = request.get_json(silent=True) or {}
+    try:
+        width = int(payload.get("width", 640))
+        height = int(payload.get("height", 480))
+        fps = int(payload.get("fps", 30))
+        camera.start(width=width, height=height, fps=fps)
+        return jsonify({"ok": True, "message": "RealSense started."})
+    except Exception as e:
+        return jsonify({"ok": False, "message": str(e)}), 400
+
+
+@app.post("/api/realsense_stop")
+def api_realsense_stop():
+    try:
+        camera.stop()
+        return jsonify({"ok": True, "message": "RealSense stopped."})
+    except Exception as e:
+        return jsonify({"ok": False, "message": str(e)}), 400
+
+
+@app.get("/api/realsense_frame")
+def api_realsense_frame():
+    try:
+        if not camera.status().get("running", False):
+            return jsonify({"ok": False, "message": "RealSense is not running"}), 409
+        jpeg = camera.get_frame_jpeg()
+        return Response(
+            jpeg,
+            mimetype="image/jpeg",
+            headers={"Cache-Control": "no-store, no-cache, must-revalidate, max-age=0"},
+        )
+    except Exception as e:
+        return jsonify({"ok": False, "message": str(e)}), 400
+
+
+@app.errorhandler(404)
+def handle_404(err):
+    if request.path.startswith("/api/"):
+        return jsonify({"ok": False, "message": f"API not found: {request.path}"}), 404
+    return err
+
+
+@app.errorhandler(Exception)
+def handle_exception(err):
+    if request.path.startswith("/api/"):
+        if isinstance(err, HTTPException):
+            return jsonify({"ok": False, "message": err.description}), err.code
+        return jsonify({"ok": False, "message": str(err)}), 500
+    raise err
 
 
 if __name__ == "__main__":

@@ -44,6 +44,39 @@
       font-size: 24px;
     }
 
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 6px;
+    }
+
+    .tab-btn {
+      border: 0;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-weight: 700;
+      color: #334155;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #0f766e, #115e59);
+      color: #fff;
+    }
+
     h2 {
       margin: 0 0 10px;
       font-size: 18px;
@@ -117,12 +150,48 @@
       height: 340px;
       margin-top: 12px;
     }
+
+    .tab-page {
+      display: none;
+    }
+
+    .tab-page.active {
+      display: block;
+    }
+
+    .camera-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 12px;
+    }
+
+    #camera_preview {
+      width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      background: #0b1220;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+    }
+
+    @media (max-width: 900px) {
+      .camera-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="panel">
+    <div class="topbar">
       <h1>MMS101 Sensor Control Panel</h1>
+      <div class="tabs">
+        <button id="tab_force_viewer" class="tab-btn active">Force Viewer</button>
+        <button id="tab_data_collection" class="tab-btn">Data Collection</button>
+      </div>
+    </div>
+
+    <div class="panel">
       <div class="grid">
         <div>
           <label for="port">Serial Port</label>
@@ -133,8 +202,8 @@
           <input id="medfilt_num" type="number" min="1" value="5" />
         </div>
         <div>
-          <label for="warmup_seconds">Warm-up Seconds (default 300)</label>
-          <input id="warmup_seconds" type="number" min="1" value="300" />
+          <label for="warmup_seconds">Warm-up Seconds (debug can use 0)</label>
+          <input id="warmup_seconds" type="number" min="0" value="300" />
         </div>
         <div>
           <label for="tare_samples">Tare Samples</label>
@@ -175,45 +244,124 @@
       <div>Latest Raw Output: <span id="last_file" class="mono">-</span></div>
     </div>
 
-    <div class="panel">
-      <h2>Raw Data (data/force_raw)</h2>
-      <div class="grid">
-        <div>
-          <label for="raw_file_select">Raw CSV File</label>
-          <select id="raw_file_select"></select>
+    <div id="page_force_viewer" class="tab-page active">
+      <div class="panel">
+        <h2>Raw Data (data/force_raw)</h2>
+        <div class="grid">
+          <div>
+            <label for="raw_file_select">Raw CSV File</label>
+            <select id="raw_file_select"></select>
+          </div>
+          <div>
+            <label for="fft_cutoff_hz">FFT Low-pass Cutoff (Hz)</label>
+            <input id="fft_cutoff_hz" type="number" min="0.001" step="0.1" value="100" />
+          </div>
+          <div>
+            <label for="fft_output_name">FFT Output File Name (optional)</label>
+            <input id="fft_output_name" placeholder="Leave empty for auto naming" />
+          </div>
         </div>
-        <div>
-          <label for="fft_cutoff_hz">FFT Low-pass Cutoff (Hz)</label>
-          <input id="fft_cutoff_hz" type="number" min="0.001" step="0.1" value="100" />
+        <div class="row">
+          <button id="btn_refresh_raw" class="btn-close">Refresh Raw List</button>
+          <button id="btn_load_raw" class="btn-open">Load Raw Waveform</button>
+          <button id="btn_run_fft" class="btn-stop">Run FFT Low-pass</button>
         </div>
-        <div>
-          <label for="fft_output_name">FFT Output File Name (optional)</label>
-          <input id="fft_output_name" placeholder="Leave empty for auto naming" />
-        </div>
+        <div id="raw_plot"></div>
       </div>
-      <div class="row">
-        <button id="btn_refresh_raw" class="btn-close">Refresh Raw List</button>
-        <button id="btn_load_raw" class="btn-open">Load Raw Waveform</button>
-        <button id="btn_run_fft" class="btn-stop">Run FFT Low-pass</button>
+
+      <div class="panel">
+        <h2>FFT Data (data/force_fft)</h2>
+        <div class="grid">
+          <div>
+            <label for="fft_file_select">FFT CSV File</label>
+            <select id="fft_file_select"></select>
+          </div>
+        </div>
+        <div class="row">
+          <button id="btn_refresh_fft" class="btn-close">Refresh FFT List</button>
+          <button id="btn_load_fft" class="btn-open">Load FFT Result</button>
+          <button id="btn_reset_zoom" class="btn-start">Reset Zoom</button>
+        </div>
+        <div id="fft_resample_plot"></div>
+        <div id="fft_freq_plot"></div>
       </div>
-      <div id="raw_plot"></div>
     </div>
 
-    <div class="panel">
-      <h2>FFT Data (data/force_fft)</h2>
-      <div class="grid">
-        <div>
-          <label for="fft_file_select">FFT CSV File</label>
-          <select id="fft_file_select"></select>
+    <div id="page_data_collection" class="tab-page">
+      <div class="panel">
+        <h2>Data Collection (Episode Mode)</h2>
+        <div class="status">
+          This tab does not run FFT. Each episode captures RealSense video + frame timestamps + force timestamps.
         </div>
       </div>
-      <div class="row">
-        <button id="btn_refresh_fft" class="btn-close">Refresh FFT List</button>
-        <button id="btn_load_fft" class="btn-open">Load FFT Result</button>
-        <button id="btn_reset_zoom" class="btn-start">Reset Zoom</button>
+
+      <div class="panel">
+        <h2>RealSense Camera</h2>
+        <div class="camera-grid">
+          <div>
+            <img id="camera_preview" alt="RealSense preview" />
+          </div>
+          <div>
+            <div class="grid">
+              <div>
+                <label for="cam_width">Width</label>
+                <input id="cam_width" type="number" min="160" step="1" value="640" />
+              </div>
+              <div>
+                <label for="cam_height">Height</label>
+                <input id="cam_height" type="number" min="120" step="1" value="480" />
+              </div>
+              <div>
+                <label for="cam_fps">FPS</label>
+                <input id="cam_fps" type="number" min="1" step="1" value="30" />
+              </div>
+            </div>
+            <div class="row">
+              <button id="btn_cam_start" class="btn-open">Start Camera</button>
+              <button id="btn_cam_stop" class="btn-close">Stop Camera</button>
+            </div>
+            <div class="status" style="margin-top: 8px;">
+              Camera State: <span id="camera_state" class="mono">-</span><br />
+              Camera Message: <span id="camera_msg" class="mono">-</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="fft_resample_plot"></div>
-      <div id="fft_freq_plot"></div>
+
+      <div class="panel">
+        <h2>Episode Capture</h2>
+        <div class="grid">
+          <div>
+            <label for="episode_label">Episode Label (optional)</label>
+            <input id="episode_label" placeholder="e.g. grasp_mug" />
+          </div>
+          <div>
+            <label for="episode_notes">Episode Notes (optional)</label>
+            <input id="episode_notes" placeholder="extra notes" />
+          </div>
+        </div>
+        <div class="row">
+          <button id="btn_episode_start" class="btn-open">Start Episode</button>
+          <button id="btn_episode_stop" class="btn-stop">Stop Episode</button>
+          <button id="btn_episode_status" class="btn-close">Refresh Episode Status</button>
+        </div>
+        <div class="status" style="margin-top: 8px;">
+          Next Episode ID: <span id="episode_next_id" class="mono">-</span><br />
+          Episode State: <span id="episode_state" class="mono">-</span><br />
+          Last Episode Decision: <span id="episode_last_decision" class="mono">-</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Episode Data Format</h2>
+        <div class="status mono">
+          data/episodes/EPxxxxxx/<br />
+          - video.mp4<br />
+          - frame_timestamps.csv (frame_idx, t_rel_s, t_wall_s, camera_ts_ms)<br />
+          - force_timestamps.csv (sample_idx, t_rel_s, t_wall_s, Fx, Fy, Fz, Mx, My, Mz)<br />
+          - meta.json
+        </div>
+      </div>
     </div>
   </div>
 
@@ -231,7 +379,43 @@
       btnRefreshFft: $("btn_refresh_fft"), btnLoadFft: $("btn_load_fft"), btnResetZoom: $("btn_reset_zoom"),
       rawPlot: $("raw_plot"), fftResamplePlot: $("fft_resample_plot"), fftFreqPlot: $("fft_freq_plot"),
       fftCutoffHz: $("fft_cutoff_hz"), fftOutputName: $("fft_output_name"),
+      tabForceViewer: $("tab_force_viewer"), tabDataCollection: $("tab_data_collection"),
+      pageForceViewer: $("page_force_viewer"), pageDataCollection: $("page_data_collection"),
+      camWidth: $("cam_width"), camHeight: $("cam_height"), camFps: $("cam_fps"),
+      btnCamStart: $("btn_cam_start"), btnCamStop: $("btn_cam_stop"),
+      cameraPreview: $("camera_preview"), cameraState: $("camera_state"), cameraMsg: $("camera_msg"),
+      episodeLabel: $("episode_label"), episodeNotes: $("episode_notes"),
+      btnEpisodeStart: $("btn_episode_start"), btnEpisodeStop: $("btn_episode_stop"), btnEpisodeStatus: $("btn_episode_status"),
+      episodeNextId: $("episode_next_id"), episodeState: $("episode_state"), episodeLastDecision: $("episode_last_decision"),
     };
+
+    let activeTab = "viewer";
+    let cameraFrameTimer = null;
+    let cameraRunning = false;
+    let episodeActive = false;
+    let episodePending = false;
+
+    function stopCameraFrameLoop() {
+      if (cameraFrameTimer) {
+        clearTimeout(cameraFrameTimer);
+        cameraFrameTimer = null;
+      }
+    }
+
+    function setActiveTab(tab) {
+      activeTab = tab;
+      const onViewer = tab === "viewer";
+      ui.pageForceViewer.classList.toggle("active", onViewer);
+      ui.pageDataCollection.classList.toggle("active", !onViewer);
+      ui.tabForceViewer.classList.toggle("active", onViewer);
+      ui.tabDataCollection.classList.toggle("active", !onViewer);
+      if (onViewer && cameraFrameTimer) {
+        stopCameraFrameLoop();
+      }
+      if (!onViewer) {
+        startCameraFrameLoop();
+      }
+    }
 
     function setMessage(text, cls) {
       ui.message.textContent = text || "";
@@ -251,7 +435,14 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data || {})
       });
-      const body = await res.json();
+      const contentType = (res.headers.get("content-type") || "").toLowerCase();
+      let body;
+      if (contentType.includes("application/json")) {
+        body = await res.json();
+      } else {
+        const text = await res.text();
+        throw new Error(`Non-JSON response (${res.status}): ${text.slice(0, 160)}`);
+      }
       if (!res.ok || !body.ok) {
         throw new Error(body.message || "Request failed");
       }
@@ -260,7 +451,14 @@
 
     async function getJson(url) {
       const res = await fetch(url);
-      const body = await res.json();
+      const contentType = (res.headers.get("content-type") || "").toLowerCase();
+      let body;
+      if (contentType.includes("application/json")) {
+        body = await res.json();
+      } else {
+        const text = await res.text();
+        throw new Error(`Non-JSON response (${res.status}): ${text.slice(0, 160)}`);
+      }
       if (!res.ok || body.ok === false) {
         throw new Error(body.message || "Request failed");
       }
@@ -355,6 +553,78 @@
       renderLines(ui.fftResamplePlot, payload, `Resampled / Filtered Waveform: ${payload.path}`, payload.x_col);
       renderFft(payload.fft);
       setMessage(`Loaded FFT file from raw source: ${payload.fft.source_raw_csv}`, "ok");
+    }
+
+    async function refreshEpisodeStatus() {
+      try {
+        const body = await getJson("/api/episode_status");
+        episodeActive = !!body.active;
+        episodePending = !!body.pending;
+
+        ui.episodeNextId.textContent = String(body.next_episode_id || "-");
+        if (episodeActive) {
+          ui.episodeState.textContent = `RUNNING (#${body.current?.episode_id || "?"})`;
+          ui.episodeState.className = "mono warn";
+        } else if (episodePending) {
+          ui.episodeState.textContent = `PENDING DECISION (#${body.pending?.episode_id || "?"})`;
+          ui.episodeState.className = "mono warn";
+        } else {
+          ui.episodeState.textContent = "IDLE";
+          ui.episodeState.className = "mono ok";
+        }
+
+        ui.btnEpisodeStart.disabled = episodeActive || episodePending;
+        ui.btnEpisodeStop.disabled = !episodeActive;
+      } catch (err) {
+        ui.episodeState.textContent = "ERROR";
+        ui.episodeState.className = "mono err";
+        ui.episodeLastDecision.textContent = err.message;
+      }
+    }
+
+    async function decidePendingEpisode(keep) {
+      const ret = await postJson("/api/episode_commit", { keep });
+      ui.episodeLastDecision.textContent = keep
+        ? `Kept episode #${ret.episode_id} -> ${ret.saved_dir}`
+        : `Discarded episode #${ret.episode_id}`;
+      await refreshEpisodeStatus();
+    }
+
+    async function refreshCameraStatus() {
+      try {
+        const body = await getJson("/api/realsense_status");
+        cameraRunning = !!body.running;
+        ui.cameraState.textContent = body.running ? "RUNNING" : (body.available ? "IDLE" : "UNAVAILABLE");
+        ui.cameraState.className = `mono ${body.running ? "ok" : (body.available ? "warn" : "err")}`;
+        ui.cameraMsg.textContent = body.last_error || (body.available ? "Ready" : "pyrealsense2 not installed");
+
+        if (!cameraRunning) {
+          stopCameraFrameLoop();
+          ui.cameraPreview.removeAttribute("src");
+        } else if (activeTab === "collection") {
+          startCameraFrameLoop();
+        }
+      } catch (err) {
+        ui.cameraState.textContent = "ERROR";
+        ui.cameraState.className = "mono err";
+        ui.cameraMsg.textContent = err.message;
+      }
+    }
+
+    function startCameraFrameLoop() {
+      if (!cameraRunning) return;
+      if (cameraFrameTimer) return;
+
+      const tick = () => {
+        if (activeTab !== "collection" || !cameraRunning) {
+          stopCameraFrameLoop();
+          return;
+        }
+        ui.cameraPreview.src = `/api/realsense_frame?ts=${Date.now()}`;
+        cameraFrameTimer = setTimeout(tick, 200);
+      };
+
+      cameraFrameTimer = setTimeout(tick, 0);
     }
 
     function applyStatus(s) {
@@ -466,6 +736,45 @@
       }
     });
 
+    ui.btnEpisodeStart.addEventListener("click", async () => {
+      try {
+        const ret = await postJson("/api/episode_start", {
+          label: ui.episodeLabel.value.trim(),
+          notes: ui.episodeNotes.value.trim(),
+        });
+        setMessage(`Episode #${ret.episode_id} started.`, "ok");
+        ui.episodeLastDecision.textContent = "-";
+        await refreshEpisodeStatus();
+      } catch (err) {
+        setMessage(`Start episode failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnEpisodeStop.addEventListener("click", async () => {
+      try {
+        const ret = await postJson("/api/episode_stop", {});
+        setMessage(
+          `Episode #${ret.episode_id} stopped. frames=${ret.frame_count}, force_samples=${ret.force_samples}`,
+          "warn"
+        );
+        await refreshEpisodeStatus();
+
+        const keep = window.confirm(`Keep episode #${ret.episode_id}?\nOK = keep, Cancel = discard`);
+        await decidePendingEpisode(keep);
+      } catch (err) {
+        setMessage(`Stop episode failed: ${err.message}`, "err");
+      }
+    });
+
+    ui.btnEpisodeStatus.addEventListener("click", async () => {
+      try {
+        await refreshEpisodeStatus();
+        setMessage("Episode status refreshed.", "ok");
+      } catch (err) {
+        setMessage(`Episode status failed: ${err.message}`, "err");
+      }
+    });
+
     ui.btnRunFft.addEventListener("click", async () => {
       try {
         const selectedRaw = ui.rawFileSelect.value;
@@ -521,14 +830,58 @@
       setMessage("Zoom reset.", "ok");
     });
 
-    setInterval(refreshStatus, 1000);
+    ui.tabForceViewer.addEventListener("click", () => setActiveTab("viewer"));
+    ui.tabDataCollection.addEventListener("click", () => setActiveTab("collection"));
 
-    Promise.all([refreshRawList(), refreshFftList(), refreshStatus()]).then(async () => {
+    ui.btnCamStart.addEventListener("click", async () => {
+      try {
+        await postJson("/api/realsense_start", {
+          width: Number(ui.camWidth.value),
+          height: Number(ui.camHeight.value),
+          fps: Number(ui.camFps.value),
+        });
+        setMessage("RealSense camera started.", "ok");
+        await refreshCameraStatus();
+        if (activeTab === "collection") {
+          startCameraFrameLoop();
+        }
+      } catch (err) {
+        setMessage(`Start camera failed: ${err.message}`, "err");
+        await refreshCameraStatus();
+      }
+    });
+
+    ui.btnCamStop.addEventListener("click", async () => {
+      try {
+        cameraRunning = false;
+        stopCameraFrameLoop();
+        await postJson("/api/realsense_stop", {});
+        ui.cameraPreview.removeAttribute("src");
+        setMessage("RealSense camera stopped.", "ok");
+        await refreshCameraStatus();
+      } catch (err) {
+        setMessage(`Stop camera failed: ${err.message}`, "err");
+        await refreshCameraStatus();
+      }
+    });
+
+    setInterval(refreshStatus, 1000);
+    setInterval(refreshCameraStatus, 2000);
+    setInterval(refreshEpisodeStatus, 2000);
+
+    Promise.all([refreshRawList(), refreshFftList(), refreshStatus(), refreshCameraStatus(), refreshEpisodeStatus()]).then(async () => {
       if (ui.rawFileSelect.value) {
         try { await loadRaw(); } catch (_) {}
       }
       if (ui.fftFileSelect.value) {
         try { await loadFft(); } catch (_) {}
+      }
+
+      if (episodePending) {
+        const keep = window.confirm("A pending episode was found. Keep it?\nOK = keep, Cancel = discard");
+        try {
+          await decidePendingEpisode(keep);
+        } catch (_) {}
       }
     });
   </script>
