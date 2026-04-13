@@ -211,3 +211,12 @@ data/episodes
 
 # Claude
 .claude
+
+# Test Folder
+test
+
+# Checkpoint File
+checkpoints
+
+# Evaluatin File
+eval_output
