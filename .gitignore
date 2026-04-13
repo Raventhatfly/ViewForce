@@ -208,3 +208,6 @@ __marimo__/
 
 # Generated Data
 data/episodes
+
+# Claude
+.claude
