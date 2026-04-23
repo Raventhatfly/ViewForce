@@ -1,17 +1,17 @@
 """
 src/dataset.py  --  ForceDataset
 
-Loads an episode directory and yields (diff_masked_image, force_label) pairs.
+Loads an episode directory and yields (masked_frame, force_label) pairs.
 
 Pipeline per sample:
-  1. Decode frame from video via PyAV
-  2. Apply orange HSV mask (gripper region only)
-  3. Subtract masked reference frame (average of first N_REF_FRAMES)
-  4. Normalize diff to [-1, 1]
-  5. Resize to OUTPUT_SIZE
+  1. Decode frame from video.mp4 via PyAV
+  2. Load corresponding binary mask from mask.mp4
+  3. Apply mask: zero-out pixels outside the gripper region
+  4. Normalize to [0, 1] and resize to OUTPUT_SIZE
+  5. Augment: random mild affine (translation + scale)
 
-Force label is linearly interpolated from the ~20 Hz force CSV to the frame
-wall-clock timestamp.
+Force label is linearly interpolated from the ~20 Hz force CSV to the
+frame wall-clock timestamp.  The first and last `trim_seconds` are dropped.
 """
 
 import os
@@ -25,43 +25,12 @@ import torch
 from torch.utils.data import Dataset
 import torchvision.transforms.functional as TF
 
-# ---------------------------------------------------------------------------
-# Masking parameters (match color_mask.py)
-# ---------------------------------------------------------------------------
-H_MIN, H_MAX = 8, 38       # orange hue range (degrees)
-S_MIN        = 0.40
-V_MIN        = 0.25
-
-# Number of initial frames averaged to build the reference (no-contact) frame
-N_REF_FRAMES = 10
-
-# Frames whose Laplacian variance is below this are skipped (motion blur)
-MIN_SHARPNESS = 2000.0
-
-# Output spatial resolution fed to the network
 OUTPUT_SIZE = (256, 256)
 
-
-# ---------------------------------------------------------------------------
-
-def _orange_mask(img_np: np.ndarray) -> np.ndarray:
-    """Return boolean mask (H, W) of orange gripper pixels."""
-    pil_hsv = Image.fromarray(img_np).convert("HSV")
-    hsv = np.array(pil_hsv, dtype=np.float32)
-    H = hsv[:, :, 0] / 255.0 * 360.0
-    S = hsv[:, :, 1] / 255.0
-    V = hsv[:, :, 2] / 255.0
-    return (H >= H_MIN) & (H <= H_MAX) & (S >= S_MIN) & (V >= V_MIN)
-
-
-def _laplacian_var(gray: np.ndarray) -> float:
-    """Laplacian variance as a sharpness proxy (higher = sharper)."""
-    from numpy.lib.stride_tricks import sliding_window_view
-    k = np.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]], dtype=np.float32)
-    pad = np.pad(gray.astype(np.float32), 1, mode="reflect")
-    windows = sliding_window_view(pad, (3, 3))
-    lap = (windows * k).sum(axis=(-1, -2))
-    return float(lap.var())
+# Mild augmentation bounds
+AUG_TRANSLATE = 0.08   # ±8% of image size
+AUG_SCALE_LO  = 0.92
+AUG_SCALE_HI  = 1.08
 
 
 def _load_csv(path: str) -> list[dict]:
@@ -69,23 +38,35 @@ def _load_csv(path: str) -> list[dict]:
         return list(csv.DictReader(f))
 
 
-def _decode_all_frames(video_path: str) -> list[np.ndarray]:
-    """Decode every frame of a video into a list of uint8 RGB arrays."""
+def _decode_video(video_path: str) -> list[np.ndarray]:
+    """Decode every frame into a list of uint8 RGB arrays."""
     frames = []
     container = av.open(video_path)
     for frame in container.decode(video=0):
-        frames.append(np.array(frame.to_image()))
+        frames.append(np.array(frame.to_image().convert("RGB")))
     container.close()
     return frames
+
+
+def _decode_mask(mask_path: str) -> list[np.ndarray]:
+    """Decode mask video into a list of bool arrays (H, W)."""
+    masks = []
+    container = av.open(mask_path)
+    for frame in container.decode(video=0):
+        gray = np.array(frame.to_image().convert("L"))
+        masks.append(gray > 127)
+    container.close()
+    return masks
 
 
 class ForceDataset(Dataset):
     """
     Args:
-        episode_dir:   path to an episode directory (e.g. data/episodes/EP000001)
-        force_keys:    which force columns to use as labels (default: ["Fy"])
-        augment:       apply random flip + brightness jitter
-        min_sharpness: skip blurry frames below this Laplacian variance
+        episode_dir:    path to episode directory containing video.mp4, mask.mp4,
+                        frame_timestamps.csv, force_timestamps.csv
+        force_keys:     which force columns to predict
+        augment:        apply random affine augmentation
+        trim_seconds:   seconds to drop from the start and end of the episode
     """
 
     def __init__(
@@ -93,93 +74,89 @@ class ForceDataset(Dataset):
         episode_dir: str,
         force_keys: list[str] = ("Fy",),
         augment: bool = False,
-        min_sharpness: float = MIN_SHARPNESS,
+        trim_seconds: float = 2.0,
     ):
-        self.episode_dir   = episode_dir
-        self.force_keys    = list(force_keys)
-        self.augment       = augment
-        self.min_sharpness = min_sharpness
+        self.episode_dir  = episode_dir
+        self.force_keys   = list(force_keys)
+        self.augment      = augment
 
-        video_path       = os.path.join(episode_dir, "video.mp4")
-        frame_ts_path    = os.path.join(episode_dir, "frame_timestamps.csv")
-        force_ts_path    = os.path.join(episode_dir, "force_timestamps.csv")
+        video_path    = os.path.join(episode_dir, "video.mp4")
+        mask_path     = os.path.join(episode_dir, "mask.mp4")
+        frame_ts_path = os.path.join(episode_dir, "frame_timestamps.csv")
+        force_ts_path = os.path.join(episode_dir, "force_timestamps.csv")
 
-        # ---- Load all frames once (fast since episodes are short) ----------
-        print(f"  Decoding {video_path} ...")
-        all_frames = _decode_all_frames(video_path)
+        print(f"  Decoding {episode_dir} ...")
+        video_frames = _decode_video(video_path)
+        mask_frames  = _decode_mask(mask_path)
 
-        # ---- Frame timestamps ----------------------------------------------
         frame_rows = _load_csv(frame_ts_path)
-        frame_t    = np.array([float(r["t_wall_s"]) for r in frame_rows])
+        frame_t    = np.array([float(r["t_rel_s"]) for r in frame_rows])
 
-        # ---- Force timestamps + values ------------------------------------
         force_rows = _load_csv(force_ts_path)
-        force_t    = np.array([float(r["t_wall_s"]) for r in force_rows])
+        force_t    = np.array([float(r["t_rel_s"]) for r in force_rows])
+        force_wall = np.array([float(r["t_wall_s"]) for r in force_rows])
+        frame_wall = np.array([float(r["t_wall_s"]) for r in frame_rows])
         force_vals = {
             k: np.array([float(r[k]) for r in force_rows])
             for k in self.force_keys
         }
 
-        # ---- Reference frame (mean of first N_REF_FRAMES) -----------------
-        ref_frames = all_frames[:N_REF_FRAMES]
-        ref_mean   = np.mean(ref_frames, axis=0).astype(np.float32)  # (H, W, 3)
-        ref_mask   = _orange_mask(ref_mean.astype(np.uint8))
-        self.ref_masked = (ref_mean * ref_mask[:, :, None]).astype(np.float32)
+        t_max = frame_t.max() if len(frame_t) > 0 else 0.0
+        t_lo  = trim_seconds
+        t_hi  = t_max - trim_seconds
 
-        # ---- Build valid sample index -------------------------------------
-        self.samples = []   # list of (frame_np, force_label)
-
-        for i, frame_np in enumerate(all_frames):
-            if i >= len(frame_t):
-                break
-
-            # Skip blurry frames
-            gray = np.array(Image.fromarray(frame_np).convert("L"), dtype=np.float32)
-            if _laplacian_var(gray) < self.min_sharpness:
+        self.samples = []
+        n = min(len(video_frames), len(mask_frames), len(frame_t))
+        for i in range(n):
+            t = frame_t[i]
+            if t < t_lo or t > t_hi:
                 continue
 
-            # Interpolate force to this frame's timestamp
-            t = frame_t[i]
+            # Interpolate force to this frame's wall-clock time
+            t_wall = frame_wall[i]
             label = np.array(
-                [np.interp(t, force_t, force_vals[k]) for k in self.force_keys],
+                [np.interp(t_wall, force_wall, force_vals[k]) for k in self.force_keys],
                 dtype=np.float32,
             )
+            self.samples.append((video_frames[i], mask_frames[i], label))
 
-            self.samples.append((frame_np, label, i))
-
-        print(f"  {len(self.samples)} valid frames (skipped {len(all_frames) - len(self.samples)} blurry)")
+        print(f"  {len(self.samples)} frames kept  (trimmed {n - len(self.samples)}, total {n})")
 
     def __len__(self) -> int:
         return len(self.samples)
 
     def __getitem__(self, idx: int) -> dict:
-        frame_np, label, frame_idx = self.samples[idx]
+        frame_np, mask_np, label = self.samples[idx]
 
-        # Apply orange mask to current frame
-        mask = _orange_mask(frame_np)
-        cur_masked = (frame_np.astype(np.float32) * mask[:, :, None])
+        # Apply gripper mask: zero outside
+        masked = frame_np.astype(np.float32) * mask_np[:, :, None]   # (H, W, 3)
 
-        # Deformation map: current − reference (both masked)
-        diff = cur_masked - self.ref_masked   # float32, range ~[-255, 255]
+        # To tensor (C, H, W) in [0, 1]
+        frame_t = torch.from_numpy(masked / 255.0).permute(2, 0, 1).float()
 
-        # Augmentation (apply identically to diff to preserve meaning)
+        # Resize to network input size
+        frame_t = TF.resize(frame_t, list(OUTPUT_SIZE), antialias=True)
+
+        # Augmentation: random mild affine
         if self.augment:
-            if torch.rand(1).item() < 0.5:
-                diff = diff[:, ::-1, :].copy()   # horizontal flip (H, W, 3)
-
-            brightness = 1.0 + (torch.rand(1).item() - 0.5) * 0.2  # ±10%
-            diff = np.clip(diff * brightness, -255, 255)
-
-        # Normalize to [-1, 1] and convert to tensor (C, H, W)
-        diff_t = torch.from_numpy(diff / 255.0).permute(2, 0, 1).float()
-
-        # Resize to OUTPUT_SIZE
-        diff_t = TF.resize(diff_t, list(OUTPUT_SIZE), antialias=True)
+            h, w = OUTPUT_SIZE
+            max_tx = int(w * AUG_TRANSLATE)
+            max_ty = int(h * AUG_TRANSLATE)
+            tx = torch.randint(-max_tx, max_tx + 1, (1,)).item()
+            ty = torch.randint(-max_ty, max_ty + 1, (1,)).item()
+            scale = (AUG_SCALE_LO + torch.rand(1).item() * (AUG_SCALE_HI - AUG_SCALE_LO))
+            frame_t = TF.affine(
+                frame_t,
+                angle=0,
+                translate=[tx, ty],
+                scale=scale,
+                shear=0,
+                fill=0,
+            )
 
         return {
-            "diff":      diff_t,                                  # (3, H, W)
-            "force":     torch.from_numpy(label),                 # (force_dim,)
-            "frame_idx": frame_idx,
+            "frame": frame_t,                       # (3, H, W)
+            "force": torch.from_numpy(label),       # (force_dim,)
         }
 
 
@@ -187,18 +164,10 @@ def make_datasets(
     episode_dirs: list[str],
     val_episode: Optional[str] = None,
     force_keys: tuple = ("Fy",),
+    trim_seconds: float = 2.0,
 ) -> tuple[Dataset, Dataset]:
     """
     Build train and validation datasets using leave-one-episode-out split.
-
-    Args:
-        episode_dirs: list of all episode directories
-        val_episode:  directory of the validation episode (left out of train)
-                      if None, uses the last episode in the list
-        force_keys:   force columns to predict
-
-    Returns:
-        (train_dataset, val_dataset)
     """
     from torch.utils.data import ConcatDataset
 
@@ -209,9 +178,10 @@ def make_datasets(
 
     print("Building training datasets:")
     train_ds = ConcatDataset([
-        ForceDataset(d, force_keys=force_keys, augment=True) for d in train_dirs
+        ForceDataset(d, force_keys=force_keys, augment=True, trim_seconds=trim_seconds)
+        for d in train_dirs
     ])
     print("Building validation dataset:")
-    val_ds = ForceDataset(val_episode, force_keys=force_keys, augment=False)
+    val_ds = ForceDataset(val_episode, force_keys=force_keys, augment=False, trim_seconds=trim_seconds)
 
     return train_ds, val_ds
