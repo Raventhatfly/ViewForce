@@ -1,0 +1,3 @@
+[submodule "third_party/forcelens_dp"]
+	path = third_party/forcelens_dp
+	url = https://github.com/Raventhatfly/forcelens_dp.git
