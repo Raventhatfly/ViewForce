@@ -223,3 +223,5 @@ eval_output
 
 ckpts/
 tts_rollouts/
+diagnostics/
+data/

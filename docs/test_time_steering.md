@@ -152,8 +152,11 @@ resizing the masked input to `256x256`.
 - `--tts-frame-key` must match one of the RGB keys in the DP checkpoint. For
   the coke hybrid image checkpoint, the keys were `base_image` and
   `wrist_image`.
-- `--tts-auto-mask --tts-mask-mode sam2` follows the ViewForce-style mask chain:
-  HSV prompt detection, then SAM2 mask generation.
+- `--tts-auto-mask --tts-mask-mode sam2` uses SAM2 for mask generation. The
+  first frame is initialized from HSV prompt detection; later frames use a
+  two-frame propagation window from the previously accepted mask to the current
+  frame. If the propagated mask fails basic sanity checks, the server reuses the
+  previous accepted mask.
 - The old `--tts-mask-key gripper_mask` path only works if the robot controller
   already sends a `gripper_mask` key in obs.
 - The original DP policy server resizes images to `320x240` before feeding the
