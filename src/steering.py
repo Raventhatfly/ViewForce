@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, Optional, Sequence
+from typing import Any, Dict, Iterable, Optional, Sequence, Union
 
 import numpy as np
 from PIL import Image
@@ -26,7 +26,7 @@ import torch
 from src.model.unet import build_unet
 
 
-ArrayLike = Sequence[float] | np.ndarray
+ArrayLike = Union[Sequence[float], np.ndarray]
 OUTPUT_SIZE = (256, 256)
 
 

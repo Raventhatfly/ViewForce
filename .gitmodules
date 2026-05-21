@@ -1,3 +1,6 @@
 [submodule "third_party/forcelens_dp"]
 	path = third_party/forcelens_dp
 	url = https://github.com/Raventhatfly/forcelens_dp.git
+[submodule "third_party/sam2"]
+	path = third_party/sam2
+	url = https://github.com/facebookresearch/sam2.git
