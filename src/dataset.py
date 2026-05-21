@@ -8,7 +8,7 @@ Pipeline per sample:
   2. Load corresponding binary mask from mask.mp4
   3. Apply mask: zero-out pixels outside the gripper region
   4. Normalize to [0, 1] and resize to OUTPUT_SIZE
-  5. Augment: random mild affine (translation + scale)
+  5. Augment: random mild affine (translation + rotation + scale) and brightness
 
 Force label is linearly interpolated from the ~20 Hz force CSV to the
 frame wall-clock timestamp.  The first and last `trim_seconds` are dropped.
@@ -29,8 +29,11 @@ OUTPUT_SIZE = (256, 256)
 
 # Mild augmentation bounds
 AUG_TRANSLATE = 0.08   # ±8% of image size
+AUG_ROTATE_DEG = 5.0   # ±5 degrees
 AUG_SCALE_LO  = 0.92
 AUG_SCALE_HI  = 1.08
+AUG_BRIGHTNESS_LO = 0.85
+AUG_BRIGHTNESS_HI = 1.15
 
 
 def _load_csv(path: str) -> list[dict]:
@@ -63,10 +66,11 @@ class ForceDataset(Dataset):
     """
     Args:
         episode_dir:    path to episode directory containing video.mp4, mask.mp4,
-                        frame_timestamps.csv, force_timestamps.csv
-        force_keys:     which force columns to predict
-        augment:        apply random affine augmentation
-        trim_seconds:   seconds to drop from the start and end of the episode
+        episode_dir:  path to episode directory containing video.mp4, mask.mp4,
+                      frame_timestamps.csv, force_timestamps.csv
+        force_keys:   which force columns to predict
+        augment:      apply random affine/brightness augmentation
+        trim_seconds: seconds to drop from the start and end of the episode
     """
 
     def __init__(
@@ -137,22 +141,29 @@ class ForceDataset(Dataset):
         # Resize to network input size
         frame_t = TF.resize(frame_t, list(OUTPUT_SIZE), antialias=True)
 
-        # Augmentation: random mild affine
+        # Augmentation: random mild affine + brightness jitter.
         if self.augment:
             h, w = OUTPUT_SIZE
             max_tx = int(w * AUG_TRANSLATE)
             max_ty = int(h * AUG_TRANSLATE)
             tx = torch.randint(-max_tx, max_tx + 1, (1,)).item()
             ty = torch.randint(-max_ty, max_ty + 1, (1,)).item()
+            angle = (torch.rand(1).item() * 2.0 - 1.0) * AUG_ROTATE_DEG
             scale = (AUG_SCALE_LO + torch.rand(1).item() * (AUG_SCALE_HI - AUG_SCALE_LO))
             frame_t = TF.affine(
                 frame_t,
-                angle=0,
+                angle=angle,
                 translate=[tx, ty],
                 scale=scale,
                 shear=0,
                 fill=0,
             )
+            brightness = (
+                AUG_BRIGHTNESS_LO
+                + torch.rand(1).item() * (AUG_BRIGHTNESS_HI - AUG_BRIGHTNESS_LO)
+            )
+            frame_t = TF.adjust_brightness(frame_t, brightness)
+            frame_t = frame_t.clamp(0.0, 1.0)
 
         return {
             "frame": frame_t,                       # (3, H, W)
@@ -163,25 +174,36 @@ class ForceDataset(Dataset):
 def make_datasets(
     episode_dirs: list[str],
     val_episode: Optional[str] = None,
+    val_count: int = 5,
     force_keys: tuple = ("Fy",),
     trim_seconds: float = 2.0,
 ) -> tuple[Dataset, Dataset]:
     """
-    Build train and validation datasets using leave-one-episode-out split.
+    Build train and validation datasets by holding out validation episodes.
     """
     from torch.utils.data import ConcatDataset
 
-    if val_episode is None:
-        val_episode = episode_dirs[-1]
+    if val_episode is not None:
+        val_dirs = [val_episode]
+    else:
+        if val_count <= 0:
+            raise ValueError("val_count must be positive")
+        if val_count >= len(episode_dirs):
+            raise ValueError("val_count must be smaller than the number of episodes")
+        val_dirs = list(episode_dirs[-val_count:])
 
-    train_dirs = [d for d in episode_dirs if d != val_episode]
+    val_set = set(val_dirs)
+    train_dirs = [d for d in episode_dirs if d not in val_set]
 
     print("Building training datasets:")
     train_ds = ConcatDataset([
         ForceDataset(d, force_keys=force_keys, augment=True, trim_seconds=trim_seconds)
         for d in train_dirs
     ])
-    print("Building validation dataset:")
-    val_ds = ForceDataset(val_episode, force_keys=force_keys, augment=False, trim_seconds=trim_seconds)
+    print("Building validation datasets:")
+    val_ds = ConcatDataset([
+        ForceDataset(d, force_keys=force_keys, augment=False, trim_seconds=trim_seconds)
+        for d in val_dirs
+    ])
 
     return train_ds, val_ds

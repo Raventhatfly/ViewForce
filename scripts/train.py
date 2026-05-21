@@ -41,8 +41,12 @@ def parse_args():
     )
     parser.add_argument(
         "--val-episode", default=None,
-        help="Episode directory used for validation (leave-one-out). "
-             "Defaults to the last episode."
+        help="Single episode directory used for validation. Overrides --val-count."
+    )
+    parser.add_argument(
+        "--val-count", type=int, default=5,
+        help="Number of final sorted episodes to hold out for validation "
+             "when --val-episode is not set (default: 5)."
     )
     parser.add_argument(
         "--trim-seconds", type=float, default=2.0,
@@ -104,6 +108,7 @@ def main():
     train_ds, val_ds = make_datasets(
         episodes,
         val_episode=args.val_episode,
+        val_count=args.val_count,
         force_keys=tuple(args.force_keys),
         trim_seconds=args.trim_seconds,
     )
@@ -208,6 +213,8 @@ def main():
             "val_mae":      val_mae,
             "force_keys":   args.force_keys,
             "trim_seconds": args.trim_seconds,
+            "val_episode":   args.val_episode,
+            "val_count":     args.val_count,
             "args":         vars(args),
         }
 

@@ -42,13 +42,14 @@ This writes `mask.mp4` and `overlay.mp4` into each `EP*` subfolder. Use `--skip-
 python scripts/train.py --data-dir data/<dataset_folder>/
 ```
 
-The last episode is held out as the validation set (leave-one-out). Training episodes get random affine augmentation (±8% translation, 0.92–1.08 scale); the validation episode does not.
+The final 5 sorted episodes are held out as the validation set by default. Use `--val-count` to change this, or `--val-episode` to hold out one specific episode. Training episodes get random mild augmentation (±8% translation, ±5° rotation, 0.92–1.08 scale, 0.85–1.15 brightness); validation episodes do not.
 
 ### Key arguments
 
 | Argument | Default | Description |
 |---|---|---|
 | `--data-dir` | — | Dataset folder containing `EP*` subfolders |
+| `--val-count` | `5` | Number of final sorted episodes held out for validation |
 | `--trim-seconds` | `2.0` | Seconds to drop from the start and end of each episode |
 | `--force-keys` | `Fz` | Force channels to predict (e.g. `Fz` or `Fz Fx`) |
 | `--epochs` | `100` | Number of training epochs |
