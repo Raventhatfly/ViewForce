@@ -225,3 +225,4 @@ ckpts/
 tts_rollouts/
 diagnostics/
 data/
+wandb/

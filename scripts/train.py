@@ -15,6 +15,7 @@ import argparse
 import glob
 import os
 import sys
+import time
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -26,6 +27,13 @@ from tqdm import tqdm
 
 from src.dataset import make_datasets
 from src.model.unet import build_unet
+
+
+INPUT_CHANNELS = {
+    "rgb": 3,
+    "rgb_edge": 4,
+    "edge": 1,
+}
 
 
 def parse_args():
@@ -49,15 +57,29 @@ def parse_args():
              "when --val-episode is not set (default: 5)."
     )
     parser.add_argument(
+        "--val-multiple", type=int, default=None,
+        help="Hold out episodes whose EP number is a multiple of this value "
+             "(e.g. 10 holds out EP000010, EP000020, ...). Overrides --val-count."
+    )
+    parser.add_argument(
         "--trim-seconds", type=float, default=2.0,
         help="Seconds to drop from the start and end of each episode (default: 2.0)."
     )
     parser.add_argument("--force-keys", nargs="+", default=["Fz"],
                         help="Force columns to predict (e.g. Fy or Fy Fx).")
+    parser.add_argument("--input-mode", choices=INPUT_CHANNELS.keys(), default="rgb",
+                        help="Model input channels: rgb, rgb_edge for RGB plus "
+                             "a mask-interior Sobel edge channel, or edge for "
+                             "Sobel edge only.")
     parser.add_argument("--epochs",       type=int,   default=100)
     parser.add_argument("--batch-size",   type=int,   default=16)
     parser.add_argument("--lr",           type=float, default=1e-4)
     parser.add_argument("--weight-decay", type=float, default=1e-4)
+    parser.add_argument("--force-pooling", choices=["avg", "spatial"], default="spatial",
+                        help="Force head pooling. 'spatial' keeps a coarse spatial grid "
+                             "instead of globally averaging the bottleneck.")
+    parser.add_argument("--force-spatial-size", type=int, default=4,
+                        help="Grid size for --force-pooling spatial.")
     parser.add_argument("--output",       default="checkpoints",
                         help="Directory to save checkpoints.")
     parser.add_argument("--workers",      type=int,   default=4)
@@ -109,8 +131,10 @@ def main():
         episodes,
         val_episode=args.val_episode,
         val_count=args.val_count,
+        val_multiple=args.val_multiple,
         force_keys=tuple(args.force_keys),
         trim_seconds=args.trim_seconds,
+        input_mode=args.input_mode,
     )
     train_loader = DataLoader(
         train_ds, batch_size=args.batch_size,
@@ -128,11 +152,13 @@ def main():
     print(f"Device: {device}")
 
     model = build_unet(
-        in_channels=3,
+        in_channels=INPUT_CHANNELS[args.input_mode],
         encoder_channels=(32, 64, 128, 256),
         force_dim=force_dim,
         force_hidden_dim=256,
         force_dropout=0.3,
+        force_pooling=args.force_pooling,
+        force_spatial_size=args.force_spatial_size,
         encoder_only=True,
     ).to(device)
 

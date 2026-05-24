@@ -50,6 +50,8 @@ class UNet(nn.Module):
         force_dim: int = 1,
         force_hidden_dim: int = 256,
         force_dropout: float = 0.3,
+        force_pooling: str = "avg",
+        force_spatial_size: int = 4,
         encoder_only: bool = True,
         # kept for backward-compat when encoder_only=False
         stress_out_channels: int = 1,
@@ -58,6 +60,7 @@ class UNet(nn.Module):
 
         channels = list(encoder_channels)
         self.encoder_only = encoder_only
+        self.force_pooling = force_pooling
 
         self.in_conv     = DoubleConv(in_channels, channels[0])
         self.down_blocks = nn.ModuleList(
@@ -66,10 +69,19 @@ class UNet(nn.Module):
         self.bottleneck  = DoubleConv(channels[-1], channels[-1] * 2)
 
         # Force regression head on top of bottleneck
-        self.force_pool = nn.AdaptiveAvgPool2d((1, 1))
+        bottleneck_channels = channels[-1] * 2
+        if force_pooling == "avg":
+            self.force_pool = nn.AdaptiveAvgPool2d((1, 1))
+            force_in_dim = bottleneck_channels
+        elif force_pooling == "spatial":
+            self.force_pool = nn.AdaptiveAvgPool2d((force_spatial_size, force_spatial_size))
+            force_in_dim = bottleneck_channels * force_spatial_size * force_spatial_size
+        else:
+            raise ValueError(f"Unknown force_pooling: {force_pooling!r}")
+
         self.force_head = nn.Sequential(
             nn.Flatten(),
-            nn.Linear(channels[-1] * 2, force_hidden_dim),
+            nn.Linear(force_in_dim, force_hidden_dim),
             nn.ReLU(inplace=True),
             nn.Dropout(force_dropout),
             nn.Linear(force_hidden_dim, force_dim),

@@ -22,12 +22,18 @@ from typing import Any, Dict, Iterable, Optional, Sequence, Union
 import numpy as np
 from PIL import Image
 import torch
+import torch.nn.functional as F
 
 from src.model.unet import build_unet
 
 
 ArrayLike = Union[Sequence[float], np.ndarray]
 OUTPUT_SIZE = (256, 256)
+INPUT_CHANNELS = {
+    "rgb": 3,
+    "rgb_edge": 4,
+    "edge": 1,
+}
 
 
 @dataclass
@@ -142,8 +148,11 @@ def masked_frame_to_tensor(
     frame_rgb: Image.Image | np.ndarray,
     mask: Image.Image | np.ndarray,
     output_size: tuple[int, int] = OUTPUT_SIZE,
+    input_mode: str = "rgb",
 ) -> torch.Tensor:
     """Apply a binary gripper mask and return a normalized CHW tensor."""
+    if input_mode not in INPUT_CHANNELS:
+        raise ValueError(f"input_mode must be one of {tuple(INPUT_CHANNELS)}, got {input_mode!r}")
 
     frame_np = _as_rgb_array(frame_rgb)
     mask_np = _as_bool_mask(mask)
@@ -159,7 +168,43 @@ def masked_frame_to_tensor(
         Image.BILINEAR,
     )
     frame_t = torch.from_numpy(np.array(resized, dtype=np.float32) / 255.0)
-    return frame_t.permute(2, 0, 1).float()
+    frame_t = frame_t.permute(2, 0, 1).float()
+    if input_mode == "rgb_edge":
+        frame_t = _append_edge_channel(frame_t)
+    elif input_mode == "edge":
+        frame_t = _edge_channel(frame_t)
+    return frame_t
+
+
+def _append_edge_channel(frame_t: torch.Tensor) -> torch.Tensor:
+    edge = _edge_channel(frame_t)
+    return torch.cat([frame_t, edge], dim=0)
+
+
+def _edge_channel(frame_t: torch.Tensor) -> torch.Tensor:
+    gray = (
+        0.2989 * frame_t[0:1]
+        + 0.5870 * frame_t[1:2]
+        + 0.1140 * frame_t[2:3]
+    )
+    visible = (frame_t.sum(dim=0, keepdim=True) > 1e-6).float()
+    interior = -F.max_pool2d(-visible.unsqueeze(0), kernel_size=3, stride=1, padding=1)[0]
+    sobel_x = torch.tensor(
+        [[-1.0, 0.0, 1.0], [-2.0, 0.0, 2.0], [-1.0, 0.0, 1.0]],
+        dtype=frame_t.dtype,
+        device=frame_t.device,
+    ).view(1, 1, 3, 3)
+    sobel_y = torch.tensor(
+        [[-1.0, -2.0, -1.0], [0.0, 0.0, 0.0], [1.0, 2.0, 1.0]],
+        dtype=frame_t.dtype,
+        device=frame_t.device,
+    ).view(1, 1, 3, 3)
+    gray_b = gray.unsqueeze(0)
+    gx = F.conv2d(gray_b, sobel_x, padding=1)
+    gy = F.conv2d(gray_b, sobel_y, padding=1)
+    edge = torch.sqrt(gx.square() + gy.square() + 1e-8)[0]
+    edge = (edge / 4.0).clamp(0.0, 1.0) * interior
+    return edge
 
 
 class ViewForceEstimator:
@@ -177,13 +222,21 @@ class ViewForceEstimator:
 
         ckpt = torch.load(self.checkpoint_path, map_location=self.device)
         self.force_keys = list(force_keys or ckpt.get("force_keys", ["Fz"]))
+        ckpt_args = ckpt.get("args", {})
+        force_pooling = ckpt_args.get("force_pooling", "avg")
+        force_spatial_size = ckpt_args.get("force_spatial_size", 4)
+        self.input_mode = ckpt_args.get("input_mode", "rgb")
+        if self.input_mode not in INPUT_CHANNELS:
+            raise ValueError(f"Unsupported checkpoint input_mode: {self.input_mode!r}")
 
         self.model = build_unet(
-            in_channels=3,
+            in_channels=INPUT_CHANNELS[self.input_mode],
             encoder_channels=(32, 64, 128, 256),
             force_dim=len(self.force_keys),
             force_hidden_dim=256,
             force_dropout=force_dropout,
+            force_pooling=force_pooling,
+            force_spatial_size=force_spatial_size,
             encoder_only=True,
         ).to(self.device)
         self.model.load_state_dict(ckpt["model"])
@@ -201,7 +254,11 @@ class ViewForceEstimator:
         if force_mode not in {"magnitude", "signed"}:
             raise ValueError("force_mode must be 'magnitude' or 'signed'")
 
-        frame_t = masked_frame_to_tensor(frame_rgb, mask).unsqueeze(0).to(self.device)
+        frame_t = masked_frame_to_tensor(
+            frame_rgb,
+            mask,
+            input_mode=self.input_mode,
+        ).unsqueeze(0).to(self.device)
         with torch.no_grad():
             pred = self.model(frame_t).detach().cpu().numpy()[0]
 
