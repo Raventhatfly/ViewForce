@@ -226,3 +226,4 @@ tts_rollouts/
 diagnostics/
 data/
 wandb/
+rollouts/
