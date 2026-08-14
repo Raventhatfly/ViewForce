@@ -1,0 +1,2555 @@
+/home/wfy/miniforge3/envs/robodiff/lib/python3.9/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+episodes:   0%|          | 0/44 [00:00<?, ?it/s]  Prompt points: [[93.16036987304688, 118.07475280761719], [247.40162658691406, 119.54771423339844]]
+
+frame loading (JPEG):   0%|          | 0/66 [00:00<?, ?it/s][A
+frame loading (JPEG):   9%|▉         | 6/66 [00:00<00:01, 51.54it/s][A
+frame loading (JPEG):  18%|█▊        | 12/66 [00:00<00:01, 51.00it/s][A
+frame loading (JPEG):  27%|██▋       | 18/66 [00:00<00:00, 50.91it/s][A
+frame loading (JPEG):  36%|███▋      | 24/66 [00:00<00:00, 50.91it/s][A
+frame loading (JPEG):  45%|████▌     | 30/66 [00:00<00:00, 46.87it/s][A
+frame loading (JPEG):  55%|█████▍    | 36/66 [00:00<00:00, 48.14it/s][A
+frame loading (JPEG):  64%|██████▎   | 42/66 [00:00<00:00, 48.99it/s][A
+frame loading (JPEG):  73%|███████▎  | 48/66 [00:00<00:00, 49.57it/s][A
+frame loading (JPEG):  82%|████████▏ | 54/66 [00:01<00:00, 49.96it/s][A
+frame loading (JPEG):  91%|█████████ | 60/66 [00:01<00:00, 50.23it/s][A
+frame loading (JPEG): 100%|██████████| 66/66 [00:01<00:00, 50.46it/s][Aframe loading (JPEG): 100%|██████████| 66/66 [00:01<00:00, 49.82it/s]
+/home/wfy/repos/ViewForce/third_party/sam2/sam2/sam2_video_predictor.py:786: UserWarning: cannot import name '_C' from 'sam2' (/home/wfy/repos/ViewForce/third_party/sam2/sam2/__init__.py)
+
+Skipping the post-processing step due to the error above. You can still use SAM 2 and it's OK to ignore the error above, although some post-processing functionality may be limited (which doesn't affect the results in most cases; see https://github.com/facebookresearch/sam2/blob/main/INSTALL.md).
+  pred_masks_gpu = fill_holes_in_mask_scores(
+
+propagate in video:   0%|          | 0/66 [00:00<?, ?it/s][A
+propagate in video:   8%|▊         | 5/66 [00:00<00:01, 36.68it/s][A
+propagate in video:  14%|█▎        | 9/66 [00:00<00:02, 27.15it/s][A
+propagate in video:  18%|█▊        | 12/66 [00:00<00:02, 24.79it/s][A
+propagate in video:  23%|██▎       | 15/66 [00:00<00:02, 23.78it/s][A
+propagate in video:  27%|██▋       | 18/66 [00:00<00:02, 23.32it/s][A
+propagate in video:  32%|███▏      | 21/66 [00:00<00:01, 23.17it/s][A
+propagate in video:  36%|███▋      | 24/66 [00:00<00:01, 23.17it/s][A
+propagate in video:  41%|████      | 27/66 [00:01<00:01, 23.15it/s][A
+propagate in video:  45%|████▌     | 30/66 [00:01<00:01, 23.16it/s][A
+propagate in video:  50%|█████     | 33/66 [00:01<00:01, 23.12it/s][A
+propagate in video:  55%|█████▍    | 36/66 [00:01<00:01, 23.11it/s][A
+propagate in video:  59%|█████▉    | 39/66 [00:01<00:01, 23.07it/s][A
+propagate in video:  64%|██████▎   | 42/66 [00:01<00:01, 23.06it/s][A
+propagate in video:  68%|██████▊   | 45/66 [00:01<00:00, 23.04it/s][A
+propagate in video:  73%|███████▎  | 48/66 [00:02<00:00, 23.03it/s][A
+propagate in video:  77%|███████▋  | 51/66 [00:02<00:00, 23.02it/s][A
+propagate in video:  82%|████████▏ | 54/66 [00:02<00:00, 23.01it/s][A
+propagate in video:  86%|████████▋ | 57/66 [00:02<00:00, 23.02it/s][A
+propagate in video:  91%|█████████ | 60/66 [00:02<00:00, 23.01it/s][A
+propagate in video:  95%|█████████▌| 63/66 [00:02<00:00, 23.01it/s][A
+propagate in video: 100%|██████████| 66/66 [00:02<00:00, 23.00it/s][Apropagate in video: 100%|██████████| 66/66 [00:02<00:00, 23.48it/s]
+episodes:   2%|▏         | 1/44 [00:05<03:40,  5.13s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T183538131556_fail: wrote viewforce_pseudo_force_fz.npz, frames=66, mask_frac median=0.2619
+  Prompt points: [[93.58197784423828, 118.73371124267578], [247.4623260498047, 120.06295013427734]]
+
+frame loading (JPEG):   0%|          | 0/75 [00:00<?, ?it/s][A
+frame loading (JPEG):   7%|▋         | 5/75 [00:00<00:01, 47.79it/s][A
+frame loading (JPEG):  13%|█▎        | 10/75 [00:00<00:01, 45.72it/s][A
+frame loading (JPEG):  21%|██▏       | 16/75 [00:00<00:01, 48.62it/s][A
+frame loading (JPEG):  28%|██▊       | 21/75 [00:00<00:01, 45.09it/s][A
+frame loading (JPEG):  36%|███▌      | 27/75 [00:00<00:01, 47.56it/s][A
+frame loading (JPEG):  44%|████▍     | 33/75 [00:00<00:00, 49.07it/s][A
+frame loading (JPEG):  52%|█████▏    | 39/75 [00:00<00:00, 50.03it/s][A
+frame loading (JPEG):  60%|██████    | 45/75 [00:00<00:00, 50.67it/s][A
+frame loading (JPEG):  68%|██████▊   | 51/75 [00:01<00:00, 51.12it/s][A
+frame loading (JPEG):  76%|███████▌  | 57/75 [00:01<00:00, 51.41it/s][A
+frame loading (JPEG):  84%|████████▍ | 63/75 [00:01<00:00, 51.62it/s][A
+frame loading (JPEG):  92%|█████████▏| 69/75 [00:01<00:00, 51.78it/s][A
+frame loading (JPEG): 100%|██████████| 75/75 [00:01<00:00, 48.37it/s][Aframe loading (JPEG): 100%|██████████| 75/75 [00:01<00:00, 49.27it/s]
+
+propagate in video:   0%|          | 0/75 [00:00<?, ?it/s][A
+propagate in video:   7%|▋         | 5/75 [00:00<00:01, 37.06it/s][A
+propagate in video:  12%|█▏        | 9/75 [00:00<00:02, 27.40it/s][A
+propagate in video:  16%|█▌        | 12/75 [00:00<00:02, 24.96it/s][A
+propagate in video:  20%|██        | 15/75 [00:00<00:02, 23.91it/s][A
+propagate in video:  24%|██▍       | 18/75 [00:00<00:02, 23.47it/s][A
+propagate in video:  28%|██▊       | 21/75 [00:00<00:02, 23.28it/s][A
+propagate in video:  32%|███▏      | 24/75 [00:00<00:02, 23.30it/s][A
+propagate in video:  36%|███▌      | 27/75 [00:01<00:02, 23.31it/s][A
+propagate in video:  40%|████      | 30/75 [00:01<00:01, 23.30it/s][A
+propagate in video:  44%|████▍     | 33/75 [00:01<00:01, 23.29it/s][A
+propagate in video:  48%|████▊     | 36/75 [00:01<00:01, 23.26it/s][A
+propagate in video:  52%|█████▏    | 39/75 [00:01<00:01, 23.23it/s][A
+propagate in video:  56%|█████▌    | 42/75 [00:01<00:01, 23.23it/s][A
+propagate in video:  60%|██████    | 45/75 [00:01<00:01, 23.19it/s][A
+propagate in video:  64%|██████▍   | 48/75 [00:02<00:01, 23.16it/s][A
+propagate in video:  68%|██████▊   | 51/75 [00:02<00:01, 23.14it/s][A
+propagate in video:  72%|███████▏  | 54/75 [00:02<00:00, 23.12it/s][A
+propagate in video:  76%|███████▌  | 57/75 [00:02<00:00, 23.11it/s][A
+propagate in video:  80%|████████  | 60/75 [00:02<00:00, 23.10it/s][A
+propagate in video:  84%|████████▍ | 63/75 [00:02<00:00, 23.09it/s][A
+propagate in video:  88%|████████▊ | 66/75 [00:02<00:00, 23.08it/s][A
+propagate in video:  92%|█████████▏| 69/75 [00:02<00:00, 23.09it/s][A
+propagate in video:  96%|█████████▌| 72/75 [00:03<00:00, 23.08it/s][A
+propagate in video: 100%|██████████| 75/75 [00:03<00:00, 23.09it/s][Apropagate in video: 100%|██████████| 75/75 [00:03<00:00, 23.55it/s]
+episodes:   5%|▍         | 2/44 [00:10<03:41,  5.28s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T183633650521_fail: wrote viewforce_pseudo_force_fz.npz, frames=75, mask_frac median=0.1397
+  Prompt points: [[93.32952117919922, 117.87665557861328], [247.70004272460938, 119.33170318603516]]
+
+frame loading (JPEG):   0%|          | 0/77 [00:00<?, ?it/s][A
+frame loading (JPEG):   8%|▊         | 6/77 [00:00<00:01, 52.81it/s][A
+frame loading (JPEG):  16%|█▌        | 12/77 [00:00<00:01, 52.87it/s][A
+frame loading (JPEG):  23%|██▎       | 18/77 [00:00<00:01, 53.10it/s][A
+frame loading (JPEG):  31%|███       | 24/77 [00:00<00:00, 53.13it/s][A
+frame loading (JPEG):  39%|███▉      | 30/77 [00:00<00:00, 48.74it/s][A
+frame loading (JPEG):  47%|████▋     | 36/77 [00:00<00:00, 50.17it/s][A
+frame loading (JPEG):  55%|█████▍    | 42/77 [00:00<00:00, 51.14it/s][A
+frame loading (JPEG):  62%|██████▏   | 48/77 [00:00<00:00, 51.71it/s][A
+frame loading (JPEG):  70%|███████   | 54/77 [00:01<00:00, 52.12it/s][A
+frame loading (JPEG):  78%|███████▊  | 60/77 [00:01<00:00, 52.44it/s][A
+frame loading (JPEG):  86%|████████▌ | 66/77 [00:01<00:00, 52.62it/s][A
+frame loading (JPEG):  94%|█████████▎| 72/77 [00:01<00:00, 52.76it/s][Aframe loading (JPEG): 100%|██████████| 77/77 [00:01<00:00, 51.13it/s]
+
+propagate in video:   0%|          | 0/77 [00:00<?, ?it/s][A
+propagate in video:   6%|▋         | 5/77 [00:00<00:01, 37.16it/s][A
+propagate in video:  12%|█▏        | 9/77 [00:00<00:02, 27.36it/s][A
+propagate in video:  16%|█▌        | 12/77 [00:00<00:02, 24.90it/s][A
+propagate in video:  19%|█▉        | 15/77 [00:00<00:02, 23.90it/s][A
+propagate in video:  23%|██▎       | 18/77 [00:00<00:02, 23.46it/s][A
+propagate in video:  27%|██▋       | 21/77 [00:00<00:02, 23.30it/s][A
+propagate in video:  31%|███       | 24/77 [00:00<00:02, 23.31it/s][A
+propagate in video:  35%|███▌      | 27/77 [00:01<00:02, 23.25it/s][A
+propagate in video:  39%|███▉      | 30/77 [00:01<00:02, 23.25it/s][A
+propagate in video:  43%|████▎     | 33/77 [00:01<00:01, 23.24it/s][A
+propagate in video:  47%|████▋     | 36/77 [00:01<00:01, 23.26it/s][A
+propagate in video:  51%|█████     | 39/77 [00:01<00:01, 23.26it/s][A
+propagate in video:  55%|█████▍    | 42/77 [00:01<00:01, 23.26it/s][A
+propagate in video:  58%|█████▊    | 45/77 [00:01<00:01, 23.25it/s][A
+propagate in video:  62%|██████▏   | 48/77 [00:02<00:01, 23.24it/s][A
+propagate in video:  66%|██████▌   | 51/77 [00:02<00:01, 23.19it/s][A
+propagate in video:  70%|███████   | 54/77 [00:02<00:00, 23.16it/s][A
+propagate in video:  74%|███████▍  | 57/77 [00:02<00:00, 23.13it/s][A
+propagate in video:  78%|███████▊  | 60/77 [00:02<00:00, 23.12it/s][A
+propagate in video:  82%|████████▏ | 63/77 [00:02<00:00, 23.10it/s][A
+propagate in video:  86%|████████▌ | 66/77 [00:02<00:00, 23.11it/s][A
+propagate in video:  90%|████████▉ | 69/77 [00:02<00:00, 23.10it/s][A
+propagate in video:  94%|█████████▎| 72/77 [00:03<00:00, 23.09it/s][A
+propagate in video:  97%|█████████▋| 75/77 [00:03<00:00, 23.09it/s][Apropagate in video: 100%|██████████| 77/77 [00:03<00:00, 23.54it/s]
+episodes:   7%|▋         | 3/44 [00:15<03:39,  5.35s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T183912825748_fail: wrote viewforce_pseudo_force_fz.npz, frames=77, mask_frac median=0.1363
+  Prompt points: [[93.44195556640625, 118.47077941894531], [247.52821350097656, 119.33665466308594]]
+
+frame loading (JPEG):   0%|          | 0/41 [00:00<?, ?it/s][A
+frame loading (JPEG):  12%|█▏        | 5/41 [00:00<00:00, 43.97it/s][A
+frame loading (JPEG):  24%|██▍       | 10/41 [00:00<00:00, 45.21it/s][A
+frame loading (JPEG):  39%|███▉      | 16/41 [00:00<00:00, 48.06it/s][A
+frame loading (JPEG):  54%|█████▎    | 22/41 [00:00<00:00, 49.32it/s][A
+frame loading (JPEG):  68%|██████▊   | 28/41 [00:00<00:00, 49.99it/s][A
+frame loading (JPEG):  80%|████████  | 33/41 [00:00<00:00, 46.32it/s][A
+frame loading (JPEG):  95%|█████████▌| 39/41 [00:00<00:00, 47.91it/s][Aframe loading (JPEG): 100%|██████████| 41/41 [00:00<00:00, 47.91it/s]
+
+propagate in video:   0%|          | 0/41 [00:00<?, ?it/s][A
+propagate in video:  12%|█▏        | 5/41 [00:00<00:00, 41.58it/s][A
+propagate in video:  24%|██▍       | 10/41 [00:00<00:01, 29.37it/s][A
+propagate in video:  34%|███▍      | 14/41 [00:00<00:01, 26.61it/s][A
+propagate in video:  41%|████▏     | 17/41 [00:00<00:00, 25.51it/s][A
+propagate in video:  49%|████▉     | 20/41 [00:00<00:00, 24.79it/s][A
+propagate in video:  56%|█████▌    | 23/41 [00:00<00:00, 24.30it/s][A
+propagate in video:  63%|██████▎   | 26/41 [00:01<00:00, 23.98it/s][A
+propagate in video:  71%|███████   | 29/41 [00:01<00:00, 23.76it/s][A
+propagate in video:  78%|███████▊  | 32/41 [00:01<00:00, 23.61it/s][A
+propagate in video:  85%|████████▌ | 35/41 [00:01<00:00, 23.51it/s][A
+propagate in video:  93%|█████████▎| 38/41 [00:01<00:00, 23.44it/s][A
+propagate in video: 100%|██████████| 41/41 [00:01<00:00, 23.39it/s][Apropagate in video: 100%|██████████| 41/41 [00:01<00:00, 24.74it/s]
+episodes:   9%|▉         | 4/44 [00:18<02:55,  4.38s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T184032709565_fail: wrote viewforce_pseudo_force_fz.npz, frames=41, mask_frac median=0.1431
+  Prompt points: [[93.40380859375, 118.46932983398438], [247.42327880859375, 119.15343475341797]]
+
+frame loading (JPEG):   0%|          | 0/66 [00:00<?, ?it/s][A
+frame loading (JPEG):   9%|▉         | 6/66 [00:00<00:01, 51.09it/s][A
+frame loading (JPEG):  18%|█▊        | 12/66 [00:00<00:01, 51.86it/s][A
+frame loading (JPEG):  27%|██▋       | 18/66 [00:00<00:00, 52.04it/s][A
+frame loading (JPEG):  36%|███▋      | 24/66 [00:00<00:00, 49.43it/s][A
+frame loading (JPEG):  45%|████▌     | 30/66 [00:00<00:00, 50.43it/s][A
+frame loading (JPEG):  55%|█████▍    | 36/66 [00:00<00:00, 47.13it/s][A
+frame loading (JPEG):  64%|██████▎   | 42/66 [00:00<00:00, 48.67it/s][A
+frame loading (JPEG):  73%|███████▎  | 48/66 [00:00<00:00, 49.79it/s][A
+frame loading (JPEG):  82%|████████▏ | 54/66 [00:01<00:00, 50.63it/s][A
+frame loading (JPEG):  91%|█████████ | 60/66 [00:01<00:00, 51.12it/s][A
+frame loading (JPEG): 100%|██████████| 66/66 [00:01<00:00, 51.55it/s][Aframe loading (JPEG): 100%|██████████| 66/66 [00:01<00:00, 50.44it/s]
+
+propagate in video:   0%|          | 0/66 [00:00<?, ?it/s][A
+propagate in video:   8%|▊         | 5/66 [00:00<00:01, 41.54it/s][A
+propagate in video:  15%|█▌        | 10/66 [00:00<00:01, 29.32it/s][A
+propagate in video:  21%|██        | 14/66 [00:00<00:01, 26.59it/s][A
+propagate in video:  26%|██▌       | 17/66 [00:00<00:01, 25.45it/s][A
+propagate in video:  30%|███       | 20/66 [00:00<00:01, 24.78it/s][A
+propagate in video:  35%|███▍      | 23/66 [00:00<00:01, 24.31it/s][A
+propagate in video:  39%|███▉      | 26/66 [00:01<00:01, 23.99it/s][A
+propagate in video:  44%|████▍     | 29/66 [00:01<00:01, 23.74it/s][A
+propagate in video:  48%|████▊     | 32/66 [00:01<00:01, 23.57it/s][A
+propagate in video:  53%|█████▎    | 35/66 [00:01<00:01, 23.47it/s][A
+propagate in video:  58%|█████▊    | 38/66 [00:01<00:01, 23.36it/s][A
+propagate in video:  62%|██████▏   | 41/66 [00:01<00:01, 23.28it/s][A
+propagate in video:  67%|██████▋   | 44/66 [00:01<00:00, 23.27it/s][A
+propagate in video:  71%|███████   | 47/66 [00:01<00:00, 23.27it/s][A
+propagate in video:  76%|███████▌  | 50/66 [00:02<00:00, 23.25it/s][A
+propagate in video:  80%|████████  | 53/66 [00:02<00:00, 23.26it/s][A
+propagate in video:  85%|████████▍ | 56/66 [00:02<00:00, 23.25it/s][A
+propagate in video:  89%|████████▉ | 59/66 [00:02<00:00, 23.26it/s][A
+propagate in video:  94%|█████████▍| 62/66 [00:02<00:00, 23.25it/s][A
+propagate in video:  98%|█████████▊| 65/66 [00:02<00:00, 23.25it/s][Apropagate in video: 100%|██████████| 66/66 [00:02<00:00, 24.12it/s]
+episodes:  11%|█▏        | 5/44 [00:23<02:54,  4.47s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T184236092681_fail: wrote viewforce_pseudo_force_fz.npz, frames=66, mask_frac median=0.1380
+  Prompt points: [[93.30583953857422, 118.26943969726562], [247.74855041503906, 118.68546295166016]]
+
+frame loading (JPEG):   0%|          | 0/75 [00:00<?, ?it/s][A
+frame loading (JPEG):   8%|▊         | 6/75 [00:00<00:01, 52.22it/s][A
+frame loading (JPEG):  16%|█▌        | 12/75 [00:00<00:01, 52.14it/s][A
+frame loading (JPEG):  24%|██▍       | 18/75 [00:00<00:01, 52.12it/s][A
+frame loading (JPEG):  32%|███▏      | 24/75 [00:00<00:00, 52.13it/s][A
+frame loading (JPEG):  40%|████      | 30/75 [00:00<00:00, 47.91it/s][A
+frame loading (JPEG):  48%|████▊     | 36/75 [00:00<00:00, 49.25it/s][A
+frame loading (JPEG):  56%|█████▌    | 42/75 [00:00<00:00, 50.07it/s][A
+frame loading (JPEG):  64%|██████▍   | 48/75 [00:00<00:00, 50.70it/s][A
+frame loading (JPEG):  72%|███████▏  | 54/75 [00:01<00:00, 51.12it/s][A
+frame loading (JPEG):  80%|████████  | 60/75 [00:01<00:00, 51.44it/s][A
+frame loading (JPEG):  88%|████████▊ | 66/75 [00:01<00:00, 51.65it/s][A
+frame loading (JPEG):  96%|█████████▌| 72/75 [00:01<00:00, 51.87it/s][Aframe loading (JPEG): 100%|██████████| 75/75 [00:01<00:00, 51.12it/s]
+
+propagate in video:   0%|          | 0/75 [00:00<?, ?it/s][A
+propagate in video:   7%|▋         | 5/75 [00:00<00:01, 41.57it/s][A
+propagate in video:  13%|█▎        | 10/75 [00:00<00:02, 29.34it/s][A
+propagate in video:  19%|█▊        | 14/75 [00:00<00:02, 26.57it/s][A
+propagate in video:  23%|██▎       | 17/75 [00:00<00:02, 25.50it/s][A
+propagate in video:  27%|██▋       | 20/75 [00:00<00:02, 24.78it/s][A
+propagate in video:  31%|███       | 23/75 [00:00<00:02, 24.32it/s][A
+propagate in video:  35%|███▍      | 26/75 [00:01<00:02, 23.94it/s][A
+propagate in video:  39%|███▊      | 29/75 [00:01<00:01, 23.68it/s][A
+propagate in video:  43%|████▎     | 32/75 [00:01<00:01, 23.49it/s][A
+propagate in video:  47%|████▋     | 35/75 [00:01<00:01, 23.38it/s][A
+propagate in video:  51%|█████     | 38/75 [00:01<00:01, 23.34it/s][A
+propagate in video:  55%|█████▍    | 41/75 [00:01<00:01, 23.32it/s][A
+propagate in video:  59%|█████▊    | 44/75 [00:01<00:01, 23.30it/s][A
+propagate in video:  63%|██████▎   | 47/75 [00:01<00:01, 23.29it/s][A
+propagate in video:  67%|██████▋   | 50/75 [00:02<00:01, 23.29it/s][A
+propagate in video:  71%|███████   | 53/75 [00:02<00:00, 23.26it/s][A
+propagate in video:  75%|███████▍  | 56/75 [00:02<00:00, 23.26it/s][A
+propagate in video:  79%|███████▊  | 59/75 [00:02<00:00, 23.26it/s][A
+propagate in video:  83%|████████▎ | 62/75 [00:02<00:00, 23.26it/s][A
+propagate in video:  87%|████████▋ | 65/75 [00:02<00:00, 23.27it/s][A
+propagate in video:  91%|█████████ | 68/75 [00:02<00:00, 23.27it/s][A
+propagate in video:  95%|█████████▍| 71/75 [00:02<00:00, 23.26it/s][A
+propagate in video:  99%|█████████▊| 74/75 [00:03<00:00, 23.24it/s][Apropagate in video: 100%|██████████| 75/75 [00:03<00:00, 24.01it/s]
+episodes:  14%|█▎        | 6/44 [00:28<03:00,  4.74s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T184332229617_fail: wrote viewforce_pseudo_force_fz.npz, frames=75, mask_frac median=0.1311
+  Prompt points: [[93.2845230102539, 119.21092224121094], [248.2986602783203, 118.30327606201172]]
+
+frame loading (JPEG):   0%|          | 0/80 [00:00<?, ?it/s][A
+frame loading (JPEG):   8%|▊         | 6/80 [00:00<00:01, 52.46it/s][A
+frame loading (JPEG):  15%|█▌        | 12/80 [00:00<00:01, 51.94it/s][A
+frame loading (JPEG):  22%|██▎       | 18/80 [00:00<00:01, 51.75it/s][A
+frame loading (JPEG):  30%|███       | 24/80 [00:00<00:01, 47.16it/s][A
+frame loading (JPEG):  38%|███▊      | 30/80 [00:00<00:01, 48.64it/s][A
+frame loading (JPEG):  45%|████▌     | 36/80 [00:00<00:00, 49.60it/s][A
+frame loading (JPEG):  52%|█████▎    | 42/80 [00:00<00:00, 50.29it/s][A
+frame loading (JPEG):  60%|██████    | 48/80 [00:00<00:00, 50.67it/s][A
+frame loading (JPEG):  68%|██████▊   | 54/80 [00:01<00:00, 50.95it/s][A
+frame loading (JPEG):  75%|███████▌  | 60/80 [00:01<00:00, 51.11it/s][A
+frame loading (JPEG):  82%|████████▎ | 66/80 [00:01<00:00, 51.21it/s][A
+frame loading (JPEG):  90%|█████████ | 72/80 [00:01<00:00, 51.32it/s][A
+frame loading (JPEG):  98%|█████████▊| 78/80 [00:01<00:00, 47.90it/s][Aframe loading (JPEG): 100%|██████████| 80/80 [00:01<00:00, 49.81it/s]
+
+propagate in video:   0%|          | 0/80 [00:00<?, ?it/s][A
+propagate in video:   6%|▋         | 5/80 [00:00<00:01, 41.56it/s][A
+propagate in video:  12%|█▎        | 10/80 [00:00<00:02, 29.27it/s][A
+propagate in video:  18%|█▊        | 14/80 [00:00<00:02, 26.56it/s][A
+propagate in video:  21%|██▏       | 17/80 [00:00<00:02, 25.43it/s][A
+propagate in video:  25%|██▌       | 20/80 [00:00<00:02, 24.74it/s][A
+propagate in video:  29%|██▉       | 23/80 [00:00<00:02, 24.25it/s][A
+propagate in video:  32%|███▎      | 26/80 [00:01<00:02, 23.91it/s][A
+propagate in video:  36%|███▋      | 29/80 [00:01<00:02, 23.55it/s][A
+propagate in video:  40%|████      | 32/80 [00:01<00:02, 23.46it/s][A
+propagate in video:  44%|████▍     | 35/80 [00:01<00:01, 23.39it/s][A
+propagate in video:  48%|████▊     | 38/80 [00:01<00:01, 23.35it/s][A
+propagate in video:  51%|█████▏    | 41/80 [00:01<00:01, 23.30it/s][A
+propagate in video:  55%|█████▌    | 44/80 [00:01<00:01, 23.22it/s][A
+propagate in video:  59%|█████▉    | 47/80 [00:01<00:01, 23.18it/s][A
+propagate in video:  62%|██████▎   | 50/80 [00:02<00:01, 23.15it/s][A
+propagate in video:  66%|██████▋   | 53/80 [00:02<00:01, 23.13it/s][A
+propagate in video:  70%|███████   | 56/80 [00:02<00:01, 23.11it/s][A
+propagate in video:  74%|███████▍  | 59/80 [00:02<00:00, 23.10it/s][A
+propagate in video:  78%|███████▊  | 62/80 [00:02<00:00, 23.09it/s][A
+propagate in video:  81%|████████▏ | 65/80 [00:02<00:00, 23.08it/s][A
+propagate in video:  85%|████████▌ | 68/80 [00:02<00:00, 23.08it/s][A
+propagate in video:  89%|████████▉ | 71/80 [00:02<00:00, 23.08it/s][A
+propagate in video:  92%|█████████▎| 74/80 [00:03<00:00, 23.07it/s][A
+propagate in video:  96%|█████████▋| 77/80 [00:03<00:00, 23.07it/s][A
+propagate in video: 100%|██████████| 80/80 [00:03<00:00, 23.07it/s][Apropagate in video: 100%|██████████| 80/80 [00:03<00:00, 23.85it/s]
+episodes:  16%|█▌        | 7/44 [00:34<03:06,  5.04s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191136969478_fail: wrote viewforce_pseudo_force_fz.npz, frames=80, mask_frac median=0.2788
+  Prompt points: [[93.42778015136719, 119.60398864746094], [248.0958709716797, 118.21670532226562]]
+
+frame loading (JPEG):   0%|          | 0/121 [00:00<?, ?it/s][A
+frame loading (JPEG):   5%|▍         | 6/121 [00:00<00:02, 54.87it/s][A
+frame loading (JPEG):  10%|▉         | 12/121 [00:00<00:02, 52.74it/s][A
+frame loading (JPEG):  15%|█▍        | 18/121 [00:00<00:01, 52.07it/s][A
+frame loading (JPEG):  20%|█▉        | 24/121 [00:00<00:02, 47.32it/s][A
+frame loading (JPEG):  25%|██▍       | 30/121 [00:00<00:01, 48.76it/s][A
+frame loading (JPEG):  30%|██▉       | 36/121 [00:00<00:01, 49.61it/s][A
+frame loading (JPEG):  35%|███▍      | 42/121 [00:00<00:01, 50.15it/s][A
+frame loading (JPEG):  40%|███▉      | 48/121 [00:00<00:01, 50.43it/s][A
+frame loading (JPEG):  45%|████▍     | 54/121 [00:01<00:01, 50.74it/s][A
+frame loading (JPEG):  50%|████▉     | 60/121 [00:01<00:01, 50.93it/s][A
+frame loading (JPEG):  55%|█████▍    | 66/121 [00:01<00:01, 51.04it/s][A
+frame loading (JPEG):  60%|█████▉    | 72/121 [00:01<00:01, 47.67it/s][A
+frame loading (JPEG):  64%|██████▍   | 78/121 [00:01<00:00, 48.74it/s][A
+frame loading (JPEG):  69%|██████▉   | 84/121 [00:01<00:00, 49.52it/s][A
+frame loading (JPEG):  74%|███████▍  | 90/121 [00:01<00:00, 50.11it/s][A
+frame loading (JPEG):  79%|███████▉  | 96/121 [00:01<00:00, 50.49it/s][A
+frame loading (JPEG):  84%|████████▍ | 102/121 [00:02<00:00, 50.81it/s][A
+frame loading (JPEG):  89%|████████▉ | 108/121 [00:02<00:00, 50.97it/s][A
+frame loading (JPEG):  94%|█████████▍| 114/121 [00:02<00:00, 51.07it/s][A
+frame loading (JPEG):  99%|█████████▉| 120/121 [00:02<00:00, 47.78it/s][Aframe loading (JPEG): 100%|██████████| 121/121 [00:02<00:00, 49.76it/s]
+
+propagate in video:   0%|          | 0/121 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/121 [00:00<00:03, 37.14it/s][A
+propagate in video:   7%|▋         | 9/121 [00:00<00:04, 27.18it/s][A
+propagate in video:  10%|▉         | 12/121 [00:00<00:04, 24.80it/s][A
+propagate in video:  12%|█▏        | 15/121 [00:00<00:04, 23.74it/s][A
+propagate in video:  15%|█▍        | 18/121 [00:00<00:04, 23.25it/s][A
+propagate in video:  17%|█▋        | 21/121 [00:00<00:04, 23.13it/s][A
+propagate in video:  20%|█▉        | 24/121 [00:00<00:04, 23.13it/s][A
+propagate in video:  22%|██▏       | 27/121 [00:01<00:04, 23.17it/s][A
+propagate in video:  25%|██▍       | 30/121 [00:01<00:03, 23.17it/s][A
+propagate in video:  27%|██▋       | 33/121 [00:01<00:03, 23.15it/s][A
+propagate in video:  30%|██▉       | 36/121 [00:01<00:03, 23.14it/s][A
+propagate in video:  32%|███▏      | 39/121 [00:01<00:03, 23.13it/s][A
+propagate in video:  35%|███▍      | 42/121 [00:01<00:03, 23.14it/s][A
+propagate in video:  37%|███▋      | 45/121 [00:01<00:03, 23.18it/s][A
+propagate in video:  40%|███▉      | 48/121 [00:02<00:03, 23.21it/s][A
+propagate in video:  42%|████▏     | 51/121 [00:02<00:03, 23.20it/s][A
+propagate in video:  45%|████▍     | 54/121 [00:02<00:02, 23.23it/s][A
+propagate in video:  47%|████▋     | 57/121 [00:02<00:02, 23.19it/s][A
+propagate in video:  50%|████▉     | 60/121 [00:02<00:02, 23.21it/s][A
+propagate in video:  52%|█████▏    | 63/121 [00:02<00:02, 23.22it/s][A
+propagate in video:  55%|█████▍    | 66/121 [00:02<00:02, 23.21it/s][A
+propagate in video:  57%|█████▋    | 69/121 [00:02<00:02, 23.20it/s][A
+propagate in video:  60%|█████▉    | 72/121 [00:03<00:02, 23.17it/s][A
+propagate in video:  62%|██████▏   | 75/121 [00:03<00:01, 23.14it/s][A
+propagate in video:  64%|██████▍   | 78/121 [00:03<00:01, 23.15it/s][A
+propagate in video:  67%|██████▋   | 81/121 [00:03<00:01, 23.15it/s][A
+propagate in video:  69%|██████▉   | 84/121 [00:03<00:01, 23.15it/s][A
+propagate in video:  72%|███████▏  | 87/121 [00:03<00:01, 23.14it/s][A
+propagate in video:  74%|███████▍  | 90/121 [00:03<00:01, 23.15it/s][A
+propagate in video:  77%|███████▋  | 93/121 [00:03<00:01, 23.18it/s][A
+propagate in video:  79%|███████▉  | 96/121 [00:04<00:01, 23.16it/s][A
+propagate in video:  82%|████████▏ | 99/121 [00:04<00:00, 23.14it/s][A
+propagate in video:  84%|████████▍ | 102/121 [00:04<00:00, 23.12it/s][A
+propagate in video:  87%|████████▋ | 105/121 [00:04<00:00, 23.10it/s][A
+propagate in video:  89%|████████▉ | 108/121 [00:04<00:00, 23.09it/s][A
+propagate in video:  92%|█████████▏| 111/121 [00:04<00:00, 23.08it/s][A
+propagate in video:  94%|█████████▍| 114/121 [00:04<00:00, 23.08it/s][A
+propagate in video:  97%|█████████▋| 117/121 [00:05<00:00, 23.08it/s][A
+propagate in video:  99%|█████████▉| 120/121 [00:05<00:00, 23.07it/s][Apropagate in video: 100%|██████████| 121/121 [00:05<00:00, 23.37it/s]
+episodes:  18%|█▊        | 8/44 [00:42<03:41,  6.16s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191209897330_fail: wrote viewforce_pseudo_force_fz.npz, frames=121, mask_frac median=0.2017
+  Prompt points: [[93.35148620605469, 120.19757080078125], [248.0880126953125, 118.50157928466797]]
+
+frame loading (JPEG):   0%|          | 0/116 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▍         | 5/116 [00:00<00:02, 46.24it/s][A
+frame loading (JPEG):   9%|▉         | 11/116 [00:00<00:02, 43.02it/s][A
+frame loading (JPEG):  15%|█▍        | 17/116 [00:00<00:02, 46.36it/s][A
+frame loading (JPEG):  20%|█▉        | 23/116 [00:00<00:01, 48.19it/s][A
+frame loading (JPEG):  25%|██▌       | 29/116 [00:00<00:01, 49.20it/s][A
+frame loading (JPEG):  30%|███       | 35/116 [00:00<00:01, 49.91it/s][A
+frame loading (JPEG):  35%|███▌      | 41/116 [00:00<00:01, 50.31it/s][A
+frame loading (JPEG):  41%|████      | 47/116 [00:00<00:01, 50.52it/s][A
+frame loading (JPEG):  46%|████▌     | 53/116 [00:01<00:01, 50.77it/s][A
+frame loading (JPEG):  51%|█████     | 59/116 [00:01<00:01, 50.95it/s][A
+frame loading (JPEG):  56%|█████▌    | 65/116 [00:01<00:01, 47.59it/s][A
+frame loading (JPEG):  61%|██████    | 71/116 [00:01<00:00, 48.66it/s][A
+frame loading (JPEG):  66%|██████▋   | 77/116 [00:01<00:00, 49.39it/s][A
+frame loading (JPEG):  72%|███████▏  | 83/116 [00:01<00:00, 49.91it/s][A
+frame loading (JPEG):  77%|███████▋  | 89/116 [00:01<00:00, 50.26it/s][A
+frame loading (JPEG):  82%|████████▏ | 95/116 [00:01<00:00, 50.56it/s][A
+frame loading (JPEG):  87%|████████▋ | 101/116 [00:02<00:00, 50.74it/s][A
+frame loading (JPEG):  92%|█████████▏| 107/116 [00:02<00:00, 50.84it/s][A
+frame loading (JPEG):  97%|█████████▋| 113/116 [00:02<00:00, 47.55it/s][Aframe loading (JPEG): 100%|██████████| 116/116 [00:02<00:00, 49.13it/s]
+
+propagate in video:   0%|          | 0/116 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/116 [00:00<00:02, 37.17it/s][A
+propagate in video:   8%|▊         | 9/116 [00:00<00:03, 27.39it/s][A
+propagate in video:  10%|█         | 12/116 [00:00<00:04, 24.98it/s][A
+propagate in video:  13%|█▎        | 15/116 [00:00<00:04, 23.92it/s][A
+propagate in video:  16%|█▌        | 18/116 [00:00<00:04, 23.52it/s][A
+propagate in video:  18%|█▊        | 21/116 [00:00<00:04, 23.36it/s][A
+propagate in video:  21%|██        | 24/116 [00:00<00:03, 23.33it/s][A
+propagate in video:  23%|██▎       | 27/116 [00:01<00:03, 23.31it/s][A
+propagate in video:  26%|██▌       | 30/116 [00:01<00:03, 23.30it/s][A
+propagate in video:  28%|██▊       | 33/116 [00:01<00:03, 23.26it/s][A
+propagate in video:  31%|███       | 36/116 [00:01<00:03, 23.26it/s][A
+propagate in video:  34%|███▎      | 39/116 [00:01<00:03, 23.21it/s][A
+propagate in video:  36%|███▌      | 42/116 [00:01<00:03, 23.17it/s][A
+propagate in video:  39%|███▉      | 45/116 [00:01<00:03, 23.14it/s][A
+propagate in video:  41%|████▏     | 48/116 [00:02<00:02, 23.12it/s][A
+propagate in video:  44%|████▍     | 51/116 [00:02<00:02, 23.10it/s][A
+propagate in video:  47%|████▋     | 54/116 [00:02<00:02, 23.10it/s][A
+propagate in video:  49%|████▉     | 57/116 [00:02<00:02, 23.14it/s][A
+propagate in video:  52%|█████▏    | 60/116 [00:02<00:02, 23.18it/s][A
+propagate in video:  54%|█████▍    | 63/116 [00:02<00:02, 23.21it/s][A
+propagate in video:  57%|█████▋    | 66/116 [00:02<00:02, 23.23it/s][A
+propagate in video:  59%|█████▉    | 69/116 [00:02<00:02, 23.24it/s][A
+propagate in video:  62%|██████▏   | 72/116 [00:03<00:01, 23.24it/s][A
+propagate in video:  65%|██████▍   | 75/116 [00:03<00:01, 23.25it/s][A
+propagate in video:  67%|██████▋   | 78/116 [00:03<00:01, 23.25it/s][A
+propagate in video:  70%|██████▉   | 81/116 [00:03<00:01, 23.26it/s][A
+propagate in video:  72%|███████▏  | 84/116 [00:03<00:01, 23.27it/s][A
+propagate in video:  75%|███████▌  | 87/116 [00:03<00:01, 23.27it/s][A
+propagate in video:  78%|███████▊  | 90/116 [00:03<00:01, 23.27it/s][A
+propagate in video:  80%|████████  | 93/116 [00:03<00:00, 23.27it/s][A
+propagate in video:  83%|████████▎ | 96/116 [00:04<00:00, 23.26it/s][A
+propagate in video:  85%|████████▌ | 99/116 [00:04<00:00, 23.24it/s][A
+propagate in video:  88%|████████▊ | 102/116 [00:04<00:00, 23.22it/s][A
+propagate in video:  91%|█████████ | 105/116 [00:04<00:00, 23.19it/s][A
+propagate in video:  93%|█████████▎| 108/116 [00:04<00:00, 23.20it/s][A
+propagate in video:  96%|█████████▌| 111/116 [00:04<00:00, 23.16it/s][A
+propagate in video:  98%|█████████▊| 114/116 [00:04<00:00, 23.13it/s][Apropagate in video: 100%|██████████| 116/116 [00:04<00:00, 23.45it/s]
+episodes:  20%|██        | 9/44 [00:51<03:58,  6.82s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191239447600_fail: wrote viewforce_pseudo_force_fz.npz, frames=116, mask_frac median=0.1385
+  Prompt points: [[93.36489868164062, 120.37908172607422], [247.85731506347656, 118.50321960449219]]
+
+frame loading (JPEG):   0%|          | 0/139 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▎         | 5/139 [00:00<00:02, 47.10it/s][A
+frame loading (JPEG):   7%|▋         | 10/139 [00:00<00:03, 42.42it/s][A
+frame loading (JPEG):  12%|█▏        | 16/139 [00:00<00:02, 46.37it/s][A
+frame loading (JPEG):  16%|█▌        | 22/139 [00:00<00:02, 48.16it/s][A
+frame loading (JPEG):  20%|██        | 28/139 [00:00<00:02, 49.26it/s][A
+frame loading (JPEG):  24%|██▍       | 34/139 [00:00<00:02, 49.90it/s][A
+frame loading (JPEG):  29%|██▉       | 40/139 [00:00<00:01, 50.27it/s][A
+frame loading (JPEG):  33%|███▎      | 46/139 [00:00<00:01, 50.52it/s][A
+frame loading (JPEG):  37%|███▋      | 52/139 [00:01<00:01, 50.74it/s][A
+frame loading (JPEG):  42%|████▏     | 58/139 [00:01<00:01, 47.34it/s][A
+frame loading (JPEG):  46%|████▌     | 64/139 [00:01<00:01, 48.39it/s][A
+frame loading (JPEG):  50%|█████     | 70/139 [00:01<00:01, 49.18it/s][A
+frame loading (JPEG):  55%|█████▍    | 76/139 [00:01<00:01, 49.75it/s][A
+frame loading (JPEG):  59%|█████▉    | 82/139 [00:01<00:01, 50.11it/s][A
+frame loading (JPEG):  63%|██████▎   | 88/139 [00:01<00:01, 50.43it/s][A
+frame loading (JPEG):  68%|██████▊   | 94/139 [00:01<00:00, 50.64it/s][A
+frame loading (JPEG):  72%|███████▏  | 100/139 [00:02<00:00, 50.78it/s][A
+frame loading (JPEG):  76%|███████▋  | 106/139 [00:02<00:00, 50.94it/s][A
+frame loading (JPEG):  81%|████████  | 112/139 [00:02<00:00, 47.40it/s][A
+frame loading (JPEG):  85%|████████▍ | 118/139 [00:02<00:00, 48.43it/s][A
+frame loading (JPEG):  89%|████████▉ | 124/139 [00:02<00:00, 49.24it/s][A
+frame loading (JPEG):  94%|█████████▎| 130/139 [00:02<00:00, 49.76it/s][A
+frame loading (JPEG):  98%|█████████▊| 136/139 [00:02<00:00, 50.15it/s][Aframe loading (JPEG): 100%|██████████| 139/139 [00:02<00:00, 49.38it/s]
+
+propagate in video:   0%|          | 0/139 [00:00<?, ?it/s][A
+propagate in video:   4%|▎         | 5/139 [00:00<00:03, 37.13it/s][A
+propagate in video:   6%|▋         | 9/139 [00:00<00:04, 27.43it/s][A
+propagate in video:   9%|▊         | 12/139 [00:00<00:05, 24.98it/s][A
+propagate in video:  11%|█         | 15/139 [00:00<00:05, 23.85it/s][A
+propagate in video:  13%|█▎        | 18/139 [00:00<00:05, 23.44it/s][A
+propagate in video:  15%|█▌        | 21/139 [00:00<00:05, 23.28it/s][A
+propagate in video:  17%|█▋        | 24/139 [00:00<00:04, 23.27it/s][A
+propagate in video:  19%|█▉        | 27/139 [00:01<00:04, 23.23it/s][A
+propagate in video:  22%|██▏       | 30/139 [00:01<00:04, 23.22it/s][A
+propagate in video:  24%|██▎       | 33/139 [00:01<00:04, 23.23it/s][A
+propagate in video:  26%|██▌       | 36/139 [00:01<00:04, 23.22it/s][A
+propagate in video:  28%|██▊       | 39/139 [00:01<00:04, 23.23it/s][A
+propagate in video:  30%|███       | 42/139 [00:01<00:04, 23.19it/s][A
+propagate in video:  32%|███▏      | 45/139 [00:01<00:04, 23.15it/s][A
+propagate in video:  35%|███▍      | 48/139 [00:02<00:03, 23.12it/s][A
+propagate in video:  37%|███▋      | 51/139 [00:02<00:03, 23.11it/s][A
+propagate in video:  39%|███▉      | 54/139 [00:02<00:03, 23.11it/s][A
+propagate in video:  41%|████      | 57/139 [00:02<00:03, 23.14it/s][A
+propagate in video:  43%|████▎     | 60/139 [00:02<00:03, 23.12it/s][A
+propagate in video:  45%|████▌     | 63/139 [00:02<00:03, 23.13it/s][A
+propagate in video:  47%|████▋     | 66/139 [00:02<00:03, 23.11it/s][A
+propagate in video:  50%|████▉     | 69/139 [00:02<00:03, 23.13it/s][A
+propagate in video:  52%|█████▏    | 72/139 [00:03<00:02, 23.17it/s][A
+propagate in video:  54%|█████▍    | 75/139 [00:03<00:02, 23.20it/s][A
+propagate in video:  56%|█████▌    | 78/139 [00:03<00:02, 23.17it/s][A
+propagate in video:  58%|█████▊    | 81/139 [00:03<00:02, 23.20it/s][A
+propagate in video:  60%|██████    | 84/139 [00:03<00:02, 23.19it/s][A
+propagate in video:  63%|██████▎   | 87/139 [00:03<00:02, 23.19it/s][A
+propagate in video:  65%|██████▍   | 90/139 [00:03<00:02, 23.21it/s][A
+propagate in video:  67%|██████▋   | 93/139 [00:03<00:01, 23.22it/s][A
+propagate in video:  69%|██████▉   | 96/139 [00:04<00:01, 23.24it/s][A
+propagate in video:  71%|███████   | 99/139 [00:04<00:01, 23.25it/s][A
+propagate in video:  73%|███████▎  | 102/139 [00:04<00:01, 23.26it/s][A
+propagate in video:  76%|███████▌  | 105/139 [00:04<00:01, 23.25it/s][A
+propagate in video:  78%|███████▊  | 108/139 [00:04<00:01, 23.25it/s][A
+propagate in video:  80%|███████▉  | 111/139 [00:04<00:01, 23.21it/s][A
+propagate in video:  82%|████████▏ | 114/139 [00:04<00:01, 23.16it/s][A
+propagate in video:  84%|████████▍ | 117/139 [00:04<00:00, 23.13it/s][A
+propagate in video:  86%|████████▋ | 120/139 [00:05<00:00, 23.11it/s][A
+propagate in video:  88%|████████▊ | 123/139 [00:05<00:00, 23.09it/s][A
+propagate in video:  91%|█████████ | 126/139 [00:05<00:00, 23.14it/s][A
+propagate in video:  93%|█████████▎| 129/139 [00:05<00:00, 23.15it/s][A
+propagate in video:  95%|█████████▍| 132/139 [00:05<00:00, 23.19it/s][A
+propagate in video:  97%|█████████▋| 135/139 [00:05<00:00, 23.16it/s][A
+propagate in video:  99%|█████████▉| 138/139 [00:05<00:00, 23.17it/s][Apropagate in video: 100%|██████████| 139/139 [00:05<00:00, 23.38it/s]
+episodes:  23%|██▎       | 10/44 [01:01<04:24,  7.77s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191325707523_fail: wrote viewforce_pseudo_force_fz.npz, frames=139, mask_frac median=0.1402
+  Prompt points: [[93.29754638671875, 118.98774719238281], [248.6720428466797, 118.11976623535156]]
+
+frame loading (JPEG):   0%|          | 0/112 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▍         | 5/112 [00:00<00:02, 43.97it/s][A
+frame loading (JPEG):   9%|▉         | 10/112 [00:00<00:02, 41.16it/s][A
+frame loading (JPEG):  14%|█▍        | 16/112 [00:00<00:02, 45.66it/s][A
+frame loading (JPEG):  20%|█▉        | 22/112 [00:00<00:01, 47.89it/s][A
+frame loading (JPEG):  25%|██▌       | 28/112 [00:00<00:01, 49.09it/s][A
+frame loading (JPEG):  30%|███       | 34/112 [00:00<00:01, 49.96it/s][A
+frame loading (JPEG):  36%|███▌      | 40/112 [00:00<00:01, 50.41it/s][A
+frame loading (JPEG):  41%|████      | 46/112 [00:00<00:01, 50.69it/s][A
+frame loading (JPEG):  46%|████▋     | 52/112 [00:01<00:01, 50.82it/s][A
+frame loading (JPEG):  52%|█████▏    | 58/112 [00:01<00:01, 47.43it/s][A
+frame loading (JPEG):  57%|█████▋    | 64/112 [00:01<00:00, 48.55it/s][A
+frame loading (JPEG):  62%|██████▎   | 70/112 [00:01<00:00, 49.35it/s][A
+frame loading (JPEG):  68%|██████▊   | 76/112 [00:01<00:00, 49.94it/s][A
+frame loading (JPEG):  73%|███████▎  | 82/112 [00:01<00:00, 50.33it/s][A
+frame loading (JPEG):  79%|███████▊  | 88/112 [00:01<00:00, 50.69it/s][A
+frame loading (JPEG):  84%|████████▍ | 94/112 [00:01<00:00, 50.85it/s][A
+frame loading (JPEG):  89%|████████▉ | 100/112 [00:02<00:00, 51.03it/s][A
+frame loading (JPEG):  95%|█████████▍| 106/112 [00:02<00:00, 51.17it/s][A
+frame loading (JPEG): 100%|██████████| 112/112 [00:02<00:00, 47.83it/s][Aframe loading (JPEG): 100%|██████████| 112/112 [00:02<00:00, 49.05it/s]
+
+propagate in video:   0%|          | 0/112 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/112 [00:00<00:02, 41.60it/s][A
+propagate in video:   9%|▉         | 10/112 [00:00<00:03, 29.35it/s][A
+propagate in video:  12%|█▎        | 14/112 [00:00<00:03, 26.55it/s][A
+propagate in video:  15%|█▌        | 17/112 [00:00<00:03, 25.41it/s][A
+propagate in video:  18%|█▊        | 20/112 [00:00<00:03, 24.71it/s][A
+propagate in video:  21%|██        | 23/112 [00:00<00:03, 24.26it/s][A
+propagate in video:  23%|██▎       | 26/112 [00:01<00:03, 23.94it/s][A
+propagate in video:  26%|██▌       | 29/112 [00:01<00:03, 23.67it/s][A
+propagate in video:  29%|██▊       | 32/112 [00:01<00:03, 23.50it/s][A
+propagate in video:  31%|███▏      | 35/112 [00:01<00:03, 23.37it/s][A
+propagate in video:  34%|███▍      | 38/112 [00:01<00:03, 23.29it/s][A
+propagate in video:  37%|███▋      | 41/112 [00:01<00:03, 23.22it/s][A
+propagate in video:  39%|███▉      | 44/112 [00:01<00:02, 23.19it/s][A
+propagate in video:  42%|████▏     | 47/112 [00:01<00:02, 23.16it/s][A
+propagate in video:  45%|████▍     | 50/112 [00:02<00:02, 23.20it/s][A
+propagate in video:  47%|████▋     | 53/112 [00:02<00:02, 23.19it/s][A
+propagate in video:  50%|█████     | 56/112 [00:02<00:02, 23.22it/s][A
+propagate in video:  53%|█████▎    | 59/112 [00:02<00:02, 23.23it/s][A
+propagate in video:  55%|█████▌    | 62/112 [00:02<00:02, 23.25it/s][A
+propagate in video:  58%|█████▊    | 65/112 [00:02<00:02, 23.25it/s][A
+propagate in video:  61%|██████    | 68/112 [00:02<00:01, 23.26it/s][A
+propagate in video:  63%|██████▎   | 71/112 [00:02<00:01, 23.27it/s][A
+propagate in video:  66%|██████▌   | 74/112 [00:03<00:01, 23.24it/s][A
+propagate in video:  69%|██████▉   | 77/112 [00:03<00:01, 23.23it/s][A
+propagate in video:  71%|███████▏  | 80/112 [00:03<00:01, 23.24it/s][A
+propagate in video:  74%|███████▍  | 83/112 [00:03<00:01, 23.25it/s][A
+propagate in video:  77%|███████▋  | 86/112 [00:03<00:01, 23.26it/s][A
+propagate in video:  79%|███████▉  | 89/112 [00:03<00:00, 23.26it/s][A
+propagate in video:  82%|████████▏ | 92/112 [00:03<00:00, 23.24it/s][A
+propagate in video:  85%|████████▍ | 95/112 [00:03<00:00, 23.20it/s][A
+propagate in video:  88%|████████▊ | 98/112 [00:04<00:00, 23.20it/s][A
+propagate in video:  90%|█████████ | 101/112 [00:04<00:00, 23.19it/s][A
+propagate in video:  93%|█████████▎| 104/112 [00:04<00:00, 23.17it/s][A
+propagate in video:  96%|█████████▌| 107/112 [00:04<00:00, 23.15it/s][A
+propagate in video:  98%|█████████▊| 110/112 [00:04<00:00, 23.13it/s][Apropagate in video: 100%|██████████| 112/112 [00:04<00:00, 23.71it/s]
+episodes:  25%|██▌       | 11/44 [01:09<04:17,  7.82s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191400911060_fail: wrote viewforce_pseudo_force_fz.npz, frames=112, mask_frac median=0.1428
+  Prompt points: [[93.10734558105469, 119.22362518310547], [248.3140411376953, 118.01087951660156]]
+
+frame loading (JPEG):   0%|          | 0/120 [00:00<?, ?it/s][A
+frame loading (JPEG):   5%|▌         | 6/120 [00:00<00:02, 55.43it/s][A
+frame loading (JPEG):  10%|█         | 12/120 [00:00<00:02, 53.01it/s][A
+frame loading (JPEG):  15%|█▌        | 18/120 [00:00<00:02, 47.24it/s][A
+frame loading (JPEG):  20%|██        | 24/120 [00:00<00:01, 48.79it/s][A
+frame loading (JPEG):  25%|██▌       | 30/120 [00:00<00:01, 49.76it/s][A
+frame loading (JPEG):  30%|███       | 36/120 [00:00<00:01, 50.44it/s][A
+frame loading (JPEG):  35%|███▌      | 42/120 [00:00<00:01, 50.79it/s][A
+frame loading (JPEG):  40%|████      | 48/120 [00:00<00:01, 51.07it/s][A
+frame loading (JPEG):  45%|████▌     | 54/120 [00:01<00:01, 51.19it/s][A
+frame loading (JPEG):  50%|█████     | 60/120 [00:01<00:01, 51.28it/s][A
+frame loading (JPEG):  55%|█████▌    | 66/120 [00:01<00:01, 47.83it/s][A
+frame loading (JPEG):  60%|██████    | 72/120 [00:01<00:00, 48.97it/s][A
+frame loading (JPEG):  65%|██████▌   | 78/120 [00:01<00:00, 49.75it/s][A
+frame loading (JPEG):  70%|███████   | 84/120 [00:01<00:00, 50.34it/s][A
+frame loading (JPEG):  75%|███████▌  | 90/120 [00:01<00:00, 50.76it/s][A
+frame loading (JPEG):  80%|████████  | 96/120 [00:01<00:00, 51.04it/s][A
+frame loading (JPEG):  85%|████████▌ | 102/120 [00:02<00:00, 51.22it/s][A
+frame loading (JPEG):  90%|█████████ | 108/120 [00:02<00:00, 51.39it/s][A
+frame loading (JPEG):  95%|█████████▌| 114/120 [00:02<00:00, 51.45it/s][A
+frame loading (JPEG): 100%|██████████| 120/120 [00:02<00:00, 47.92it/s][Aframe loading (JPEG): 100%|██████████| 120/120 [00:02<00:00, 49.98it/s]
+
+propagate in video:   0%|          | 0/120 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/120 [00:00<00:02, 41.61it/s][A
+propagate in video:   8%|▊         | 10/120 [00:00<00:03, 29.37it/s][A
+propagate in video:  12%|█▏        | 14/120 [00:00<00:03, 26.58it/s][A
+propagate in video:  14%|█▍        | 17/120 [00:00<00:04, 25.45it/s][A
+propagate in video:  17%|█▋        | 20/120 [00:00<00:04, 24.75it/s][A
+propagate in video:  19%|█▉        | 23/120 [00:00<00:03, 24.29it/s][A
+propagate in video:  22%|██▏       | 26/120 [00:01<00:03, 23.97it/s][A
+propagate in video:  24%|██▍       | 29/120 [00:01<00:03, 23.76it/s][A
+propagate in video:  27%|██▋       | 32/120 [00:01<00:03, 23.61it/s][A
+propagate in video:  29%|██▉       | 35/120 [00:01<00:03, 23.46it/s][A
+propagate in video:  32%|███▏      | 38/120 [00:01<00:03, 23.36it/s][A
+propagate in video:  34%|███▍      | 41/120 [00:01<00:03, 23.27it/s][A
+propagate in video:  37%|███▋      | 44/120 [00:01<00:03, 23.23it/s][A
+propagate in video:  39%|███▉      | 47/120 [00:01<00:03, 23.18it/s][A
+propagate in video:  42%|████▏     | 50/120 [00:02<00:03, 23.16it/s][A
+propagate in video:  44%|████▍     | 53/120 [00:02<00:02, 23.13it/s][A
+propagate in video:  47%|████▋     | 56/120 [00:02<00:02, 23.12it/s][A
+propagate in video:  49%|████▉     | 59/120 [00:02<00:02, 23.10it/s][A
+propagate in video:  52%|█████▏    | 62/120 [00:02<00:02, 23.10it/s][A
+propagate in video:  54%|█████▍    | 65/120 [00:02<00:02, 23.09it/s][A
+propagate in video:  57%|█████▋    | 68/120 [00:02<00:02, 23.10it/s][A
+propagate in video:  59%|█████▉    | 71/120 [00:02<00:02, 23.15it/s][A
+propagate in video:  62%|██████▏   | 74/120 [00:03<00:01, 23.19it/s][A
+propagate in video:  64%|██████▍   | 77/120 [00:03<00:01, 23.21it/s][A
+propagate in video:  67%|██████▋   | 80/120 [00:03<00:01, 23.23it/s][A
+propagate in video:  69%|██████▉   | 83/120 [00:03<00:01, 23.23it/s][A
+propagate in video:  72%|███████▏  | 86/120 [00:03<00:01, 23.23it/s][A
+propagate in video:  74%|███████▍  | 89/120 [00:03<00:01, 23.24it/s][A
+propagate in video:  77%|███████▋  | 92/120 [00:03<00:01, 23.20it/s][A
+propagate in video:  79%|███████▉  | 95/120 [00:03<00:01, 23.22it/s][A
+propagate in video:  82%|████████▏ | 98/120 [00:04<00:00, 23.21it/s][A
+propagate in video:  84%|████████▍ | 101/120 [00:04<00:00, 23.23it/s][A
+propagate in video:  87%|████████▋ | 104/120 [00:04<00:00, 23.19it/s][A
+propagate in video:  89%|████████▉ | 107/120 [00:04<00:00, 23.21it/s][A
+propagate in video:  92%|█████████▏| 110/120 [00:04<00:00, 23.18it/s][A
+propagate in video:  94%|█████████▍| 113/120 [00:04<00:00, 23.18it/s][A
+propagate in video:  97%|█████████▋| 116/120 [00:04<00:00, 23.11it/s][A
+propagate in video:  99%|█████████▉| 119/120 [00:05<00:00, 23.15it/s][Apropagate in video: 100%|██████████| 120/120 [00:05<00:00, 23.66it/s]
+episodes:  27%|██▋       | 12/44 [01:17<04:16,  8.00s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191509696528_fail: wrote viewforce_pseudo_force_fz.npz, frames=120, mask_frac median=0.1391
+  Prompt points: [[92.8796157836914, 117.57369995117188], [248.44651794433594, 118.38372039794922]]
+
+frame loading (JPEG):   0%|          | 0/198 [00:00<?, ?it/s][A
+frame loading (JPEG):   3%|▎         | 5/198 [00:00<00:04, 42.92it/s][A
+frame loading (JPEG):   6%|▌         | 11/198 [00:00<00:03, 48.10it/s][A
+frame loading (JPEG):   9%|▊         | 17/198 [00:00<00:03, 49.69it/s][A
+frame loading (JPEG):  12%|█▏        | 23/198 [00:00<00:03, 50.47it/s][A
+frame loading (JPEG):  15%|█▍        | 29/198 [00:00<00:03, 50.90it/s][A
+frame loading (JPEG):  18%|█▊        | 35/198 [00:00<00:03, 51.12it/s][A
+frame loading (JPEG):  21%|██        | 41/198 [00:00<00:03, 51.31it/s][A
+frame loading (JPEG):  24%|██▎       | 47/198 [00:00<00:02, 51.51it/s][A
+frame loading (JPEG):  27%|██▋       | 53/198 [00:01<00:02, 51.55it/s][A
+frame loading (JPEG):  30%|██▉       | 59/198 [00:01<00:02, 48.10it/s][A
+frame loading (JPEG):  33%|███▎      | 65/198 [00:01<00:02, 49.17it/s][A
+frame loading (JPEG):  36%|███▌      | 71/198 [00:01<00:02, 49.94it/s][A
+frame loading (JPEG):  39%|███▉      | 77/198 [00:01<00:02, 50.51it/s][A
+frame loading (JPEG):  42%|████▏     | 83/198 [00:01<00:02, 50.83it/s][A
+frame loading (JPEG):  45%|████▍     | 89/198 [00:01<00:02, 51.02it/s][A
+frame loading (JPEG):  48%|████▊     | 95/198 [00:01<00:02, 51.19it/s][A
+frame loading (JPEG):  51%|█████     | 101/198 [00:02<00:01, 51.35it/s][A
+frame loading (JPEG):  54%|█████▍    | 107/198 [00:02<00:01, 47.95it/s][A
+frame loading (JPEG):  57%|█████▋    | 113/198 [00:02<00:01, 48.93it/s][A
+frame loading (JPEG):  60%|██████    | 119/198 [00:02<00:01, 49.66it/s][A
+frame loading (JPEG):  63%|██████▎   | 125/198 [00:02<00:01, 50.32it/s][A
+frame loading (JPEG):  66%|██████▌   | 131/198 [00:02<00:01, 50.71it/s][A
+frame loading (JPEG):  69%|██████▉   | 137/198 [00:02<00:01, 51.09it/s][A
+frame loading (JPEG):  72%|███████▏  | 143/198 [00:02<00:01, 51.23it/s][A
+frame loading (JPEG):  75%|███████▌  | 149/198 [00:02<00:00, 51.39it/s][A
+frame loading (JPEG):  78%|███████▊  | 155/198 [00:03<00:00, 51.47it/s][A
+frame loading (JPEG):  81%|████████▏ | 161/198 [00:03<00:00, 48.08it/s][A
+frame loading (JPEG):  84%|████████▍ | 167/198 [00:03<00:00, 49.05it/s][A
+frame loading (JPEG):  87%|████████▋ | 173/198 [00:03<00:00, 49.86it/s][A
+frame loading (JPEG):  90%|█████████ | 179/198 [00:03<00:00, 50.38it/s][A
+frame loading (JPEG):  93%|█████████▎| 185/198 [00:03<00:00, 50.81it/s][A
+frame loading (JPEG):  96%|█████████▋| 191/198 [00:03<00:00, 51.14it/s][A
+frame loading (JPEG):  99%|█████████▉| 197/198 [00:03<00:00, 51.21it/s][Aframe loading (JPEG): 100%|██████████| 198/198 [00:03<00:00, 50.33it/s]
+
+propagate in video:   0%|          | 0/198 [00:00<?, ?it/s][A
+propagate in video:   3%|▎         | 5/198 [00:00<00:05, 37.23it/s][A
+propagate in video:   5%|▍         | 9/198 [00:00<00:06, 27.32it/s][A
+propagate in video:   6%|▌         | 12/198 [00:00<00:07, 24.87it/s][A
+propagate in video:   8%|▊         | 15/198 [00:00<00:07, 23.86it/s][A
+propagate in video:   9%|▉         | 18/198 [00:00<00:07, 23.38it/s][A
+propagate in video:  11%|█         | 21/198 [00:00<00:07, 23.21it/s][A
+propagate in video:  12%|█▏        | 24/198 [00:00<00:07, 23.22it/s][A
+propagate in video:  14%|█▎        | 27/198 [00:01<00:07, 23.23it/s][A
+propagate in video:  15%|█▌        | 30/198 [00:01<00:07, 23.25it/s][A
+propagate in video:  17%|█▋        | 33/198 [00:01<00:07, 23.26it/s][A
+propagate in video:  18%|█▊        | 36/198 [00:01<00:06, 23.26it/s][A
+propagate in video:  20%|█▉        | 39/198 [00:01<00:06, 23.26it/s][A
+propagate in video:  21%|██        | 42/198 [00:01<00:06, 23.21it/s][A
+propagate in video:  23%|██▎       | 45/198 [00:01<00:06, 23.23it/s][A
+propagate in video:  24%|██▍       | 48/198 [00:02<00:06, 23.20it/s][A
+propagate in video:  26%|██▌       | 51/198 [00:02<00:06, 23.17it/s][A
+propagate in video:  27%|██▋       | 54/198 [00:02<00:06, 23.14it/s][A
+propagate in video:  29%|██▉       | 57/198 [00:02<00:06, 23.13it/s][A
+propagate in video:  30%|███       | 60/198 [00:02<00:05, 23.18it/s][A
+propagate in video:  32%|███▏      | 63/198 [00:02<00:05, 23.21it/s][A
+propagate in video:  33%|███▎      | 66/198 [00:02<00:05, 23.22it/s][A
+propagate in video:  35%|███▍      | 69/198 [00:02<00:05, 23.24it/s][A
+propagate in video:  36%|███▋      | 72/198 [00:03<00:05, 23.24it/s][A
+propagate in video:  38%|███▊      | 75/198 [00:03<00:05, 23.23it/s][A
+propagate in video:  39%|███▉      | 78/198 [00:03<00:05, 23.24it/s][A
+propagate in video:  41%|████      | 81/198 [00:03<00:05, 23.20it/s][A
+propagate in video:  42%|████▏     | 84/198 [00:03<00:04, 23.20it/s][A
+propagate in video:  44%|████▍     | 87/198 [00:03<00:04, 23.21it/s][A
+propagate in video:  45%|████▌     | 90/198 [00:03<00:04, 23.21it/s][A
+propagate in video:  47%|████▋     | 93/198 [00:03<00:04, 23.17it/s][A
+propagate in video:  48%|████▊     | 96/198 [00:04<00:04, 23.20it/s][A
+propagate in video:  50%|█████     | 99/198 [00:04<00:04, 23.17it/s][A
+propagate in video:  52%|█████▏    | 102/198 [00:04<00:04, 23.17it/s][A
+propagate in video:  53%|█████▎    | 105/198 [00:04<00:04, 23.15it/s][A
+propagate in video:  55%|█████▍    | 108/198 [00:04<00:03, 23.18it/s][A
+propagate in video:  56%|█████▌    | 111/198 [00:04<00:03, 23.20it/s][A
+propagate in video:  58%|█████▊    | 114/198 [00:04<00:03, 23.22it/s][A
+propagate in video:  59%|█████▉    | 117/198 [00:04<00:03, 23.21it/s][A
+propagate in video:  61%|██████    | 120/198 [00:05<00:03, 23.18it/s][A
+propagate in video:  62%|██████▏   | 123/198 [00:05<00:03, 23.18it/s][A
+propagate in video:  64%|██████▎   | 126/198 [00:05<00:03, 23.17it/s][A
+propagate in video:  65%|██████▌   | 129/198 [00:05<00:02, 23.15it/s][A
+propagate in video:  67%|██████▋   | 132/198 [00:05<00:02, 23.13it/s][A
+propagate in video:  68%|██████▊   | 135/198 [00:05<00:02, 23.12it/s][A
+propagate in video:  70%|██████▉   | 138/198 [00:05<00:02, 23.11it/s][A
+propagate in video:  71%|███████   | 141/198 [00:06<00:02, 23.10it/s][A
+propagate in video:  73%|███████▎  | 144/198 [00:06<00:02, 23.11it/s][A
+propagate in video:  74%|███████▍  | 147/198 [00:06<00:02, 23.10it/s][A
+propagate in video:  76%|███████▌  | 150/198 [00:06<00:02, 23.09it/s][A
+propagate in video:  77%|███████▋  | 153/198 [00:06<00:01, 23.09it/s][A
+propagate in video:  79%|███████▉  | 156/198 [00:06<00:01, 23.08it/s][A
+propagate in video:  80%|████████  | 159/198 [00:06<00:01, 23.08it/s][A
+propagate in video:  82%|████████▏ | 162/198 [00:06<00:01, 23.07it/s][A
+propagate in video:  83%|████████▎ | 165/198 [00:07<00:01, 23.07it/s][A
+propagate in video:  85%|████████▍ | 168/198 [00:07<00:01, 23.07it/s][A
+propagate in video:  86%|████████▋ | 171/198 [00:07<00:01, 23.07it/s][A
+propagate in video:  88%|████████▊ | 174/198 [00:07<00:01, 23.08it/s][A
+propagate in video:  89%|████████▉ | 177/198 [00:07<00:00, 23.08it/s][A
+propagate in video:  91%|█████████ | 180/198 [00:07<00:00, 23.08it/s][A
+propagate in video:  92%|█████████▏| 183/198 [00:07<00:00, 23.07it/s][A
+propagate in video:  94%|█████████▍| 186/198 [00:07<00:00, 23.08it/s][A
+propagate in video:  95%|█████████▌| 189/198 [00:08<00:00, 23.07it/s][A
+propagate in video:  97%|█████████▋| 192/198 [00:08<00:00, 23.08it/s][A
+propagate in video:  98%|█████████▊| 195/198 [00:08<00:00, 23.08it/s][A
+propagate in video: 100%|██████████| 198/198 [00:08<00:00, 23.09it/s][Apropagate in video: 100%|██████████| 198/198 [00:08<00:00, 23.29it/s]
+episodes:  30%|██▉       | 13/44 [01:31<05:03,  9.80s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191541600604: wrote viewforce_pseudo_force_fz.npz, frames=198, mask_frac median=0.2017
+  Prompt points: [[93.16056823730469, 119.14292907714844], [248.4482421875, 118.21454620361328]]
+
+frame loading (JPEG):   0%|          | 0/139 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▍         | 6/139 [00:00<00:02, 54.45it/s][A
+frame loading (JPEG):   9%|▊         | 12/139 [00:00<00:02, 52.52it/s][A
+frame loading (JPEG):  13%|█▎        | 18/139 [00:00<00:02, 51.97it/s][A
+frame loading (JPEG):  17%|█▋        | 24/139 [00:00<00:02, 51.74it/s][A
+frame loading (JPEG):  22%|██▏       | 30/139 [00:00<00:02, 51.69it/s][A
+frame loading (JPEG):  26%|██▌       | 36/139 [00:00<00:01, 51.63it/s][A
+frame loading (JPEG):  30%|███       | 42/139 [00:00<00:01, 51.61it/s][A
+frame loading (JPEG):  35%|███▍      | 48/139 [00:00<00:01, 51.62it/s][A
+frame loading (JPEG):  39%|███▉      | 54/139 [00:01<00:01, 48.01it/s][A
+frame loading (JPEG):  43%|████▎     | 60/139 [00:01<00:01, 49.04it/s][A
+frame loading (JPEG):  47%|████▋     | 66/139 [00:01<00:01, 49.84it/s][A
+frame loading (JPEG):  52%|█████▏    | 72/139 [00:01<00:01, 50.36it/s][A
+frame loading (JPEG):  56%|█████▌    | 78/139 [00:01<00:01, 50.67it/s][A
+frame loading (JPEG):  60%|██████    | 84/139 [00:01<00:01, 50.92it/s][A
+frame loading (JPEG):  65%|██████▍   | 90/139 [00:01<00:00, 51.14it/s][A
+frame loading (JPEG):  69%|██████▉   | 96/139 [00:01<00:00, 51.20it/s][A
+frame loading (JPEG):  73%|███████▎  | 102/139 [00:02<00:00, 47.88it/s][A
+frame loading (JPEG):  78%|███████▊  | 108/139 [00:02<00:00, 48.97it/s][A
+frame loading (JPEG):  82%|████████▏ | 114/139 [00:02<00:00, 49.70it/s][A
+frame loading (JPEG):  86%|████████▋ | 120/139 [00:02<00:00, 50.26it/s][A
+frame loading (JPEG):  91%|█████████ | 126/139 [00:02<00:00, 50.62it/s][A
+frame loading (JPEG):  95%|█████████▍| 132/139 [00:02<00:00, 50.90it/s][A
+frame loading (JPEG):  99%|█████████▉| 138/139 [00:02<00:00, 51.09it/s][Aframe loading (JPEG): 100%|██████████| 139/139 [00:02<00:00, 50.60it/s]
+
+propagate in video:   0%|          | 0/139 [00:00<?, ?it/s][A
+propagate in video:   4%|▎         | 5/139 [00:00<00:03, 37.23it/s][A
+propagate in video:   6%|▋         | 9/139 [00:00<00:04, 27.27it/s][A
+propagate in video:   9%|▊         | 12/139 [00:00<00:05, 24.88it/s][A
+propagate in video:  11%|█         | 15/139 [00:00<00:05, 23.84it/s][A
+propagate in video:  13%|█▎        | 18/139 [00:00<00:05, 23.35it/s][A
+propagate in video:  15%|█▌        | 21/139 [00:00<00:05, 23.21it/s][A
+propagate in video:  17%|█▋        | 24/139 [00:00<00:04, 23.20it/s][A
+propagate in video:  19%|█▉        | 27/139 [00:01<00:04, 23.23it/s][A
+propagate in video:  22%|██▏       | 30/139 [00:01<00:04, 23.22it/s][A
+propagate in video:  24%|██▎       | 33/139 [00:01<00:04, 23.17it/s][A
+propagate in video:  26%|██▌       | 36/139 [00:01<00:04, 23.19it/s][A
+propagate in video:  28%|██▊       | 39/139 [00:01<00:04, 23.22it/s][A
+propagate in video:  30%|███       | 42/139 [00:01<00:04, 23.23it/s][A
+propagate in video:  32%|███▏      | 45/139 [00:01<00:04, 23.19it/s][A
+propagate in video:  35%|███▍      | 48/139 [00:02<00:03, 23.21it/s][A
+propagate in video:  37%|███▋      | 51/139 [00:02<00:03, 23.23it/s][A
+propagate in video:  39%|███▉      | 54/139 [00:02<00:03, 23.25it/s][A
+propagate in video:  41%|████      | 57/139 [00:02<00:03, 23.23it/s][A
+propagate in video:  43%|████▎     | 60/139 [00:02<00:03, 23.20it/s][A
+propagate in video:  45%|████▌     | 63/139 [00:02<00:03, 23.19it/s][A
+propagate in video:  47%|████▋     | 66/139 [00:02<00:03, 23.16it/s][A
+propagate in video:  50%|████▉     | 69/139 [00:02<00:03, 23.15it/s][A
+propagate in video:  52%|█████▏    | 72/139 [00:03<00:02, 23.13it/s][A
+propagate in video:  54%|█████▍    | 75/139 [00:03<00:02, 23.11it/s][A
+propagate in video:  56%|█████▌    | 78/139 [00:03<00:02, 23.11it/s][A
+propagate in video:  58%|█████▊    | 81/139 [00:03<00:02, 23.10it/s][A
+propagate in video:  60%|██████    | 84/139 [00:03<00:02, 23.10it/s][A
+propagate in video:  63%|██████▎   | 87/139 [00:03<00:02, 23.09it/s][A
+propagate in video:  65%|██████▍   | 90/139 [00:03<00:02, 23.08it/s][A
+propagate in video:  67%|██████▋   | 93/139 [00:03<00:01, 23.08it/s][A
+propagate in video:  69%|██████▉   | 96/139 [00:04<00:01, 23.08it/s][A
+propagate in video:  71%|███████   | 99/139 [00:04<00:01, 23.08it/s][A
+propagate in video:  73%|███████▎  | 102/139 [00:04<00:01, 23.09it/s][A
+propagate in video:  76%|███████▌  | 105/139 [00:04<00:01, 23.08it/s][A
+propagate in video:  78%|███████▊  | 108/139 [00:04<00:01, 23.09it/s][A
+propagate in video:  80%|███████▉  | 111/139 [00:04<00:01, 23.08it/s][A
+propagate in video:  82%|████████▏ | 114/139 [00:04<00:01, 23.09it/s][A
+propagate in video:  84%|████████▍ | 117/139 [00:05<00:00, 23.08it/s][A
+propagate in video:  86%|████████▋ | 120/139 [00:05<00:00, 23.09it/s][A
+propagate in video:  88%|████████▊ | 123/139 [00:05<00:00, 23.08it/s][A
+propagate in video:  91%|█████████ | 126/139 [00:05<00:00, 23.09it/s][A
+propagate in video:  93%|█████████▎| 129/139 [00:05<00:00, 23.08it/s][A
+propagate in video:  95%|█████████▍| 132/139 [00:05<00:00, 23.09it/s][A
+propagate in video:  97%|█████████▋| 135/139 [00:05<00:00, 23.13it/s][A
+propagate in video:  99%|█████████▉| 138/139 [00:05<00:00, 23.11it/s][Apropagate in video: 100%|██████████| 139/139 [00:05<00:00, 23.34it/s]
+episodes:  32%|███▏      | 14/44 [01:41<04:53,  9.80s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191626204111_fail: wrote viewforce_pseudo_force_fz.npz, frames=139, mask_frac median=0.1441
+  Prompt points: [[93.04630279541016, 118.6229248046875], [248.2650146484375, 117.49909973144531]]
+
+frame loading (JPEG):   0%|          | 0/102 [00:00<?, ?it/s][A
+frame loading (JPEG):   6%|▌         | 6/102 [00:00<00:01, 51.74it/s][A
+frame loading (JPEG):  12%|█▏        | 12/102 [00:00<00:01, 51.50it/s][A
+frame loading (JPEG):  18%|█▊        | 18/102 [00:00<00:01, 46.32it/s][A
+frame loading (JPEG):  24%|██▎       | 24/102 [00:00<00:01, 48.22it/s][A
+frame loading (JPEG):  29%|██▉       | 30/102 [00:00<00:01, 49.26it/s][A
+frame loading (JPEG):  35%|███▌      | 36/102 [00:00<00:01, 49.99it/s][A
+frame loading (JPEG):  41%|████      | 42/102 [00:00<00:01, 50.41it/s][A
+frame loading (JPEG):  47%|████▋     | 48/102 [00:00<00:01, 50.70it/s][A
+frame loading (JPEG):  53%|█████▎    | 54/102 [00:01<00:00, 50.96it/s][A
+frame loading (JPEG):  59%|█████▉    | 60/102 [00:01<00:00, 51.08it/s][A
+frame loading (JPEG):  65%|██████▍   | 66/102 [00:01<00:00, 47.60it/s][A
+frame loading (JPEG):  71%|███████   | 72/102 [00:01<00:00, 48.69it/s][A
+frame loading (JPEG):  76%|███████▋  | 78/102 [00:01<00:00, 49.49it/s][A
+frame loading (JPEG):  82%|████████▏ | 84/102 [00:01<00:00, 49.98it/s][A
+frame loading (JPEG):  88%|████████▊ | 90/102 [00:01<00:00, 50.34it/s][A
+frame loading (JPEG):  94%|█████████▍| 96/102 [00:01<00:00, 50.65it/s][A
+frame loading (JPEG): 100%|██████████| 102/102 [00:02<00:00, 50.94it/s][Aframe loading (JPEG): 100%|██████████| 102/102 [00:02<00:00, 49.95it/s]
+
+propagate in video:   0%|          | 0/102 [00:00<?, ?it/s][A
+propagate in video:   5%|▍         | 5/102 [00:00<00:02, 37.21it/s][A
+propagate in video:   9%|▉         | 9/102 [00:00<00:03, 27.15it/s][A
+propagate in video:  12%|█▏        | 12/102 [00:00<00:03, 24.73it/s][A
+propagate in video:  15%|█▍        | 15/102 [00:00<00:03, 23.65it/s][A
+propagate in video:  18%|█▊        | 18/102 [00:00<00:03, 23.18it/s][A
+propagate in video:  21%|██        | 21/102 [00:00<00:03, 23.07it/s][A
+propagate in video:  24%|██▎       | 24/102 [00:00<00:03, 23.07it/s][A
+propagate in video:  26%|██▋       | 27/102 [00:01<00:03, 23.12it/s][A
+propagate in video:  29%|██▉       | 30/102 [00:01<00:03, 23.17it/s][A
+propagate in video:  32%|███▏      | 33/102 [00:01<00:02, 23.18it/s][A
+propagate in video:  35%|███▌      | 36/102 [00:01<00:02, 23.21it/s][A
+propagate in video:  38%|███▊      | 39/102 [00:01<00:02, 23.21it/s][A
+propagate in video:  41%|████      | 42/102 [00:01<00:02, 23.23it/s][A
+propagate in video:  44%|████▍     | 45/102 [00:01<00:02, 23.24it/s][A
+propagate in video:  47%|████▋     | 48/102 [00:02<00:02, 23.25it/s][A
+propagate in video:  50%|█████     | 51/102 [00:02<00:02, 23.25it/s][A
+propagate in video:  53%|█████▎    | 54/102 [00:02<00:02, 23.23it/s][A
+propagate in video:  56%|█████▌    | 57/102 [00:02<00:01, 23.21it/s][A
+propagate in video:  59%|█████▉    | 60/102 [00:02<00:01, 23.16it/s][A
+propagate in video:  62%|██████▏   | 63/102 [00:02<00:01, 23.14it/s][A
+propagate in video:  65%|██████▍   | 66/102 [00:02<00:01, 23.12it/s][A
+propagate in video:  68%|██████▊   | 69/102 [00:02<00:01, 23.12it/s][A
+propagate in video:  71%|███████   | 72/102 [00:03<00:01, 23.10it/s][A
+propagate in video:  74%|███████▎  | 75/102 [00:03<00:01, 23.10it/s][A
+propagate in video:  76%|███████▋  | 78/102 [00:03<00:01, 23.08it/s][A
+propagate in video:  79%|███████▉  | 81/102 [00:03<00:00, 23.09it/s][A
+propagate in video:  82%|████████▏ | 84/102 [00:03<00:00, 23.08it/s][A
+propagate in video:  85%|████████▌ | 87/102 [00:03<00:00, 23.09it/s][A
+propagate in video:  88%|████████▊ | 90/102 [00:03<00:00, 23.08it/s][A
+propagate in video:  91%|█████████ | 93/102 [00:03<00:00, 23.08it/s][A
+propagate in video:  94%|█████████▍| 96/102 [00:04<00:00, 23.08it/s][A
+propagate in video:  97%|█████████▋| 99/102 [00:04<00:00, 23.08it/s][A
+propagate in video: 100%|██████████| 102/102 [00:04<00:00, 23.08it/s][Apropagate in video: 100%|██████████| 102/102 [00:04<00:00, 23.39it/s]
+episodes:  34%|███▍      | 15/44 [01:48<04:21,  9.02s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191739182487_fail: wrote viewforce_pseudo_force_fz.npz, frames=102, mask_frac median=0.1447
+  Prompt points: [[93.20287322998047, 119.45185852050781], [248.0930633544922, 118.53688049316406]]
+
+frame loading (JPEG):   0%|          | 0/152 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▍         | 6/152 [00:00<00:02, 53.93it/s][A
+frame loading (JPEG):   8%|▊         | 12/152 [00:00<00:02, 52.41it/s][A
+frame loading (JPEG):  12%|█▏        | 18/152 [00:00<00:02, 46.84it/s][A
+frame loading (JPEG):  16%|█▌        | 24/152 [00:00<00:02, 48.51it/s][A
+frame loading (JPEG):  20%|█▉        | 30/152 [00:00<00:02, 49.62it/s][A
+frame loading (JPEG):  24%|██▎       | 36/152 [00:00<00:02, 50.25it/s][A
+frame loading (JPEG):  28%|██▊       | 42/152 [00:00<00:02, 50.62it/s][A
+frame loading (JPEG):  32%|███▏      | 48/152 [00:00<00:02, 50.86it/s][A
+frame loading (JPEG):  36%|███▌      | 54/152 [00:01<00:01, 51.05it/s][A
+frame loading (JPEG):  39%|███▉      | 60/152 [00:01<00:01, 51.16it/s][A
+frame loading (JPEG):  43%|████▎     | 66/152 [00:01<00:01, 47.80it/s][A
+frame loading (JPEG):  47%|████▋     | 72/152 [00:01<00:01, 48.54it/s][A
+frame loading (JPEG):  51%|█████▏    | 78/152 [00:01<00:01, 49.41it/s][A
+frame loading (JPEG):  55%|█████▌    | 84/152 [00:01<00:01, 50.01it/s][A
+frame loading (JPEG):  59%|█████▉    | 90/152 [00:01<00:01, 50.46it/s][A
+frame loading (JPEG):  63%|██████▎   | 96/152 [00:01<00:01, 50.81it/s][A
+frame loading (JPEG):  67%|██████▋   | 102/152 [00:02<00:00, 50.98it/s][A
+frame loading (JPEG):  71%|███████   | 108/152 [00:02<00:00, 51.17it/s][A
+frame loading (JPEG):  75%|███████▌  | 114/152 [00:02<00:00, 51.25it/s][A
+frame loading (JPEG):  79%|███████▉  | 120/152 [00:02<00:00, 47.88it/s][A
+frame loading (JPEG):  83%|████████▎ | 126/152 [00:02<00:00, 48.89it/s][A
+frame loading (JPEG):  87%|████████▋ | 132/152 [00:02<00:00, 49.63it/s][A
+frame loading (JPEG):  91%|█████████ | 138/152 [00:02<00:00, 50.24it/s][A
+frame loading (JPEG):  95%|█████████▍| 144/152 [00:02<00:00, 50.63it/s][A
+frame loading (JPEG):  99%|█████████▊| 150/152 [00:02<00:00, 50.86it/s][Aframe loading (JPEG): 100%|██████████| 152/152 [00:03<00:00, 50.12it/s]
+
+propagate in video:   0%|          | 0/152 [00:00<?, ?it/s][A
+propagate in video:   3%|▎         | 5/152 [00:00<00:03, 37.21it/s][A
+propagate in video:   6%|▌         | 9/152 [00:00<00:05, 27.49it/s][A
+propagate in video:   8%|▊         | 12/152 [00:00<00:05, 25.06it/s][A
+propagate in video:  10%|▉         | 15/152 [00:00<00:05, 23.96it/s][A
+propagate in video:  12%|█▏        | 18/152 [00:00<00:05, 23.54it/s][A
+propagate in video:  14%|█▍        | 21/152 [00:00<00:05, 23.38it/s][A
+propagate in video:  16%|█▌        | 24/152 [00:00<00:05, 23.34it/s][A
+propagate in video:  18%|█▊        | 27/152 [00:01<00:05, 23.29it/s][A
+propagate in video:  20%|█▉        | 30/152 [00:01<00:05, 23.29it/s][A
+propagate in video:  22%|██▏       | 33/152 [00:01<00:05, 23.25it/s][A
+propagate in video:  24%|██▎       | 36/152 [00:01<00:04, 23.23it/s][A
+propagate in video:  26%|██▌       | 39/152 [00:01<00:04, 23.24it/s][A
+propagate in video:  28%|██▊       | 42/152 [00:01<00:04, 23.20it/s][A
+propagate in video:  30%|██▉       | 45/152 [00:01<00:04, 23.16it/s][A
+propagate in video:  32%|███▏      | 48/152 [00:02<00:04, 23.13it/s][A
+propagate in video:  34%|███▎      | 51/152 [00:02<00:04, 23.11it/s][A
+propagate in video:  36%|███▌      | 54/152 [00:02<00:04, 23.10it/s][A
+propagate in video:  38%|███▊      | 57/152 [00:02<00:04, 23.09it/s][A
+propagate in video:  39%|███▉      | 60/152 [00:02<00:03, 23.09it/s][A
+propagate in video:  41%|████▏     | 63/152 [00:02<00:03, 23.09it/s][A
+propagate in video:  43%|████▎     | 66/152 [00:02<00:03, 23.08it/s][A
+propagate in video:  45%|████▌     | 69/152 [00:02<00:03, 23.08it/s][A
+propagate in video:  47%|████▋     | 72/152 [00:03<00:03, 23.08it/s][A
+propagate in video:  49%|████▉     | 75/152 [00:03<00:03, 23.08it/s][A
+propagate in video:  51%|█████▏    | 78/152 [00:03<00:03, 23.09it/s][A
+propagate in video:  53%|█████▎    | 81/152 [00:03<00:03, 23.08it/s][A
+propagate in video:  55%|█████▌    | 84/152 [00:03<00:02, 23.09it/s][A
+propagate in video:  57%|█████▋    | 87/152 [00:03<00:02, 23.09it/s][A
+propagate in video:  59%|█████▉    | 90/152 [00:03<00:02, 23.09it/s][A
+propagate in video:  61%|██████    | 93/152 [00:03<00:02, 23.11it/s][A
+propagate in video:  63%|██████▎   | 96/152 [00:04<00:02, 23.15it/s][A
+propagate in video:  65%|██████▌   | 99/152 [00:04<00:02, 23.19it/s][A
+propagate in video:  67%|██████▋   | 102/152 [00:04<00:02, 23.22it/s][A
+propagate in video:  69%|██████▉   | 105/152 [00:04<00:02, 23.24it/s][A
+propagate in video:  71%|███████   | 108/152 [00:04<00:01, 23.25it/s][A
+propagate in video:  73%|███████▎  | 111/152 [00:04<00:01, 23.26it/s][A
+propagate in video:  75%|███████▌  | 114/152 [00:04<00:01, 23.24it/s][A
+propagate in video:  77%|███████▋  | 117/152 [00:04<00:01, 23.25it/s][A
+propagate in video:  79%|███████▉  | 120/152 [00:05<00:01, 23.26it/s][A
+propagate in video:  81%|████████  | 123/152 [00:05<00:01, 23.25it/s][A
+propagate in video:  83%|████████▎ | 126/152 [00:05<00:01, 23.25it/s][A
+propagate in video:  85%|████████▍ | 129/152 [00:05<00:00, 23.24it/s][A
+propagate in video:  87%|████████▋ | 132/152 [00:05<00:00, 23.25it/s][A
+propagate in video:  89%|████████▉ | 135/152 [00:05<00:00, 23.21it/s][A
+propagate in video:  91%|█████████ | 138/152 [00:05<00:00, 23.20it/s][A
+propagate in video:  93%|█████████▎| 141/152 [00:06<00:00, 23.17it/s][A
+propagate in video:  95%|█████████▍| 144/152 [00:06<00:00, 23.20it/s][A
+propagate in video:  97%|█████████▋| 147/152 [00:06<00:00, 23.19it/s][A
+propagate in video:  99%|█████████▊| 150/152 [00:06<00:00, 23.19it/s][Apropagate in video: 100%|██████████| 152/152 [00:06<00:00, 23.37it/s]
+episodes:  36%|███▋      | 16/44 [01:59<04:26,  9.52s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191841447847: wrote viewforce_pseudo_force_fz.npz, frames=152, mask_frac median=0.1405
+  Prompt points: [[93.1340560913086, 119.6744384765625], [247.84812927246094, 120.28983306884766]]
+
+frame loading (JPEG):   0%|          | 0/92 [00:00<?, ?it/s][A
+frame loading (JPEG):   7%|▋         | 6/92 [00:00<00:01, 54.06it/s][A
+frame loading (JPEG):  13%|█▎        | 12/92 [00:00<00:01, 45.81it/s][A
+frame loading (JPEG):  18%|█▊        | 17/92 [00:00<00:01, 46.45it/s][A
+frame loading (JPEG):  25%|██▌       | 23/92 [00:00<00:01, 48.34it/s][A
+frame loading (JPEG):  32%|███▏      | 29/92 [00:00<00:01, 49.42it/s][A
+frame loading (JPEG):  38%|███▊      | 35/92 [00:00<00:01, 50.06it/s][A
+frame loading (JPEG):  45%|████▍     | 41/92 [00:00<00:01, 50.54it/s][A
+frame loading (JPEG):  51%|█████     | 47/92 [00:00<00:00, 50.78it/s][A
+frame loading (JPEG):  58%|█████▊    | 53/92 [00:01<00:00, 50.92it/s][A
+frame loading (JPEG):  64%|██████▍   | 59/92 [00:01<00:00, 51.00it/s][A
+frame loading (JPEG):  71%|███████   | 65/92 [00:01<00:00, 47.56it/s][A
+frame loading (JPEG):  77%|███████▋  | 71/92 [00:01<00:00, 48.68it/s][A
+frame loading (JPEG):  84%|████████▎ | 77/92 [00:01<00:00, 49.44it/s][A
+frame loading (JPEG):  90%|█████████ | 83/92 [00:01<00:00, 49.97it/s][A
+frame loading (JPEG):  97%|█████████▋| 89/92 [00:01<00:00, 50.32it/s][Aframe loading (JPEG): 100%|██████████| 92/92 [00:01<00:00, 49.66it/s]
+
+propagate in video:   0%|          | 0/92 [00:00<?, ?it/s][A
+propagate in video:   5%|▌         | 5/92 [00:00<00:02, 37.13it/s][A
+propagate in video:  10%|▉         | 9/92 [00:00<00:03, 27.29it/s][A
+propagate in video:  13%|█▎        | 12/92 [00:00<00:03, 24.84it/s][A
+propagate in video:  16%|█▋        | 15/92 [00:00<00:03, 23.84it/s][A
+propagate in video:  20%|█▉        | 18/92 [00:00<00:03, 23.38it/s][A
+propagate in video:  23%|██▎       | 21/92 [00:00<00:03, 23.20it/s][A
+propagate in video:  26%|██▌       | 24/92 [00:00<00:02, 23.18it/s][A
+propagate in video:  29%|██▉       | 27/92 [00:01<00:02, 23.18it/s][A
+propagate in video:  33%|███▎      | 30/92 [00:01<00:02, 23.18it/s][A
+propagate in video:  36%|███▌      | 33/92 [00:01<00:02, 23.16it/s][A
+propagate in video:  39%|███▉      | 36/92 [00:01<00:02, 23.20it/s][A
+propagate in video:  42%|████▏     | 39/92 [00:01<00:02, 23.22it/s][A
+propagate in video:  46%|████▌     | 42/92 [00:01<00:02, 23.24it/s][A
+propagate in video:  49%|████▉     | 45/92 [00:01<00:02, 23.20it/s][A
+propagate in video:  52%|█████▏    | 48/92 [00:02<00:01, 23.18it/s][A
+propagate in video:  55%|█████▌    | 51/92 [00:02<00:01, 23.14it/s][A
+propagate in video:  59%|█████▊    | 54/92 [00:02<00:01, 23.14it/s][A
+propagate in video:  62%|██████▏   | 57/92 [00:02<00:01, 23.12it/s][A
+propagate in video:  65%|██████▌   | 60/92 [00:02<00:01, 23.12it/s][A
+propagate in video:  68%|██████▊   | 63/92 [00:02<00:01, 23.10it/s][A
+propagate in video:  72%|███████▏  | 66/92 [00:02<00:01, 23.10it/s][A
+propagate in video:  75%|███████▌  | 69/92 [00:02<00:00, 23.09it/s][A
+propagate in video:  78%|███████▊  | 72/92 [00:03<00:00, 23.09it/s][A
+propagate in video:  82%|████████▏ | 75/92 [00:03<00:00, 23.08it/s][A
+propagate in video:  85%|████████▍ | 78/92 [00:03<00:00, 23.09it/s][A
+propagate in video:  88%|████████▊ | 81/92 [00:03<00:00, 23.08it/s][A
+propagate in video:  91%|█████████▏| 84/92 [00:03<00:00, 23.09it/s][A
+propagate in video:  95%|█████████▍| 87/92 [00:03<00:00, 23.09it/s][A
+propagate in video:  98%|█████████▊| 90/92 [00:03<00:00, 23.08it/s][Apropagate in video: 100%|██████████| 92/92 [00:03<00:00, 23.43it/s]
+episodes:  39%|███▊      | 17/44 [02:05<03:52,  8.62s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T191952760277_fail: wrote viewforce_pseudo_force_fz.npz, frames=92, mask_frac median=0.1260
+  Prompt points: [[92.88654327392578, 118.34764862060547], [248.82064819335938, 119.11767578125]]
+
+frame loading (JPEG):   0%|          | 0/114 [00:00<?, ?it/s][A
+frame loading (JPEG):   5%|▌         | 6/114 [00:00<00:01, 54.94it/s][A
+frame loading (JPEG):  11%|█         | 12/114 [00:00<00:01, 52.64it/s][A
+frame loading (JPEG):  16%|█▌        | 18/114 [00:00<00:02, 46.78it/s][A
+frame loading (JPEG):  21%|██        | 24/114 [00:00<00:01, 48.32it/s][A
+frame loading (JPEG):  26%|██▋       | 30/114 [00:00<00:01, 49.37it/s][A
+frame loading (JPEG):  32%|███▏      | 36/114 [00:00<00:01, 49.93it/s][A
+frame loading (JPEG):  37%|███▋      | 42/114 [00:00<00:01, 50.41it/s][A
+frame loading (JPEG):  42%|████▏     | 48/114 [00:00<00:01, 50.66it/s][A
+frame loading (JPEG):  47%|████▋     | 54/114 [00:01<00:01, 50.81it/s][A
+frame loading (JPEG):  53%|█████▎    | 60/114 [00:01<00:01, 50.98it/s][A
+frame loading (JPEG):  58%|█████▊    | 66/114 [00:01<00:00, 51.09it/s][A
+frame loading (JPEG):  63%|██████▎   | 72/114 [00:01<00:00, 47.70it/s][A
+frame loading (JPEG):  68%|██████▊   | 78/114 [00:01<00:00, 48.80it/s][A
+frame loading (JPEG):  74%|███████▎  | 84/114 [00:01<00:00, 49.54it/s][A
+frame loading (JPEG):  79%|███████▉  | 90/114 [00:01<00:00, 50.09it/s][A
+frame loading (JPEG):  84%|████████▍ | 96/114 [00:01<00:00, 50.47it/s][A
+frame loading (JPEG):  89%|████████▉ | 102/114 [00:02<00:00, 50.76it/s][A
+frame loading (JPEG):  95%|█████████▍| 108/114 [00:02<00:00, 50.79it/s][A
+frame loading (JPEG): 100%|██████████| 114/114 [00:02<00:00, 50.87it/s][Aframe loading (JPEG): 100%|██████████| 114/114 [00:02<00:00, 50.16it/s]
+
+propagate in video:   0%|          | 0/114 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/114 [00:00<00:02, 37.23it/s][A
+propagate in video:   8%|▊         | 9/114 [00:00<00:03, 27.46it/s][A
+propagate in video:  11%|█         | 12/114 [00:00<00:04, 25.03it/s][A
+propagate in video:  13%|█▎        | 15/114 [00:00<00:04, 23.98it/s][A
+propagate in video:  16%|█▌        | 18/114 [00:00<00:04, 23.54it/s][A
+propagate in video:  18%|█▊        | 21/114 [00:00<00:03, 23.35it/s][A
+propagate in video:  21%|██        | 24/114 [00:00<00:03, 23.32it/s][A
+propagate in video:  24%|██▎       | 27/114 [00:01<00:03, 23.31it/s][A
+propagate in video:  26%|██▋       | 30/114 [00:01<00:03, 23.29it/s][A
+propagate in video:  29%|██▉       | 33/114 [00:01<00:03, 23.28it/s][A
+propagate in video:  32%|███▏      | 36/114 [00:01<00:03, 23.27it/s][A
+propagate in video:  34%|███▍      | 39/114 [00:01<00:03, 23.24it/s][A
+propagate in video:  37%|███▋      | 42/114 [00:01<00:03, 23.20it/s][A
+propagate in video:  39%|███▉      | 45/114 [00:01<00:02, 23.18it/s][A
+propagate in video:  42%|████▏     | 48/114 [00:02<00:02, 23.16it/s][A
+propagate in video:  45%|████▍     | 51/114 [00:02<00:02, 23.14it/s][A
+propagate in video:  47%|████▋     | 54/114 [00:02<00:02, 23.13it/s][A
+propagate in video:  50%|█████     | 57/114 [00:02<00:02, 23.12it/s][A
+propagate in video:  53%|█████▎    | 60/114 [00:02<00:02, 23.12it/s][A
+propagate in video:  55%|█████▌    | 63/114 [00:02<00:02, 23.12it/s][A
+propagate in video:  58%|█████▊    | 66/114 [00:02<00:02, 23.15it/s][A
+propagate in video:  61%|██████    | 69/114 [00:02<00:01, 23.18it/s][A
+propagate in video:  63%|██████▎   | 72/114 [00:03<00:01, 23.21it/s][A
+propagate in video:  66%|██████▌   | 75/114 [00:03<00:01, 23.21it/s][A
+propagate in video:  68%|██████▊   | 78/114 [00:03<00:01, 23.23it/s][A
+propagate in video:  71%|███████   | 81/114 [00:03<00:01, 23.24it/s][A
+propagate in video:  74%|███████▎  | 84/114 [00:03<00:01, 23.24it/s][A
+propagate in video:  76%|███████▋  | 87/114 [00:03<00:01, 23.24it/s][A
+propagate in video:  79%|███████▉  | 90/114 [00:03<00:01, 23.23it/s][A
+propagate in video:  82%|████████▏ | 93/114 [00:03<00:00, 23.19it/s][A
+propagate in video:  84%|████████▍ | 96/114 [00:04<00:00, 23.18it/s][A
+propagate in video:  87%|████████▋ | 99/114 [00:04<00:00, 23.18it/s][A
+propagate in video:  89%|████████▉ | 102/114 [00:04<00:00, 23.21it/s][A
+propagate in video:  92%|█████████▏| 105/114 [00:04<00:00, 23.23it/s][A
+propagate in video:  95%|█████████▍| 108/114 [00:04<00:00, 23.24it/s][A
+propagate in video:  97%|█████████▋| 111/114 [00:04<00:00, 23.21it/s][A
+propagate in video: 100%|██████████| 114/114 [00:04<00:00, 23.20it/s][Apropagate in video: 100%|██████████| 114/114 [00:04<00:00, 23.46it/s]
+episodes:  41%|████      | 18/44 [02:13<03:39,  8.46s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192026989121_fail: wrote viewforce_pseudo_force_fz.npz, frames=114, mask_frac median=0.1364
+  Prompt points: [[93.26637268066406, 119.99452209472656], [248.12615966796875, 118.48848724365234]]
+
+frame loading (JPEG):   0%|          | 0/88 [00:00<?, ?it/s][A
+frame loading (JPEG):   6%|▌         | 5/88 [00:00<00:01, 45.61it/s][A
+frame loading (JPEG):  11%|█▏        | 10/88 [00:00<00:01, 43.15it/s][A
+frame loading (JPEG):  17%|█▋        | 15/88 [00:00<00:01, 37.73it/s][A
+frame loading (JPEG):  23%|██▎       | 20/88 [00:00<00:01, 39.17it/s][A
+frame loading (JPEG):  28%|██▊       | 25/88 [00:00<00:01, 40.95it/s][A
+frame loading (JPEG):  35%|███▌      | 31/88 [00:00<00:01, 44.31it/s][A
+frame loading (JPEG):  42%|████▏     | 37/88 [00:00<00:01, 46.48it/s][A
+frame loading (JPEG):  49%|████▉     | 43/88 [00:00<00:00, 47.95it/s][A
+frame loading (JPEG):  56%|█████▌    | 49/88 [00:01<00:00, 48.81it/s][A
+frame loading (JPEG):  62%|██████▎   | 55/88 [00:01<00:00, 49.44it/s][A
+frame loading (JPEG):  69%|██████▉   | 61/88 [00:01<00:00, 49.91it/s][A
+frame loading (JPEG):  75%|███████▌  | 66/88 [00:01<00:00, 46.69it/s][A
+frame loading (JPEG):  82%|████████▏ | 72/88 [00:01<00:00, 47.94it/s][A
+frame loading (JPEG):  89%|████████▊ | 78/88 [00:01<00:00, 48.84it/s][A
+frame loading (JPEG):  95%|█████████▌| 84/88 [00:01<00:00, 49.50it/s][Aframe loading (JPEG): 100%|██████████| 88/88 [00:01<00:00, 46.84it/s]
+
+propagate in video:   0%|          | 0/88 [00:00<?, ?it/s][A
+propagate in video:   6%|▌         | 5/88 [00:00<00:02, 37.15it/s][A
+propagate in video:  10%|█         | 9/88 [00:00<00:02, 27.36it/s][A
+propagate in video:  14%|█▎        | 12/88 [00:00<00:03, 24.91it/s][A
+propagate in video:  17%|█▋        | 15/88 [00:00<00:03, 23.91it/s][A
+propagate in video:  20%|██        | 18/88 [00:00<00:02, 23.47it/s][A
+propagate in video:  24%|██▍       | 21/88 [00:00<00:02, 23.30it/s][A
+propagate in video:  27%|██▋       | 24/88 [00:00<00:02, 23.29it/s][A
+propagate in video:  31%|███       | 27/88 [00:01<00:02, 23.24it/s][A
+propagate in video:  34%|███▍      | 30/88 [00:01<00:02, 23.20it/s][A
+propagate in video:  38%|███▊      | 33/88 [00:01<00:02, 23.21it/s][A
+propagate in video:  41%|████      | 36/88 [00:01<00:02, 23.23it/s][A
+propagate in video:  44%|████▍     | 39/88 [00:01<00:02, 23.25it/s][A
+propagate in video:  48%|████▊     | 42/88 [00:01<00:01, 23.26it/s][A
+propagate in video:  51%|█████     | 45/88 [00:01<00:01, 23.22it/s][A
+propagate in video:  55%|█████▍    | 48/88 [00:02<00:01, 23.19it/s][A
+propagate in video:  58%|█████▊    | 51/88 [00:02<00:01, 23.18it/s][A
+propagate in video:  61%|██████▏   | 54/88 [00:02<00:01, 23.18it/s][A
+propagate in video:  65%|██████▍   | 57/88 [00:02<00:01, 23.20it/s][A
+propagate in video:  68%|██████▊   | 60/88 [00:02<00:01, 23.16it/s][A
+propagate in video:  72%|███████▏  | 63/88 [00:02<00:01, 23.14it/s][A
+propagate in video:  75%|███████▌  | 66/88 [00:02<00:00, 23.12it/s][A
+propagate in video:  78%|███████▊  | 69/88 [00:02<00:00, 23.15it/s][A
+propagate in video:  82%|████████▏ | 72/88 [00:03<00:00, 23.12it/s][A
+propagate in video:  85%|████████▌ | 75/88 [00:03<00:00, 23.12it/s][A
+propagate in video:  89%|████████▊ | 78/88 [00:03<00:00, 23.11it/s][A
+propagate in video:  92%|█████████▏| 81/88 [00:03<00:00, 23.12it/s][A
+propagate in video:  95%|█████████▌| 84/88 [00:03<00:00, 23.12it/s][A
+propagate in video:  99%|█████████▉| 87/88 [00:03<00:00, 23.16it/s][Apropagate in video: 100%|██████████| 88/88 [00:03<00:00, 23.50it/s]
+episodes:  43%|████▎     | 19/44 [02:20<03:15,  7.83s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192125541183_fail: wrote viewforce_pseudo_force_fz.npz, frames=88, mask_frac median=0.1386
+  Prompt points: [[93.3277816772461, 119.80793762207031], [247.82579040527344, 120.77180480957031]]
+
+frame loading (JPEG):   0%|          | 0/84 [00:00<?, ?it/s][A
+frame loading (JPEG):   7%|▋         | 6/84 [00:00<00:01, 51.78it/s][A
+frame loading (JPEG):  14%|█▍        | 12/84 [00:00<00:01, 50.32it/s][A
+frame loading (JPEG):  21%|██▏       | 18/84 [00:00<00:01, 49.74it/s][A
+frame loading (JPEG):  27%|██▋       | 23/84 [00:00<00:01, 45.25it/s][A
+frame loading (JPEG):  33%|███▎      | 28/84 [00:00<00:01, 46.48it/s][A
+frame loading (JPEG):  39%|███▉      | 33/84 [00:00<00:01, 47.27it/s][A
+frame loading (JPEG):  45%|████▌     | 38/84 [00:00<00:00, 47.83it/s][A
+frame loading (JPEG):  51%|█████     | 43/84 [00:00<00:00, 48.14it/s][A
+frame loading (JPEG):  57%|█████▋    | 48/84 [00:00<00:00, 48.49it/s][A
+frame loading (JPEG):  63%|██████▎   | 53/84 [00:01<00:00, 48.74it/s][A
+frame loading (JPEG):  69%|██████▉   | 58/84 [00:01<00:00, 48.84it/s][A
+frame loading (JPEG):  75%|███████▌  | 63/84 [00:01<00:00, 48.96it/s][A
+frame loading (JPEG):  81%|████████  | 68/84 [00:01<00:00, 48.98it/s][A
+frame loading (JPEG):  87%|████████▋ | 73/84 [00:01<00:00, 45.35it/s][A
+frame loading (JPEG):  93%|█████████▎| 78/84 [00:01<00:00, 46.43it/s][A
+frame loading (JPEG):  99%|█████████▉| 83/84 [00:01<00:00, 47.25it/s][Aframe loading (JPEG): 100%|██████████| 84/84 [00:01<00:00, 47.79it/s]
+
+propagate in video:   0%|          | 0/84 [00:00<?, ?it/s][A
+propagate in video:   6%|▌         | 5/84 [00:00<00:02, 37.20it/s][A
+propagate in video:  11%|█         | 9/84 [00:00<00:02, 27.43it/s][A
+propagate in video:  14%|█▍        | 12/84 [00:00<00:02, 24.99it/s][A
+propagate in video:  18%|█▊        | 15/84 [00:00<00:02, 23.96it/s][A
+propagate in video:  21%|██▏       | 18/84 [00:00<00:02, 23.52it/s][A
+propagate in video:  25%|██▌       | 21/84 [00:00<00:02, 23.34it/s][A
+propagate in video:  29%|██▊       | 24/84 [00:00<00:02, 23.30it/s][A
+propagate in video:  32%|███▏      | 27/84 [00:01<00:02, 23.29it/s][A
+propagate in video:  36%|███▌      | 30/84 [00:01<00:02, 23.28it/s][A
+propagate in video:  39%|███▉      | 33/84 [00:01<00:02, 23.26it/s][A
+propagate in video:  43%|████▎     | 36/84 [00:01<00:02, 23.21it/s][A
+propagate in video:  46%|████▋     | 39/84 [00:01<00:01, 23.17it/s][A
+propagate in video:  50%|█████     | 42/84 [00:01<00:01, 23.14it/s][A
+propagate in video:  54%|█████▎    | 45/84 [00:01<00:01, 23.13it/s][A
+propagate in video:  57%|█████▋    | 48/84 [00:02<00:01, 23.11it/s][A
+propagate in video:  61%|██████    | 51/84 [00:02<00:01, 23.11it/s][A
+propagate in video:  64%|██████▍   | 54/84 [00:02<00:01, 23.10it/s][A
+propagate in video:  68%|██████▊   | 57/84 [00:02<00:01, 23.10it/s][A
+propagate in video:  71%|███████▏  | 60/84 [00:02<00:01, 23.09it/s][A
+propagate in video:  75%|███████▌  | 63/84 [00:02<00:00, 23.10it/s][A
+propagate in video:  79%|███████▊  | 66/84 [00:02<00:00, 23.09it/s][A
+propagate in video:  82%|████████▏ | 69/84 [00:02<00:00, 23.10it/s][A
+propagate in video:  86%|████████▌ | 72/84 [00:03<00:00, 23.09it/s][A
+propagate in video:  89%|████████▉ | 75/84 [00:03<00:00, 23.12it/s][A
+propagate in video:  93%|█████████▎| 78/84 [00:03<00:00, 23.16it/s][A
+propagate in video:  96%|█████████▋| 81/84 [00:03<00:00, 23.19it/s][A
+propagate in video: 100%|██████████| 84/84 [00:03<00:00, 23.22it/s][Apropagate in video: 100%|██████████| 84/84 [00:03<00:00, 23.51it/s]
+episodes:  45%|████▌     | 20/44 [02:26<02:54,  7.29s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192205141926_fail: wrote viewforce_pseudo_force_fz.npz, frames=84, mask_frac median=0.2077
+  Prompt points: [[93.11182403564453, 119.4629898071289], [248.5186004638672, 117.90904998779297]]
+
+frame loading (JPEG):   0%|          | 0/120 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▍         | 5/120 [00:00<00:02, 46.54it/s][A
+frame loading (JPEG):   9%|▉         | 11/120 [00:00<00:02, 49.13it/s][A
+frame loading (JPEG):  14%|█▍        | 17/120 [00:00<00:02, 50.29it/s][A
+frame loading (JPEG):  19%|█▉        | 23/120 [00:00<00:02, 46.39it/s][A
+frame loading (JPEG):  24%|██▍       | 29/120 [00:00<00:01, 48.16it/s][A
+frame loading (JPEG):  29%|██▉       | 35/120 [00:00<00:01, 49.31it/s][A
+frame loading (JPEG):  34%|███▍      | 41/120 [00:00<00:01, 50.09it/s][A
+frame loading (JPEG):  39%|███▉      | 47/120 [00:00<00:01, 50.52it/s][A
+frame loading (JPEG):  44%|████▍     | 53/120 [00:01<00:01, 50.89it/s][A
+frame loading (JPEG):  49%|████▉     | 59/120 [00:01<00:01, 51.14it/s][A
+frame loading (JPEG):  54%|█████▍    | 65/120 [00:01<00:01, 51.29it/s][A
+frame loading (JPEG):  59%|█████▉    | 71/120 [00:01<00:01, 47.92it/s][A
+frame loading (JPEG):  64%|██████▍   | 77/120 [00:01<00:00, 48.96it/s][A
+frame loading (JPEG):  69%|██████▉   | 83/120 [00:01<00:00, 49.73it/s][A
+frame loading (JPEG):  74%|███████▍  | 89/120 [00:01<00:00, 50.26it/s][A
+frame loading (JPEG):  79%|███████▉  | 95/120 [00:01<00:00, 50.64it/s][A
+frame loading (JPEG):  84%|████████▍ | 101/120 [00:02<00:00, 50.94it/s][A
+frame loading (JPEG):  89%|████████▉ | 107/120 [00:02<00:00, 51.11it/s][A
+frame loading (JPEG):  94%|█████████▍| 113/120 [00:02<00:00, 51.31it/s][A
+frame loading (JPEG):  99%|█████████▉| 119/120 [00:02<00:00, 51.43it/s][Aframe loading (JPEG): 100%|██████████| 120/120 [00:02<00:00, 50.15it/s]
+
+propagate in video:   0%|          | 0/120 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/120 [00:00<00:03, 37.16it/s][A
+propagate in video:   8%|▊         | 9/120 [00:00<00:04, 27.36it/s][A
+propagate in video:  10%|█         | 12/120 [00:00<00:04, 24.90it/s][A
+propagate in video:  12%|█▎        | 15/120 [00:00<00:04, 23.89it/s][A
+propagate in video:  15%|█▌        | 18/120 [00:00<00:04, 23.45it/s][A
+propagate in video:  18%|█▊        | 21/120 [00:00<00:04, 23.27it/s][A
+propagate in video:  20%|██        | 24/120 [00:00<00:04, 23.27it/s][A
+propagate in video:  22%|██▎       | 27/120 [00:01<00:04, 23.23it/s][A
+propagate in video:  25%|██▌       | 30/120 [00:01<00:03, 23.23it/s][A
+propagate in video:  28%|██▊       | 33/120 [00:01<00:03, 23.18it/s][A
+propagate in video:  30%|███       | 36/120 [00:01<00:03, 23.15it/s][A
+propagate in video:  32%|███▎      | 39/120 [00:01<00:03, 23.13it/s][A
+propagate in video:  35%|███▌      | 42/120 [00:01<00:03, 23.11it/s][A
+propagate in video:  38%|███▊      | 45/120 [00:01<00:03, 23.10it/s][A
+propagate in video:  40%|████      | 48/120 [00:02<00:03, 23.09it/s][A
+propagate in video:  42%|████▎     | 51/120 [00:02<00:02, 23.11it/s][A
+propagate in video:  45%|████▌     | 54/120 [00:02<00:02, 23.15it/s][A
+propagate in video:  48%|████▊     | 57/120 [00:02<00:02, 23.13it/s][A
+propagate in video:  50%|█████     | 60/120 [00:02<00:02, 23.16it/s][A
+propagate in video:  52%|█████▎    | 63/120 [00:02<00:02, 23.19it/s][A
+propagate in video:  55%|█████▌    | 66/120 [00:02<00:02, 23.21it/s][A
+propagate in video:  57%|█████▊    | 69/120 [00:02<00:02, 23.22it/s][A
+propagate in video:  60%|██████    | 72/120 [00:03<00:02, 23.22it/s][A
+propagate in video:  62%|██████▎   | 75/120 [00:03<00:01, 23.21it/s][A
+propagate in video:  65%|██████▌   | 78/120 [00:03<00:01, 23.22it/s][A
+propagate in video:  68%|██████▊   | 81/120 [00:03<00:01, 23.23it/s][A
+propagate in video:  70%|███████   | 84/120 [00:03<00:01, 23.23it/s][A
+propagate in video:  72%|███████▎  | 87/120 [00:03<00:01, 23.23it/s][A
+propagate in video:  75%|███████▌  | 90/120 [00:03<00:01, 23.18it/s][A
+propagate in video:  78%|███████▊  | 93/120 [00:03<00:01, 23.15it/s][A
+propagate in video:  80%|████████  | 96/120 [00:04<00:01, 23.12it/s][A
+propagate in video:  82%|████████▎ | 99/120 [00:04<00:00, 23.15it/s][A
+propagate in video:  85%|████████▌ | 102/120 [00:04<00:00, 23.14it/s][A
+propagate in video:  88%|████████▊ | 105/120 [00:04<00:00, 23.18it/s][A
+propagate in video:  90%|█████████ | 108/120 [00:04<00:00, 23.21it/s][A
+propagate in video:  92%|█████████▎| 111/120 [00:04<00:00, 23.23it/s][A
+propagate in video:  95%|█████████▌| 114/120 [00:04<00:00, 23.19it/s][A
+propagate in video:  98%|█████████▊| 117/120 [00:04<00:00, 23.18it/s][A
+propagate in video: 100%|██████████| 120/120 [00:05<00:00, 23.15it/s][Apropagate in video: 100%|██████████| 120/120 [00:05<00:00, 23.41it/s]
+episodes:  48%|████▊     | 21/44 [02:34<02:55,  7.64s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192238254956_fail: wrote viewforce_pseudo_force_fz.npz, frames=120, mask_frac median=0.1377
+  Prompt points: [[93.2125244140625, 120.02249908447266], [248.4410400390625, 119.44274139404297]]
+
+frame loading (JPEG):   0%|          | 0/87 [00:00<?, ?it/s][A
+frame loading (JPEG):   7%|▋         | 6/87 [00:00<00:01, 54.84it/s][A
+frame loading (JPEG):  14%|█▍        | 12/87 [00:00<00:01, 52.56it/s][A
+frame loading (JPEG):  21%|██        | 18/87 [00:00<00:01, 46.65it/s][A
+frame loading (JPEG):  28%|██▊       | 24/87 [00:00<00:01, 48.27it/s][A
+frame loading (JPEG):  34%|███▍      | 30/87 [00:00<00:01, 49.23it/s][A
+frame loading (JPEG):  41%|████▏     | 36/87 [00:00<00:01, 49.81it/s][A
+frame loading (JPEG):  48%|████▊     | 42/87 [00:00<00:00, 50.15it/s][A
+frame loading (JPEG):  55%|█████▌    | 48/87 [00:00<00:00, 50.47it/s][A
+frame loading (JPEG):  62%|██████▏   | 54/87 [00:01<00:00, 50.62it/s][A
+frame loading (JPEG):  69%|██████▉   | 60/87 [00:01<00:00, 50.71it/s][A
+frame loading (JPEG):  76%|███████▌  | 66/87 [00:01<00:00, 47.38it/s][A
+frame loading (JPEG):  83%|████████▎ | 72/87 [00:01<00:00, 48.50it/s][A
+frame loading (JPEG):  90%|████████▉ | 78/87 [00:01<00:00, 49.33it/s][A
+frame loading (JPEG):  95%|█████████▌| 83/87 [00:01<00:00, 49.41it/s][Aframe loading (JPEG): 100%|██████████| 87/87 [00:01<00:00, 49.56it/s]
+
+propagate in video:   0%|          | 0/87 [00:00<?, ?it/s][A
+propagate in video:   6%|▌         | 5/87 [00:00<00:02, 37.14it/s][A
+propagate in video:  10%|█         | 9/87 [00:00<00:02, 27.20it/s][A
+propagate in video:  14%|█▍        | 12/87 [00:00<00:03, 24.80it/s][A
+propagate in video:  17%|█▋        | 15/87 [00:00<00:03, 23.76it/s][A
+propagate in video:  21%|██        | 18/87 [00:00<00:02, 23.28it/s][A
+propagate in video:  24%|██▍       | 21/87 [00:00<00:02, 23.16it/s][A
+propagate in video:  28%|██▊       | 24/87 [00:00<00:02, 23.16it/s][A
+propagate in video:  31%|███       | 27/87 [00:01<00:02, 23.18it/s][A
+propagate in video:  34%|███▍      | 30/87 [00:01<00:02, 23.16it/s][A
+propagate in video:  38%|███▊      | 33/87 [00:01<00:02, 23.13it/s][A
+propagate in video:  41%|████▏     | 36/87 [00:01<00:02, 23.13it/s][A
+propagate in video:  45%|████▍     | 39/87 [00:01<00:02, 23.16it/s][A
+propagate in video:  48%|████▊     | 42/87 [00:01<00:01, 23.14it/s][A
+propagate in video:  52%|█████▏    | 45/87 [00:01<00:01, 23.18it/s][A
+propagate in video:  55%|█████▌    | 48/87 [00:02<00:01, 23.21it/s][A
+propagate in video:  59%|█████▊    | 51/87 [00:02<00:01, 23.23it/s][A
+propagate in video:  62%|██████▏   | 54/87 [00:02<00:01, 23.20it/s][A
+propagate in video:  66%|██████▌   | 57/87 [00:02<00:01, 23.19it/s][A
+propagate in video:  69%|██████▉   | 60/87 [00:02<00:01, 23.21it/s][A
+propagate in video:  72%|███████▏  | 63/87 [00:02<00:01, 23.23it/s][A
+propagate in video:  76%|███████▌  | 66/87 [00:02<00:00, 23.25it/s][A
+propagate in video:  79%|███████▉  | 69/87 [00:02<00:00, 23.21it/s][A
+propagate in video:  83%|████████▎ | 72/87 [00:03<00:00, 23.18it/s][A
+propagate in video:  86%|████████▌ | 75/87 [00:03<00:00, 23.16it/s][A
+propagate in video:  90%|████████▉ | 78/87 [00:03<00:00, 23.13it/s][A
+propagate in video:  93%|█████████▎| 81/87 [00:03<00:00, 23.12it/s][A
+propagate in video:  97%|█████████▋| 84/87 [00:03<00:00, 23.10it/s][A
+propagate in video: 100%|██████████| 87/87 [00:03<00:00, 23.10it/s][Apropagate in video: 100%|██████████| 87/87 [00:03<00:00, 23.47it/s]
+episodes:  50%|█████     | 22/44 [02:40<02:38,  7.21s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192347083452_fail: wrote viewforce_pseudo_force_fz.npz, frames=87, mask_frac median=0.1419
+  Prompt points: [[92.5873794555664, 117.62760925292969], [248.0904083251953, 118.36370086669922]]
+
+frame loading (JPEG):   0%|          | 0/121 [00:00<?, ?it/s][A
+frame loading (JPEG):   5%|▍         | 6/121 [00:00<00:02, 55.95it/s][A
+frame loading (JPEG):  10%|▉         | 12/121 [00:00<00:02, 53.73it/s][A
+frame loading (JPEG):  15%|█▍        | 18/121 [00:00<00:02, 47.69it/s][A
+frame loading (JPEG):  20%|█▉        | 24/121 [00:00<00:01, 49.30it/s][A
+frame loading (JPEG):  25%|██▍       | 30/121 [00:00<00:01, 50.03it/s][A
+frame loading (JPEG):  30%|██▉       | 36/121 [00:00<00:01, 50.75it/s][A
+frame loading (JPEG):  35%|███▍      | 42/121 [00:00<00:01, 51.22it/s][A
+frame loading (JPEG):  40%|███▉      | 48/121 [00:00<00:01, 51.53it/s][A
+frame loading (JPEG):  45%|████▍     | 54/121 [00:01<00:01, 51.73it/s][A
+frame loading (JPEG):  50%|████▉     | 60/121 [00:01<00:01, 51.95it/s][A
+frame loading (JPEG):  55%|█████▍    | 66/121 [00:01<00:01, 52.07it/s][A
+frame loading (JPEG):  60%|█████▉    | 72/121 [00:01<00:01, 48.60it/s][A
+frame loading (JPEG):  64%|██████▍   | 78/121 [00:01<00:00, 49.67it/s][A
+frame loading (JPEG):  69%|██████▉   | 84/121 [00:01<00:00, 50.40it/s][A
+frame loading (JPEG):  74%|███████▍  | 90/121 [00:01<00:00, 51.01it/s][A
+frame loading (JPEG):  79%|███████▉  | 96/121 [00:01<00:00, 51.38it/s][A
+frame loading (JPEG):  84%|████████▍ | 102/121 [00:02<00:00, 51.65it/s][A
+frame loading (JPEG):  89%|████████▉ | 108/121 [00:02<00:00, 51.82it/s][A
+frame loading (JPEG):  94%|█████████▍| 114/121 [00:02<00:00, 51.93it/s][A
+frame loading (JPEG):  99%|█████████▉| 120/121 [00:02<00:00, 48.50it/s][Aframe loading (JPEG): 100%|██████████| 121/121 [00:02<00:00, 50.56it/s]
+
+propagate in video:   0%|          | 0/121 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/121 [00:00<00:03, 37.19it/s][A
+propagate in video:   7%|▋         | 9/121 [00:00<00:04, 27.15it/s][A
+propagate in video:  10%|▉         | 12/121 [00:00<00:04, 24.75it/s][A
+propagate in video:  12%|█▏        | 15/121 [00:00<00:04, 23.66it/s][A
+propagate in video:  15%|█▍        | 18/121 [00:00<00:04, 23.15it/s][A
+propagate in video:  17%|█▋        | 21/121 [00:00<00:04, 23.07it/s][A
+propagate in video:  20%|█▉        | 24/121 [00:00<00:04, 23.07it/s][A
+propagate in video:  22%|██▏       | 27/121 [00:01<00:04, 23.13it/s][A
+propagate in video:  25%|██▍       | 30/121 [00:01<00:03, 23.18it/s][A
+propagate in video:  27%|██▋       | 33/121 [00:01<00:03, 23.21it/s][A
+propagate in video:  30%|██▉       | 36/121 [00:01<00:03, 23.21it/s][A
+propagate in video:  32%|███▏      | 39/121 [00:01<00:03, 23.22it/s][A
+propagate in video:  35%|███▍      | 42/121 [00:01<00:03, 23.18it/s][A
+propagate in video:  37%|███▋      | 45/121 [00:01<00:03, 23.18it/s][A
+propagate in video:  40%|███▉      | 48/121 [00:02<00:03, 23.15it/s][A
+propagate in video:  42%|████▏     | 51/121 [00:02<00:03, 23.12it/s][A
+propagate in video:  45%|████▍     | 54/121 [00:02<00:02, 23.11it/s][A
+propagate in video:  47%|████▋     | 57/121 [00:02<00:02, 23.10it/s][A
+propagate in video:  50%|████▉     | 60/121 [00:02<00:02, 23.10it/s][A
+propagate in video:  52%|█████▏    | 63/121 [00:02<00:02, 23.16it/s][A
+propagate in video:  55%|█████▍    | 66/121 [00:02<00:02, 23.19it/s][A
+propagate in video:  57%|█████▋    | 69/121 [00:02<00:02, 23.22it/s][A
+propagate in video:  60%|█████▉    | 72/121 [00:03<00:02, 23.20it/s][A
+propagate in video:  62%|██████▏   | 75/121 [00:03<00:01, 23.22it/s][A
+propagate in video:  64%|██████▍   | 78/121 [00:03<00:01, 23.23it/s][A
+propagate in video:  67%|██████▋   | 81/121 [00:03<00:01, 23.24it/s][A
+propagate in video:  69%|██████▉   | 84/121 [00:03<00:01, 23.25it/s][A
+propagate in video:  72%|███████▏  | 87/121 [00:03<00:01, 23.25it/s][A
+propagate in video:  74%|███████▍  | 90/121 [00:03<00:01, 23.26it/s][A
+propagate in video:  77%|███████▋  | 93/121 [00:03<00:01, 23.23it/s][A
+propagate in video:  79%|███████▉  | 96/121 [00:04<00:01, 23.23it/s][A
+propagate in video:  82%|████████▏ | 99/121 [00:04<00:00, 23.18it/s][A
+propagate in video:  84%|████████▍ | 102/121 [00:04<00:00, 23.21it/s][A
+propagate in video:  87%|████████▋ | 105/121 [00:04<00:00, 23.18it/s][A
+propagate in video:  89%|████████▉ | 108/121 [00:04<00:00, 23.17it/s][A
+propagate in video:  92%|█████████▏| 111/121 [00:04<00:00, 23.15it/s][A
+propagate in video:  94%|█████████▍| 114/121 [00:04<00:00, 23.19it/s][A
+propagate in video:  97%|█████████▋| 117/121 [00:04<00:00, 23.18it/s][A
+propagate in video:  99%|█████████▉| 120/121 [00:05<00:00, 23.16it/s][Apropagate in video: 100%|██████████| 121/121 [00:05<00:00, 23.39it/s]
+episodes:  52%|█████▏    | 23/44 [02:49<02:39,  7.61s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192426732732_fail: wrote viewforce_pseudo_force_fz.npz, frames=121, mask_frac median=0.1382
+  Prompt points: [[92.92269897460938, 119.1794204711914], [248.4331512451172, 117.74052429199219]]
+
+frame loading (JPEG):   0%|          | 0/103 [00:00<?, ?it/s][A
+frame loading (JPEG):   6%|▌         | 6/103 [00:00<00:01, 55.05it/s][A
+frame loading (JPEG):  12%|█▏        | 12/103 [00:00<00:01, 52.84it/s][A
+frame loading (JPEG):  17%|█▋        | 18/103 [00:00<00:01, 46.88it/s][A
+frame loading (JPEG):  23%|██▎       | 24/103 [00:00<00:01, 48.64it/s][A
+frame loading (JPEG):  29%|██▉       | 30/103 [00:00<00:01, 49.59it/s][A
+frame loading (JPEG):  35%|███▍      | 36/103 [00:00<00:01, 50.22it/s][A
+frame loading (JPEG):  41%|████      | 42/103 [00:00<00:01, 50.65it/s][A
+frame loading (JPEG):  47%|████▋     | 48/103 [00:00<00:01, 50.92it/s][A
+frame loading (JPEG):  52%|█████▏    | 54/103 [00:01<00:00, 51.10it/s][A
+frame loading (JPEG):  58%|█████▊    | 60/103 [00:01<00:00, 51.23it/s][A
+frame loading (JPEG):  64%|██████▍   | 66/103 [00:01<00:00, 47.76it/s][A
+frame loading (JPEG):  70%|██████▉   | 72/103 [00:01<00:00, 48.84it/s][A
+frame loading (JPEG):  76%|███████▌  | 78/103 [00:01<00:00, 49.62it/s][A
+frame loading (JPEG):  82%|████████▏ | 84/103 [00:01<00:00, 50.17it/s][A
+frame loading (JPEG):  87%|████████▋ | 90/103 [00:01<00:00, 50.57it/s][A
+frame loading (JPEG):  93%|█████████▎| 96/103 [00:01<00:00, 50.85it/s][A
+frame loading (JPEG):  99%|█████████▉| 102/103 [00:02<00:00, 51.09it/s][Aframe loading (JPEG): 100%|██████████| 103/103 [00:02<00:00, 50.26it/s]
+
+propagate in video:   0%|          | 0/103 [00:00<?, ?it/s][A
+propagate in video:   5%|▍         | 5/103 [00:00<00:02, 37.21it/s][A
+propagate in video:   9%|▊         | 9/103 [00:00<00:03, 27.43it/s][A
+propagate in video:  12%|█▏        | 12/103 [00:00<00:03, 24.98it/s][A
+propagate in video:  15%|█▍        | 15/103 [00:00<00:03, 23.88it/s][A
+propagate in video:  17%|█▋        | 18/103 [00:00<00:03, 23.46it/s][A
+propagate in video:  20%|██        | 21/103 [00:00<00:03, 23.29it/s][A
+propagate in video:  23%|██▎       | 24/103 [00:00<00:03, 23.29it/s][A
+propagate in video:  26%|██▌       | 27/103 [00:01<00:03, 23.29it/s][A
+propagate in video:  29%|██▉       | 30/103 [00:01<00:03, 23.28it/s][A
+propagate in video:  32%|███▏      | 33/103 [00:01<00:03, 23.28it/s][A
+propagate in video:  35%|███▍      | 36/103 [00:01<00:02, 23.27it/s][A
+propagate in video:  38%|███▊      | 39/103 [00:01<00:02, 23.21it/s][A
+propagate in video:  41%|████      | 42/103 [00:01<00:02, 23.19it/s][A
+propagate in video:  44%|████▎     | 45/103 [00:01<00:02, 23.17it/s][A
+propagate in video:  47%|████▋     | 48/103 [00:02<00:02, 23.21it/s][A
+propagate in video:  50%|████▉     | 51/103 [00:02<00:02, 23.18it/s][A
+propagate in video:  52%|█████▏    | 54/103 [00:02<00:02, 23.20it/s][A
+propagate in video:  55%|█████▌    | 57/103 [00:02<00:01, 23.21it/s][A
+propagate in video:  58%|█████▊    | 60/103 [00:02<00:01, 23.22it/s][A
+propagate in video:  61%|██████    | 63/103 [00:02<00:01, 23.21it/s][A
+propagate in video:  64%|██████▍   | 66/103 [00:02<00:01, 23.20it/s][A
+propagate in video:  67%|██████▋   | 69/103 [00:02<00:01, 23.21it/s][A
+propagate in video:  70%|██████▉   | 72/103 [00:03<00:01, 23.21it/s][A
+propagate in video:  73%|███████▎  | 75/103 [00:03<00:01, 23.22it/s][A
+propagate in video:  76%|███████▌  | 78/103 [00:03<00:01, 23.18it/s][A
+propagate in video:  79%|███████▊  | 81/103 [00:03<00:00, 23.15it/s][A
+propagate in video:  82%|████████▏ | 84/103 [00:03<00:00, 23.14it/s][A
+propagate in video:  84%|████████▍ | 87/103 [00:03<00:00, 23.16it/s][A
+propagate in video:  87%|████████▋ | 90/103 [00:03<00:00, 23.13it/s][A
+propagate in video:  90%|█████████ | 93/103 [00:03<00:00, 23.16it/s][A
+propagate in video:  93%|█████████▎| 96/103 [00:04<00:00, 23.15it/s][A
+propagate in video:  96%|█████████▌| 99/103 [00:04<00:00, 23.15it/s][A
+propagate in video:  99%|█████████▉| 102/103 [00:04<00:00, 23.12it/s][Apropagate in video: 100%|██████████| 103/103 [00:04<00:00, 23.47it/s]
+episodes:  55%|█████▍    | 24/44 [02:56<02:30,  7.51s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192503671698_fail: wrote viewforce_pseudo_force_fz.npz, frames=103, mask_frac median=0.1372
+  Prompt points: [[92.88871765136719, 118.97154998779297], [248.6748046875, 117.77651977539062]]
+
+frame loading (JPEG):   0%|          | 0/133 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▍         | 5/133 [00:00<00:02, 46.10it/s][A
+frame loading (JPEG):   8%|▊         | 10/133 [00:00<00:02, 44.09it/s][A
+frame loading (JPEG):  11%|█▏        | 15/133 [00:00<00:02, 41.79it/s][A
+frame loading (JPEG):  16%|█▌        | 21/133 [00:00<00:02, 45.53it/s][A
+frame loading (JPEG):  20%|██        | 27/133 [00:00<00:02, 47.66it/s][A
+frame loading (JPEG):  25%|██▍       | 33/133 [00:00<00:02, 48.88it/s][A
+frame loading (JPEG):  29%|██▉       | 39/133 [00:00<00:01, 49.77it/s][A
+frame loading (JPEG):  34%|███▍      | 45/133 [00:00<00:01, 50.33it/s][A
+frame loading (JPEG):  38%|███▊      | 51/133 [00:01<00:01, 50.64it/s][A
+frame loading (JPEG):  43%|████▎     | 57/133 [00:01<00:01, 50.88it/s][A
+frame loading (JPEG):  47%|████▋     | 63/133 [00:01<00:01, 50.99it/s][A
+frame loading (JPEG):  52%|█████▏    | 69/133 [00:01<00:01, 47.59it/s][A
+frame loading (JPEG):  56%|█████▋    | 75/133 [00:01<00:01, 48.67it/s][A
+frame loading (JPEG):  61%|██████    | 81/133 [00:01<00:01, 49.45it/s][A
+frame loading (JPEG):  65%|██████▌   | 87/133 [00:01<00:00, 50.00it/s][A
+frame loading (JPEG):  70%|██████▉   | 93/133 [00:01<00:00, 50.40it/s][A
+frame loading (JPEG):  74%|███████▍  | 99/133 [00:02<00:00, 50.69it/s][A
+frame loading (JPEG):  79%|███████▉  | 105/133 [00:02<00:00, 50.98it/s][A
+frame loading (JPEG):  83%|████████▎ | 111/133 [00:02<00:00, 51.12it/s][A
+frame loading (JPEG):  88%|████████▊ | 117/133 [00:02<00:00, 47.78it/s][A
+frame loading (JPEG):  92%|█████████▏| 123/133 [00:02<00:00, 48.80it/s][A
+frame loading (JPEG):  97%|█████████▋| 129/133 [00:02<00:00, 49.52it/s][Aframe loading (JPEG): 100%|██████████| 133/133 [00:02<00:00, 49.17it/s]
+
+propagate in video:   0%|          | 0/133 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/133 [00:00<00:03, 37.15it/s][A
+propagate in video:   7%|▋         | 9/133 [00:00<00:04, 27.41it/s][A
+propagate in video:   9%|▉         | 12/133 [00:00<00:04, 24.98it/s][A
+propagate in video:  11%|█▏        | 15/133 [00:00<00:04, 23.87it/s][A
+propagate in video:  14%|█▎        | 18/133 [00:00<00:04, 23.47it/s][A
+propagate in video:  16%|█▌        | 21/133 [00:00<00:04, 23.30it/s][A
+propagate in video:  18%|█▊        | 24/133 [00:00<00:04, 23.29it/s][A
+propagate in video:  20%|██        | 27/133 [00:01<00:04, 23.28it/s][A
+propagate in video:  23%|██▎       | 30/133 [00:01<00:04, 23.25it/s][A
+propagate in video:  25%|██▍       | 33/133 [00:01<00:04, 23.21it/s][A
+propagate in video:  27%|██▋       | 36/133 [00:01<00:04, 23.17it/s][A
+propagate in video:  29%|██▉       | 39/133 [00:01<00:04, 23.14it/s][A
+propagate in video:  32%|███▏      | 42/133 [00:01<00:03, 23.11it/s][A
+propagate in video:  34%|███▍      | 45/133 [00:01<00:03, 23.12it/s][A
+propagate in video:  36%|███▌      | 48/133 [00:02<00:03, 23.16it/s][A
+propagate in video:  38%|███▊      | 51/133 [00:02<00:03, 23.19it/s][A
+propagate in video:  41%|████      | 54/133 [00:02<00:03, 23.22it/s][A
+propagate in video:  43%|████▎     | 57/133 [00:02<00:03, 23.23it/s][A
+propagate in video:  45%|████▌     | 60/133 [00:02<00:03, 23.24it/s][A
+propagate in video:  47%|████▋     | 63/133 [00:02<00:03, 23.23it/s][A
+propagate in video:  50%|████▉     | 66/133 [00:02<00:02, 23.25it/s][A
+propagate in video:  52%|█████▏    | 69/133 [00:02<00:02, 23.21it/s][A
+propagate in video:  54%|█████▍    | 72/133 [00:03<00:02, 23.19it/s][A
+propagate in video:  56%|█████▋    | 75/133 [00:03<00:02, 23.17it/s][A
+propagate in video:  59%|█████▊    | 78/133 [00:03<00:02, 23.19it/s][A
+propagate in video:  61%|██████    | 81/133 [00:03<00:02, 23.22it/s][A
+propagate in video:  63%|██████▎   | 84/133 [00:03<00:02, 23.23it/s][A
+propagate in video:  65%|██████▌   | 87/133 [00:03<00:01, 23.23it/s][A
+propagate in video:  68%|██████▊   | 90/133 [00:03<00:01, 23.20it/s][A
+propagate in video:  70%|██████▉   | 93/133 [00:03<00:01, 23.17it/s][A
+propagate in video:  72%|███████▏  | 96/133 [00:04<00:01, 23.15it/s][A
+propagate in video:  74%|███████▍  | 99/133 [00:04<00:01, 23.13it/s][A
+propagate in video:  77%|███████▋  | 102/133 [00:04<00:01, 23.12it/s][A
+propagate in video:  79%|███████▉  | 105/133 [00:04<00:01, 23.11it/s][A
+propagate in video:  81%|████████  | 108/133 [00:04<00:01, 23.11it/s][A
+propagate in video:  83%|████████▎ | 111/133 [00:04<00:00, 23.10it/s][A
+propagate in video:  86%|████████▌ | 114/133 [00:04<00:00, 23.10it/s][A
+propagate in video:  88%|████████▊ | 117/133 [00:04<00:00, 23.09it/s][A
+propagate in video:  90%|█████████ | 120/133 [00:05<00:00, 23.09it/s][A
+propagate in video:  92%|█████████▏| 123/133 [00:05<00:00, 23.08it/s][A
+propagate in video:  95%|█████████▍| 126/133 [00:05<00:00, 23.09it/s][A
+propagate in video:  97%|█████████▋| 129/133 [00:05<00:00, 23.08it/s][A
+propagate in video:  99%|█████████▉| 132/133 [00:05<00:00, 23.09it/s][Apropagate in video: 100%|██████████| 133/133 [00:05<00:00, 23.38it/s]
+episodes:  57%|█████▋    | 25/44 [03:05<02:33,  8.08s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192533747714_fail: wrote viewforce_pseudo_force_fz.npz, frames=133, mask_frac median=0.1416
+  Prompt points: [[93.23683166503906, 119.01185607910156], [249.70628356933594, 115.09481048583984]]
+
+frame loading (JPEG):   0%|          | 0/113 [00:00<?, ?it/s][A
+frame loading (JPEG):   5%|▌         | 6/113 [00:00<00:01, 56.23it/s][A
+frame loading (JPEG):  11%|█         | 12/113 [00:00<00:01, 53.75it/s][A
+frame loading (JPEG):  16%|█▌        | 18/113 [00:00<00:01, 47.69it/s][A
+frame loading (JPEG):  21%|██        | 24/113 [00:00<00:01, 49.41it/s][A
+frame loading (JPEG):  27%|██▋       | 30/113 [00:00<00:01, 50.47it/s][A
+frame loading (JPEG):  32%|███▏      | 36/113 [00:00<00:01, 51.06it/s][A
+frame loading (JPEG):  37%|███▋      | 42/113 [00:00<00:01, 51.42it/s][A
+frame loading (JPEG):  42%|████▏     | 48/113 [00:00<00:01, 51.70it/s][A
+frame loading (JPEG):  48%|████▊     | 54/113 [00:01<00:01, 49.93it/s][A
+frame loading (JPEG):  53%|█████▎    | 60/113 [00:01<00:01, 50.51it/s][A
+frame loading (JPEG):  58%|█████▊    | 66/113 [00:01<00:00, 47.55it/s][A
+frame loading (JPEG):  64%|██████▎   | 72/113 [00:01<00:00, 48.93it/s][A
+frame loading (JPEG):  69%|██████▉   | 78/113 [00:01<00:00, 49.88it/s][A
+frame loading (JPEG):  74%|███████▍  | 84/113 [00:01<00:00, 50.64it/s][A
+frame loading (JPEG):  80%|███████▉  | 90/113 [00:01<00:00, 51.17it/s][A
+frame loading (JPEG):  85%|████████▍ | 96/113 [00:01<00:00, 51.58it/s][A
+frame loading (JPEG):  90%|█████████ | 102/113 [00:02<00:00, 51.75it/s][A
+frame loading (JPEG):  96%|█████████▌| 108/113 [00:02<00:00, 51.92it/s][Aframe loading (JPEG): 100%|██████████| 113/113 [00:02<00:00, 50.81it/s]
+
+propagate in video:   0%|          | 0/113 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/113 [00:00<00:02, 37.22it/s][A
+propagate in video:   8%|▊         | 9/113 [00:00<00:03, 27.14it/s][A
+propagate in video:  11%|█         | 12/113 [00:00<00:04, 24.74it/s][A
+propagate in video:  13%|█▎        | 15/113 [00:00<00:04, 23.66it/s][A
+propagate in video:  16%|█▌        | 18/113 [00:00<00:04, 23.16it/s][A
+propagate in video:  19%|█▊        | 21/113 [00:00<00:03, 23.07it/s][A
+propagate in video:  21%|██        | 24/113 [00:00<00:03, 23.07it/s][A
+propagate in video:  24%|██▍       | 27/113 [00:01<00:03, 23.14it/s][A
+propagate in video:  27%|██▋       | 30/113 [00:01<00:03, 23.18it/s][A
+propagate in video:  29%|██▉       | 33/113 [00:01<00:03, 23.21it/s][A
+propagate in video:  32%|███▏      | 36/113 [00:01<00:03, 23.19it/s][A
+propagate in video:  35%|███▍      | 39/113 [00:01<00:03, 23.21it/s][A
+propagate in video:  37%|███▋      | 42/113 [00:01<00:03, 23.22it/s][A
+propagate in video:  40%|███▉      | 45/113 [00:01<00:02, 23.20it/s][A
+propagate in video:  42%|████▏     | 48/113 [00:02<00:02, 23.18it/s][A
+propagate in video:  45%|████▌     | 51/113 [00:02<00:02, 23.18it/s][A
+propagate in video:  48%|████▊     | 54/113 [00:02<00:02, 23.14it/s][A
+propagate in video:  50%|█████     | 57/113 [00:02<00:02, 23.13it/s][A
+propagate in video:  53%|█████▎    | 60/113 [00:02<00:02, 23.11it/s][A
+propagate in video:  56%|█████▌    | 63/113 [00:02<00:02, 23.11it/s][A
+propagate in video:  58%|█████▊    | 66/113 [00:02<00:02, 23.10it/s][A
+propagate in video:  61%|██████    | 69/113 [00:02<00:01, 23.10it/s][A
+propagate in video:  64%|██████▎   | 72/113 [00:03<00:01, 23.09it/s][A
+propagate in video:  66%|██████▋   | 75/113 [00:03<00:01, 23.09it/s][A
+propagate in video:  69%|██████▉   | 78/113 [00:03<00:01, 23.09it/s][A
+propagate in video:  72%|███████▏  | 81/113 [00:03<00:01, 23.09it/s][A
+propagate in video:  74%|███████▍  | 84/113 [00:03<00:01, 23.08it/s][A
+propagate in video:  77%|███████▋  | 87/113 [00:03<00:01, 23.09it/s][A
+propagate in video:  80%|███████▉  | 90/113 [00:03<00:00, 23.09it/s][A
+propagate in video:  82%|████████▏ | 93/113 [00:03<00:00, 23.09it/s][A
+propagate in video:  85%|████████▍ | 96/113 [00:04<00:00, 23.08it/s][A
+propagate in video:  88%|████████▊ | 99/113 [00:04<00:00, 23.09it/s][A
+propagate in video:  90%|█████████ | 102/113 [00:04<00:00, 23.09it/s][A
+propagate in video:  93%|█████████▎| 105/113 [00:04<00:00, 23.09it/s][A
+propagate in video:  96%|█████████▌| 108/113 [00:04<00:00, 23.08it/s][A
+propagate in video:  98%|█████████▊| 111/113 [00:04<00:00, 23.09it/s][Apropagate in video: 100%|██████████| 113/113 [00:04<00:00, 23.35it/s]
+episodes:  59%|█████▉    | 26/44 [03:13<02:24,  8.04s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192613880734_fail: wrote viewforce_pseudo_force_fz.npz, frames=113, mask_frac median=0.1379
+  Prompt points: [[93.22377014160156, 118.83397674560547], [251.07440185546875, 113.12782287597656]]
+
+frame loading (JPEG):   0%|          | 0/114 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▍         | 5/114 [00:00<00:02, 46.40it/s][A
+frame loading (JPEG):  10%|▉         | 11/114 [00:00<00:02, 49.25it/s][A
+frame loading (JPEG):  14%|█▍        | 16/114 [00:00<00:02, 44.66it/s][A
+frame loading (JPEG):  19%|█▉        | 22/114 [00:00<00:01, 47.24it/s][A
+frame loading (JPEG):  25%|██▍       | 28/114 [00:00<00:01, 48.66it/s][A
+frame loading (JPEG):  30%|██▉       | 34/114 [00:00<00:01, 49.54it/s][A
+frame loading (JPEG):  34%|███▍      | 39/114 [00:00<00:01, 49.32it/s][A
+frame loading (JPEG):  39%|███▉      | 45/114 [00:00<00:01, 49.99it/s][A
+frame loading (JPEG):  45%|████▍     | 51/114 [00:01<00:01, 50.47it/s][A
+frame loading (JPEG):  50%|█████     | 57/114 [00:01<00:01, 50.78it/s][A
+frame loading (JPEG):  55%|█████▌    | 63/114 [00:01<00:01, 50.95it/s][A
+frame loading (JPEG):  61%|██████    | 69/114 [00:01<00:00, 47.57it/s][A
+frame loading (JPEG):  66%|██████▌   | 75/114 [00:01<00:00, 48.69it/s][A
+frame loading (JPEG):  71%|███████   | 81/114 [00:01<00:00, 49.48it/s][A
+frame loading (JPEG):  76%|███████▋  | 87/114 [00:01<00:00, 49.99it/s][A
+frame loading (JPEG):  82%|████████▏ | 93/114 [00:01<00:00, 50.38it/s][A
+frame loading (JPEG):  87%|████████▋ | 99/114 [00:02<00:00, 50.65it/s][A
+frame loading (JPEG):  92%|█████████▏| 105/114 [00:02<00:00, 50.82it/s][A
+frame loading (JPEG):  97%|█████████▋| 111/114 [00:02<00:00, 51.05it/s][Aframe loading (JPEG): 100%|██████████| 114/114 [00:02<00:00, 49.12it/s]
+
+propagate in video:   0%|          | 0/114 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/114 [00:00<00:02, 37.16it/s][A
+propagate in video:   8%|▊         | 9/114 [00:00<00:03, 27.28it/s][A
+propagate in video:  11%|█         | 12/114 [00:00<00:04, 24.87it/s][A
+propagate in video:  13%|█▎        | 15/114 [00:00<00:04, 23.86it/s][A
+propagate in video:  16%|█▌        | 18/114 [00:00<00:04, 23.39it/s][A
+propagate in video:  18%|█▊        | 21/114 [00:00<00:04, 23.24it/s][A
+propagate in video:  21%|██        | 24/114 [00:00<00:03, 23.24it/s][A
+propagate in video:  24%|██▎       | 27/114 [00:01<00:03, 23.24it/s][A
+propagate in video:  26%|██▋       | 30/114 [00:01<00:03, 23.21it/s][A
+propagate in video:  29%|██▉       | 33/114 [00:01<00:03, 23.23it/s][A
+propagate in video:  32%|███▏      | 36/114 [00:01<00:03, 23.18it/s][A
+propagate in video:  34%|███▍      | 39/114 [00:01<00:03, 23.20it/s][A
+propagate in video:  37%|███▋      | 42/114 [00:01<00:03, 23.18it/s][A
+propagate in video:  39%|███▉      | 45/114 [00:01<00:02, 23.14it/s][A
+propagate in video:  42%|████▏     | 48/114 [00:02<00:02, 23.12it/s][A
+propagate in video:  45%|████▍     | 51/114 [00:02<00:02, 23.11it/s][A
+propagate in video:  47%|████▋     | 54/114 [00:02<00:02, 23.10it/s][A
+propagate in video:  50%|█████     | 57/114 [00:02<00:02, 23.14it/s][A
+propagate in video:  53%|█████▎    | 60/114 [00:02<00:02, 23.13it/s][A
+propagate in video:  55%|█████▌    | 63/114 [00:02<00:02, 23.17it/s][A
+propagate in video:  58%|█████▊    | 66/114 [00:02<00:02, 23.19it/s][A
+propagate in video:  61%|██████    | 69/114 [00:02<00:01, 23.22it/s][A
+propagate in video:  63%|██████▎   | 72/114 [00:03<00:01, 23.21it/s][A
+propagate in video:  66%|██████▌   | 75/114 [00:03<00:01, 23.17it/s][A
+propagate in video:  68%|██████▊   | 78/114 [00:03<00:01, 23.15it/s][A
+propagate in video:  71%|███████   | 81/114 [00:03<00:01, 23.14it/s][A
+propagate in video:  74%|███████▎  | 84/114 [00:03<00:01, 23.14it/s][A
+propagate in video:  76%|███████▋  | 87/114 [00:03<00:01, 23.18it/s][A
+propagate in video:  79%|███████▉  | 90/114 [00:03<00:01, 23.21it/s][A
+propagate in video:  82%|████████▏ | 93/114 [00:03<00:00, 23.20it/s][A
+propagate in video:  84%|████████▍ | 96/114 [00:04<00:00, 23.22it/s][A
+propagate in video:  87%|████████▋ | 99/114 [00:04<00:00, 23.23it/s][A
+propagate in video:  89%|████████▉ | 102/114 [00:04<00:00, 23.25it/s][A
+propagate in video:  92%|█████████▏| 105/114 [00:04<00:00, 23.26it/s][A
+propagate in video:  95%|█████████▍| 108/114 [00:04<00:00, 23.27it/s][A
+propagate in video:  97%|█████████▋| 111/114 [00:04<00:00, 23.24it/s][A
+propagate in video: 100%|██████████| 114/114 [00:04<00:00, 23.22it/s][Apropagate in video: 100%|██████████| 114/114 [00:04<00:00, 23.43it/s]
+episodes:  61%|██████▏   | 27/44 [03:22<02:16,  8.06s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192658625280_fail: wrote viewforce_pseudo_force_fz.npz, frames=114, mask_frac median=0.1390
+  Prompt points: [[93.16166687011719, 117.99974060058594], [252.1986083984375, 109.36360931396484]]
+
+frame loading (JPEG):   0%|          | 0/101 [00:00<?, ?it/s][A
+frame loading (JPEG):   6%|▌         | 6/101 [00:00<00:01, 52.27it/s][A
+frame loading (JPEG):  12%|█▏        | 12/101 [00:00<00:01, 52.29it/s][A
+frame loading (JPEG):  18%|█▊        | 18/101 [00:00<00:01, 47.10it/s][A
+frame loading (JPEG):  24%|██▍       | 24/101 [00:00<00:01, 48.97it/s][A
+frame loading (JPEG):  30%|██▉       | 30/101 [00:00<00:01, 50.01it/s][A
+frame loading (JPEG):  36%|███▌      | 36/101 [00:00<00:01, 50.75it/s][A
+frame loading (JPEG):  42%|████▏     | 42/101 [00:00<00:01, 51.25it/s][A
+frame loading (JPEG):  48%|████▊     | 48/101 [00:00<00:01, 51.50it/s][A
+frame loading (JPEG):  53%|█████▎    | 54/101 [00:01<00:00, 51.74it/s][A
+frame loading (JPEG):  59%|█████▉    | 60/101 [00:01<00:00, 51.83it/s][A
+frame loading (JPEG):  65%|██████▌   | 66/101 [00:01<00:00, 51.97it/s][A
+frame loading (JPEG):  71%|███████▏  | 72/101 [00:01<00:00, 48.53it/s][A
+frame loading (JPEG):  77%|███████▋  | 78/101 [00:01<00:00, 49.58it/s][A
+frame loading (JPEG):  83%|████████▎ | 84/101 [00:01<00:00, 50.29it/s][A
+frame loading (JPEG):  89%|████████▉ | 90/101 [00:01<00:00, 50.83it/s][A
+frame loading (JPEG):  95%|█████████▌| 96/101 [00:01<00:00, 51.21it/s][Aframe loading (JPEG): 100%|██████████| 101/101 [00:01<00:00, 50.74it/s]
+
+propagate in video:   0%|          | 0/101 [00:00<?, ?it/s][A
+propagate in video:   5%|▍         | 5/101 [00:00<00:02, 37.17it/s][A
+propagate in video:   9%|▉         | 9/101 [00:00<00:03, 27.14it/s][A
+propagate in video:  12%|█▏        | 12/101 [00:00<00:03, 24.72it/s][A
+propagate in video:  15%|█▍        | 15/101 [00:00<00:03, 23.63it/s][A
+propagate in video:  18%|█▊        | 18/101 [00:00<00:03, 23.15it/s][A
+propagate in video:  21%|██        | 21/101 [00:00<00:03, 23.06it/s][A
+propagate in video:  24%|██▍       | 24/101 [00:00<00:03, 23.05it/s][A
+propagate in video:  27%|██▋       | 27/101 [00:01<00:03, 23.07it/s][A
+propagate in video:  30%|██▉       | 30/101 [00:01<00:03, 23.10it/s][A
+propagate in video:  33%|███▎      | 33/101 [00:01<00:02, 23.15it/s][A
+propagate in video:  36%|███▌      | 36/101 [00:01<00:02, 23.15it/s][A
+propagate in video:  39%|███▊      | 39/101 [00:01<00:02, 23.14it/s][A
+propagate in video:  42%|████▏     | 42/101 [00:01<00:02, 23.12it/s][A
+propagate in video:  45%|████▍     | 45/101 [00:01<00:02, 23.10it/s][A
+propagate in video:  48%|████▊     | 48/101 [00:02<00:02, 23.09it/s][A
+propagate in video:  50%|█████     | 51/101 [00:02<00:02, 23.09it/s][A
+propagate in video:  53%|█████▎    | 54/101 [00:02<00:02, 23.08it/s][A
+propagate in video:  56%|█████▋    | 57/101 [00:02<00:01, 23.08it/s][A
+propagate in video:  59%|█████▉    | 60/101 [00:02<00:01, 23.08it/s][A
+propagate in video:  62%|██████▏   | 63/101 [00:02<00:01, 23.07it/s][A
+propagate in video:  65%|██████▌   | 66/101 [00:02<00:01, 23.07it/s][A
+propagate in video:  68%|██████▊   | 69/101 [00:02<00:01, 23.07it/s][A
+propagate in video:  71%|███████▏  | 72/101 [00:03<00:01, 23.10it/s][A
+propagate in video:  74%|███████▍  | 75/101 [00:03<00:01, 23.16it/s][A
+propagate in video:  77%|███████▋  | 78/101 [00:03<00:00, 23.19it/s][A
+propagate in video:  80%|████████  | 81/101 [00:03<00:00, 23.22it/s][A
+propagate in video:  83%|████████▎ | 84/101 [00:03<00:00, 23.23it/s][A
+propagate in video:  86%|████████▌ | 87/101 [00:03<00:00, 23.22it/s][A
+propagate in video:  89%|████████▉ | 90/101 [00:03<00:00, 23.23it/s][A
+propagate in video:  92%|█████████▏| 93/101 [00:03<00:00, 23.20it/s][A
+propagate in video:  95%|█████████▌| 96/101 [00:04<00:00, 23.21it/s][A
+propagate in video:  98%|█████████▊| 99/101 [00:04<00:00, 23.20it/s][Apropagate in video: 100%|██████████| 101/101 [00:04<00:00, 23.40it/s]
+episodes:  64%|██████▎   | 28/44 [03:29<02:04,  7.78s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192735435080: wrote viewforce_pseudo_force_fz.npz, frames=101, mask_frac median=0.1398
+  Prompt points: [[93.45536041259766, 118.55441284179688], [252.18179321289062, 109.46224212646484]]
+
+frame loading (JPEG):   0%|          | 0/100 [00:00<?, ?it/s][A
+frame loading (JPEG):   6%|▌         | 6/100 [00:00<00:01, 57.50it/s][A
+frame loading (JPEG):  12%|█▏        | 12/100 [00:00<00:01, 55.10it/s][A
+frame loading (JPEG):  18%|█▊        | 18/100 [00:00<00:01, 54.49it/s][A
+frame loading (JPEG):  24%|██▍       | 24/100 [00:00<00:01, 49.24it/s][A
+frame loading (JPEG):  30%|███       | 30/100 [00:00<00:01, 50.83it/s][A
+frame loading (JPEG):  36%|███▌      | 36/100 [00:00<00:01, 51.78it/s][A
+frame loading (JPEG):  42%|████▏     | 42/100 [00:00<00:01, 52.40it/s][A
+frame loading (JPEG):  48%|████▊     | 48/100 [00:00<00:00, 52.71it/s][A
+frame loading (JPEG):  54%|█████▍    | 54/100 [00:01<00:00, 52.95it/s][A
+frame loading (JPEG):  60%|██████    | 60/100 [00:01<00:00, 53.16it/s][A
+frame loading (JPEG):  66%|██████▌   | 66/100 [00:01<00:00, 53.32it/s][A
+frame loading (JPEG):  72%|███████▏  | 72/100 [00:01<00:00, 53.45it/s][A
+frame loading (JPEG):  78%|███████▊  | 78/100 [00:01<00:00, 49.76it/s][A
+frame loading (JPEG):  84%|████████▍ | 84/100 [00:01<00:00, 50.85it/s][A
+frame loading (JPEG):  90%|█████████ | 90/100 [00:01<00:00, 51.67it/s][A
+frame loading (JPEG):  96%|█████████▌| 96/100 [00:01<00:00, 52.28it/s][Aframe loading (JPEG): 100%|██████████| 100/100 [00:01<00:00, 52.31it/s]
+
+propagate in video:   0%|          | 0/100 [00:00<?, ?it/s][A
+propagate in video:   5%|▌         | 5/100 [00:00<00:02, 37.18it/s][A
+propagate in video:   9%|▉         | 9/100 [00:00<00:03, 27.20it/s][A
+propagate in video:  12%|█▏        | 12/100 [00:00<00:03, 24.81it/s][A
+propagate in video:  15%|█▌        | 15/100 [00:00<00:03, 23.76it/s][A
+propagate in video:  18%|█▊        | 18/100 [00:00<00:03, 23.28it/s][A
+propagate in video:  21%|██        | 21/100 [00:00<00:03, 23.14it/s][A
+propagate in video:  24%|██▍       | 24/100 [00:00<00:03, 23.13it/s][A
+propagate in video:  27%|██▋       | 27/100 [00:01<00:03, 23.17it/s][A
+propagate in video:  30%|███       | 30/100 [00:01<00:03, 23.19it/s][A
+propagate in video:  33%|███▎      | 33/100 [00:01<00:02, 23.22it/s][A
+propagate in video:  36%|███▌      | 36/100 [00:01<00:02, 23.23it/s][A
+propagate in video:  39%|███▉      | 39/100 [00:01<00:02, 23.19it/s][A
+propagate in video:  42%|████▏     | 42/100 [00:01<00:02, 23.21it/s][A
+propagate in video:  45%|████▌     | 45/100 [00:01<00:02, 23.18it/s][A
+propagate in video:  48%|████▊     | 48/100 [00:02<00:02, 23.20it/s][A
+propagate in video:  51%|█████     | 51/100 [00:02<00:02, 23.17it/s][A
+propagate in video:  54%|█████▍    | 54/100 [00:02<00:01, 23.17it/s][A
+propagate in video:  57%|█████▋    | 57/100 [00:02<00:01, 23.14it/s][A
+propagate in video:  60%|██████    | 60/100 [00:02<00:01, 23.14it/s][A
+propagate in video:  63%|██████▎   | 63/100 [00:02<00:01, 23.12it/s][A
+propagate in video:  66%|██████▌   | 66/100 [00:02<00:01, 23.13it/s][A
+propagate in video:  69%|██████▉   | 69/100 [00:02<00:01, 23.11it/s][A
+propagate in video:  72%|███████▏  | 72/100 [00:03<00:01, 23.11it/s][A
+propagate in video:  75%|███████▌  | 75/100 [00:03<00:01, 23.10it/s][A
+propagate in video:  78%|███████▊  | 78/100 [00:03<00:00, 23.10it/s][A
+propagate in video:  81%|████████  | 81/100 [00:03<00:00, 23.09it/s][A
+propagate in video:  84%|████████▍ | 84/100 [00:03<00:00, 23.10it/s][A
+propagate in video:  87%|████████▋ | 87/100 [00:03<00:00, 23.09it/s][A
+propagate in video:  90%|█████████ | 90/100 [00:03<00:00, 23.09it/s][A
+propagate in video:  93%|█████████▎| 93/100 [00:03<00:00, 23.09it/s][A
+propagate in video:  96%|█████████▌| 96/100 [00:04<00:00, 23.09it/s][A
+propagate in video:  99%|█████████▉| 99/100 [00:04<00:00, 23.08it/s][Apropagate in video: 100%|██████████| 100/100 [00:04<00:00, 23.41it/s]
+episodes:  66%|██████▌   | 29/44 [03:36<01:53,  7.55s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192801864546_fail: wrote viewforce_pseudo_force_fz.npz, frames=100, mask_frac median=0.1403
+  Prompt points: [[93.42276000976562, 119.43722534179688], [252.04225158691406, 110.14696502685547]]
+
+frame loading (JPEG):   0%|          | 0/134 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▎         | 5/134 [00:00<00:02, 45.24it/s][A
+frame loading (JPEG):   7%|▋         | 10/134 [00:00<00:02, 44.29it/s][A
+frame loading (JPEG):  11%|█         | 15/134 [00:00<00:02, 42.12it/s][A
+frame loading (JPEG):  16%|█▌        | 21/134 [00:00<00:02, 45.72it/s][A
+frame loading (JPEG):  20%|██        | 27/134 [00:00<00:02, 47.73it/s][A
+frame loading (JPEG):  25%|██▍       | 33/134 [00:00<00:02, 48.91it/s][A
+frame loading (JPEG):  29%|██▉       | 39/134 [00:00<00:01, 49.72it/s][A
+frame loading (JPEG):  34%|███▎      | 45/134 [00:00<00:01, 50.24it/s][A
+frame loading (JPEG):  38%|███▊      | 51/134 [00:01<00:01, 50.57it/s][A
+frame loading (JPEG):  43%|████▎     | 57/134 [00:01<00:01, 50.88it/s][A
+frame loading (JPEG):  47%|████▋     | 63/134 [00:01<00:01, 47.61it/s][A
+frame loading (JPEG):  51%|█████▏    | 69/134 [00:01<00:01, 48.70it/s][A
+frame loading (JPEG):  56%|█████▌    | 75/134 [00:01<00:01, 49.51it/s][A
+frame loading (JPEG):  60%|██████    | 81/134 [00:01<00:01, 50.06it/s][A
+frame loading (JPEG):  65%|██████▍   | 87/134 [00:01<00:00, 50.47it/s][A
+frame loading (JPEG):  69%|██████▉   | 93/134 [00:01<00:00, 50.72it/s][A
+frame loading (JPEG):  74%|███████▍  | 99/134 [00:02<00:00, 50.94it/s][A
+frame loading (JPEG):  78%|███████▊  | 105/134 [00:02<00:00, 51.09it/s][A
+frame loading (JPEG):  83%|████████▎ | 111/134 [00:02<00:00, 51.12it/s][A
+frame loading (JPEG):  87%|████████▋ | 117/134 [00:02<00:00, 47.79it/s][A
+frame loading (JPEG):  92%|█████████▏| 123/134 [00:02<00:00, 48.87it/s][A
+frame loading (JPEG):  96%|█████████▋| 129/134 [00:02<00:00, 49.64it/s][Aframe loading (JPEG): 100%|██████████| 134/134 [00:02<00:00, 49.24it/s]
+
+propagate in video:   0%|          | 0/134 [00:00<?, ?it/s][A
+propagate in video:   4%|▎         | 5/134 [00:00<00:03, 37.16it/s][A
+propagate in video:   7%|▋         | 9/134 [00:00<00:04, 27.45it/s][A
+propagate in video:   9%|▉         | 12/134 [00:00<00:04, 25.01it/s][A
+propagate in video:  11%|█         | 15/134 [00:00<00:04, 23.88it/s][A
+propagate in video:  13%|█▎        | 18/134 [00:00<00:04, 23.46it/s][A
+propagate in video:  16%|█▌        | 21/134 [00:00<00:04, 23.31it/s][A
+propagate in video:  18%|█▊        | 24/134 [00:00<00:04, 23.29it/s][A
+propagate in video:  20%|██        | 27/134 [00:01<00:04, 23.27it/s][A
+propagate in video:  22%|██▏       | 30/134 [00:01<00:04, 23.27it/s][A
+propagate in video:  25%|██▍       | 33/134 [00:01<00:04, 23.26it/s][A
+propagate in video:  27%|██▋       | 36/134 [00:01<00:04, 23.24it/s][A
+propagate in video:  29%|██▉       | 39/134 [00:01<00:04, 23.22it/s][A
+propagate in video:  31%|███▏      | 42/134 [00:01<00:03, 23.17it/s][A
+propagate in video:  34%|███▎      | 45/134 [00:01<00:03, 23.14it/s][A
+propagate in video:  36%|███▌      | 48/134 [00:02<00:03, 23.16it/s][A
+propagate in video:  38%|███▊      | 51/134 [00:02<00:03, 23.15it/s][A
+propagate in video:  40%|████      | 54/134 [00:02<00:03, 23.16it/s][A
+propagate in video:  43%|████▎     | 57/134 [00:02<00:03, 23.19it/s][A
+propagate in video:  45%|████▍     | 60/134 [00:02<00:03, 23.16it/s][A
+propagate in video:  47%|████▋     | 63/134 [00:02<00:03, 23.13it/s][A
+propagate in video:  49%|████▉     | 66/134 [00:02<00:02, 23.12it/s][A
+propagate in video:  51%|█████▏    | 69/134 [00:02<00:02, 23.11it/s][A
+propagate in video:  54%|█████▎    | 72/134 [00:03<00:02, 23.11it/s][A
+propagate in video:  56%|█████▌    | 75/134 [00:03<00:02, 23.09it/s][A
+propagate in video:  58%|█████▊    | 78/134 [00:03<00:02, 23.09it/s][A
+propagate in video:  60%|██████    | 81/134 [00:03<00:02, 23.09it/s][A
+propagate in video:  63%|██████▎   | 84/134 [00:03<00:02, 23.09it/s][A
+propagate in video:  65%|██████▍   | 87/134 [00:03<00:02, 23.09it/s][A
+propagate in video:  67%|██████▋   | 90/134 [00:03<00:01, 23.10it/s][A
+propagate in video:  69%|██████▉   | 93/134 [00:03<00:01, 23.13it/s][A
+propagate in video:  72%|███████▏  | 96/134 [00:04<00:01, 23.11it/s][A
+propagate in video:  74%|███████▍  | 99/134 [00:04<00:01, 23.13it/s][A
+propagate in video:  76%|███████▌  | 102/134 [00:04<00:01, 23.16it/s][A
+propagate in video:  78%|███████▊  | 105/134 [00:04<00:01, 23.19it/s][A
+propagate in video:  81%|████████  | 108/134 [00:04<00:01, 23.21it/s][A
+propagate in video:  83%|████████▎ | 111/134 [00:04<00:00, 23.23it/s][A
+propagate in video:  85%|████████▌ | 114/134 [00:04<00:00, 23.24it/s][A
+propagate in video:  87%|████████▋ | 117/134 [00:04<00:00, 23.25it/s][A
+propagate in video:  90%|████████▉ | 120/134 [00:05<00:00, 23.26it/s][A
+propagate in video:  92%|█████████▏| 123/134 [00:05<00:00, 23.23it/s][A
+propagate in video:  94%|█████████▍| 126/134 [00:05<00:00, 23.24it/s][A
+propagate in video:  96%|█████████▋| 129/134 [00:05<00:00, 23.19it/s][A
+propagate in video:  99%|█████████▊| 132/134 [00:05<00:00, 23.15it/s][Apropagate in video: 100%|██████████| 134/134 [00:05<00:00, 23.38it/s]
+episodes:  68%|██████▊   | 30/44 [03:45<01:53,  8.13s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192837033459: wrote viewforce_pseudo_force_fz.npz, frames=134, mask_frac median=0.1369
+  Prompt points: [[95.14812469482422, 118.83901977539062], [248.7546844482422, 112.54283142089844]]
+
+frame loading (JPEG):   0%|          | 0/123 [00:00<?, ?it/s][A
+frame loading (JPEG):   5%|▍         | 6/123 [00:00<00:02, 55.74it/s][A
+frame loading (JPEG):  10%|▉         | 12/123 [00:00<00:02, 46.74it/s][A
+frame loading (JPEG):  15%|█▍        | 18/123 [00:00<00:02, 49.12it/s][A
+frame loading (JPEG):  20%|█▉        | 24/123 [00:00<00:01, 50.31it/s][A
+frame loading (JPEG):  24%|██▍       | 30/123 [00:00<00:01, 51.03it/s][A
+frame loading (JPEG):  29%|██▉       | 36/123 [00:00<00:01, 51.41it/s][A
+frame loading (JPEG):  34%|███▍      | 42/123 [00:00<00:01, 51.66it/s][A
+frame loading (JPEG):  39%|███▉      | 48/123 [00:00<00:01, 51.78it/s][A
+frame loading (JPEG):  44%|████▍     | 54/123 [00:01<00:01, 51.89it/s][A
+frame loading (JPEG):  49%|████▉     | 60/123 [00:01<00:01, 51.96it/s][A
+frame loading (JPEG):  54%|█████▎    | 66/123 [00:01<00:01, 48.46it/s][A
+frame loading (JPEG):  59%|█████▊    | 72/123 [00:01<00:01, 49.49it/s][A
+frame loading (JPEG):  63%|██████▎   | 78/123 [00:01<00:00, 50.26it/s][A
+frame loading (JPEG):  68%|██████▊   | 84/123 [00:01<00:00, 50.78it/s][A
+frame loading (JPEG):  73%|███████▎  | 90/123 [00:01<00:00, 51.13it/s][A
+frame loading (JPEG):  78%|███████▊  | 96/123 [00:01<00:00, 51.46it/s][A
+frame loading (JPEG):  83%|████████▎ | 102/123 [00:02<00:00, 51.63it/s][A
+frame loading (JPEG):  88%|████████▊ | 108/123 [00:02<00:00, 51.74it/s][A
+frame loading (JPEG):  93%|█████████▎| 114/123 [00:02<00:00, 48.33it/s][A
+frame loading (JPEG):  98%|█████████▊| 120/123 [00:02<00:00, 49.41it/s][Aframe loading (JPEG): 100%|██████████| 123/123 [00:02<00:00, 50.49it/s]
+
+propagate in video:   0%|          | 0/123 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/123 [00:00<00:03, 37.22it/s][A
+propagate in video:   7%|▋         | 9/123 [00:00<00:04, 27.43it/s][A
+propagate in video:  10%|▉         | 12/123 [00:00<00:04, 24.99it/s][A
+propagate in video:  12%|█▏        | 15/123 [00:00<00:04, 23.90it/s][A
+propagate in video:  15%|█▍        | 18/123 [00:00<00:04, 23.50it/s][A
+propagate in video:  17%|█▋        | 21/123 [00:00<00:04, 23.34it/s][A
+propagate in video:  20%|█▉        | 24/123 [00:00<00:04, 23.29it/s][A
+propagate in video:  22%|██▏       | 27/123 [00:01<00:04, 23.23it/s][A
+propagate in video:  24%|██▍       | 30/123 [00:01<00:04, 23.25it/s][A
+propagate in video:  27%|██▋       | 33/123 [00:01<00:03, 23.25it/s][A
+propagate in video:  29%|██▉       | 36/123 [00:01<00:03, 23.26it/s][A
+propagate in video:  32%|███▏      | 39/123 [00:01<00:03, 23.24it/s][A
+propagate in video:  34%|███▍      | 42/123 [00:01<00:03, 23.22it/s][A
+propagate in video:  37%|███▋      | 45/123 [00:01<00:03, 23.17it/s][A
+propagate in video:  39%|███▉      | 48/123 [00:02<00:03, 23.15it/s][A
+propagate in video:  41%|████▏     | 51/123 [00:02<00:03, 23.13it/s][A
+propagate in video:  44%|████▍     | 54/123 [00:02<00:02, 23.12it/s][A
+propagate in video:  46%|████▋     | 57/123 [00:02<00:02, 23.10it/s][A
+propagate in video:  49%|████▉     | 60/123 [00:02<00:02, 23.10it/s][A
+propagate in video:  51%|█████     | 63/123 [00:02<00:02, 23.09it/s][A
+propagate in video:  54%|█████▎    | 66/123 [00:02<00:02, 23.09it/s][A
+propagate in video:  56%|█████▌    | 69/123 [00:02<00:02, 23.09it/s][A
+propagate in video:  59%|█████▊    | 72/123 [00:03<00:02, 23.09it/s][A
+propagate in video:  61%|██████    | 75/123 [00:03<00:02, 23.08it/s][A
+propagate in video:  63%|██████▎   | 78/123 [00:03<00:01, 23.08it/s][A
+propagate in video:  66%|██████▌   | 81/123 [00:03<00:01, 23.07it/s][A
+propagate in video:  68%|██████▊   | 84/123 [00:03<00:01, 23.08it/s][A
+propagate in video:  71%|███████   | 87/123 [00:03<00:01, 23.08it/s][A
+propagate in video:  73%|███████▎  | 90/123 [00:03<00:01, 23.09it/s][A
+propagate in video:  76%|███████▌  | 93/123 [00:03<00:01, 23.10it/s][A
+propagate in video:  78%|███████▊  | 96/123 [00:04<00:01, 23.14it/s][A
+propagate in video:  80%|████████  | 99/123 [00:04<00:01, 23.14it/s][A
+propagate in video:  83%|████████▎ | 102/123 [00:04<00:00, 23.17it/s][A
+propagate in video:  85%|████████▌ | 105/123 [00:04<00:00, 23.17it/s][A
+propagate in video:  88%|████████▊ | 108/123 [00:04<00:00, 23.18it/s][A
+propagate in video:  90%|█████████ | 111/123 [00:04<00:00, 23.18it/s][A
+propagate in video:  93%|█████████▎| 114/123 [00:04<00:00, 23.16it/s][A
+propagate in video:  95%|█████████▌| 117/123 [00:05<00:00, 23.15it/s][A
+propagate in video:  98%|█████████▊| 120/123 [00:05<00:00, 23.16it/s][A
+propagate in video: 100%|██████████| 123/123 [00:05<00:00, 23.19it/s][Apropagate in video: 100%|██████████| 123/123 [00:05<00:00, 23.39it/s]
+episodes:  70%|███████   | 31/44 [03:54<01:47,  8.29s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192911891013: wrote viewforce_pseudo_force_fz.npz, frames=123, mask_frac median=0.1391
+  Prompt points: [[93.3634262084961, 119.71281433105469], [252.2889862060547, 108.75679779052734]]
+
+frame loading (JPEG):   0%|          | 0/53 [00:00<?, ?it/s][A
+frame loading (JPEG):   9%|▉         | 5/53 [00:00<00:01, 45.24it/s][A
+frame loading (JPEG):  19%|█▉        | 10/53 [00:00<00:00, 47.65it/s][A
+frame loading (JPEG):  30%|███       | 16/53 [00:00<00:00, 50.08it/s][A
+frame loading (JPEG):  42%|████▏     | 22/53 [00:00<00:00, 46.52it/s][A
+frame loading (JPEG):  53%|█████▎    | 28/53 [00:00<00:00, 48.67it/s][A
+frame loading (JPEG):  64%|██████▍   | 34/53 [00:00<00:00, 50.05it/s][A
+frame loading (JPEG):  75%|███████▌  | 40/53 [00:00<00:00, 50.94it/s][A
+frame loading (JPEG):  87%|████████▋ | 46/53 [00:00<00:00, 51.57it/s][A
+frame loading (JPEG):  98%|█████████▊| 52/53 [00:01<00:00, 51.95it/s][Aframe loading (JPEG): 100%|██████████| 53/53 [00:01<00:00, 50.29it/s]
+
+propagate in video:   0%|          | 0/53 [00:00<?, ?it/s][A
+propagate in video:   9%|▉         | 5/53 [00:00<00:01, 37.22it/s][A
+propagate in video:  17%|█▋        | 9/53 [00:00<00:01, 27.16it/s][A
+propagate in video:  23%|██▎       | 12/53 [00:00<00:01, 24.70it/s][A
+propagate in video:  28%|██▊       | 15/53 [00:00<00:01, 23.60it/s][A
+propagate in video:  34%|███▍      | 18/53 [00:00<00:01, 23.15it/s][A
+propagate in video:  40%|███▉      | 21/53 [00:00<00:01, 23.03it/s][A
+propagate in video:  45%|████▌     | 24/53 [00:00<00:01, 23.03it/s][A
+propagate in video:  51%|█████     | 27/53 [00:01<00:01, 23.08it/s][A
+propagate in video:  57%|█████▋    | 30/53 [00:01<00:00, 23.09it/s][A
+propagate in video:  62%|██████▏   | 33/53 [00:01<00:00, 23.15it/s][A
+propagate in video:  68%|██████▊   | 36/53 [00:01<00:00, 23.16it/s][A
+propagate in video:  74%|███████▎  | 39/53 [00:01<00:00, 23.14it/s][A
+propagate in video:  79%|███████▉  | 42/53 [00:01<00:00, 23.15it/s][A
+propagate in video:  85%|████████▍ | 45/53 [00:01<00:00, 23.15it/s][A
+propagate in video:  91%|█████████ | 48/53 [00:02<00:00, 23.13it/s][A
+propagate in video:  96%|█████████▌| 51/53 [00:02<00:00, 23.12it/s][Apropagate in video: 100%|██████████| 53/53 [00:02<00:00, 23.61it/s]
+episodes:  73%|███████▎  | 32/44 [03:58<01:23,  6.94s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T192953699338_fail: wrote viewforce_pseudo_force_fz.npz, frames=53, mask_frac median=0.1290
+  Prompt points: [[93.4475326538086, 118.70547485351562], [251.57504272460938, 112.6409912109375]]
+
+frame loading (JPEG):   0%|          | 0/165 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▎         | 6/165 [00:00<00:02, 56.81it/s][A
+frame loading (JPEG):   7%|▋         | 12/165 [00:00<00:02, 54.46it/s][A
+frame loading (JPEG):  11%|█         | 18/165 [00:00<00:02, 52.01it/s][A
+frame loading (JPEG):  15%|█▍        | 24/165 [00:00<00:02, 47.79it/s][A
+frame loading (JPEG):  18%|█▊        | 30/165 [00:00<00:02, 49.54it/s][A
+frame loading (JPEG):  22%|██▏       | 36/165 [00:00<00:02, 50.65it/s][A
+frame loading (JPEG):  25%|██▌       | 42/165 [00:00<00:02, 51.38it/s][A
+frame loading (JPEG):  29%|██▉       | 48/165 [00:00<00:02, 51.85it/s][A
+frame loading (JPEG):  33%|███▎      | 54/165 [00:01<00:02, 52.16it/s][A
+frame loading (JPEG):  36%|███▋      | 60/165 [00:01<00:02, 51.30it/s][A
+frame loading (JPEG):  40%|████      | 66/165 [00:01<00:01, 51.74it/s][A
+frame loading (JPEG):  44%|████▎     | 72/165 [00:01<00:01, 48.49it/s][A
+frame loading (JPEG):  47%|████▋     | 78/165 [00:01<00:01, 49.74it/s][A
+frame loading (JPEG):  51%|█████     | 84/165 [00:01<00:01, 50.65it/s][A
+frame loading (JPEG):  55%|█████▍    | 90/165 [00:01<00:01, 51.31it/s][A
+frame loading (JPEG):  58%|█████▊    | 96/165 [00:01<00:01, 51.78it/s][A
+frame loading (JPEG):  62%|██████▏   | 102/165 [00:01<00:01, 52.12it/s][A
+frame loading (JPEG):  65%|██████▌   | 108/165 [00:02<00:01, 52.34it/s][A
+frame loading (JPEG):  69%|██████▉   | 114/165 [00:02<00:00, 52.55it/s][A
+frame loading (JPEG):  73%|███████▎  | 120/165 [00:02<00:00, 52.67it/s][A
+frame loading (JPEG):  76%|███████▋  | 126/165 [00:02<00:00, 49.14it/s][A
+frame loading (JPEG):  80%|████████  | 132/165 [00:02<00:00, 50.21it/s][A
+frame loading (JPEG):  84%|████████▎ | 138/165 [00:02<00:00, 51.02it/s][A
+frame loading (JPEG):  87%|████████▋ | 144/165 [00:02<00:00, 51.60it/s][A
+frame loading (JPEG):  91%|█████████ | 150/165 [00:02<00:00, 52.05it/s][A
+frame loading (JPEG):  95%|█████████▍| 156/165 [00:03<00:00, 52.30it/s][A
+frame loading (JPEG):  98%|█████████▊| 162/165 [00:03<00:00, 52.49it/s][Aframe loading (JPEG): 100%|██████████| 165/165 [00:03<00:00, 51.41it/s]
+
+propagate in video:   0%|          | 0/165 [00:00<?, ?it/s][A
+propagate in video:   3%|▎         | 5/165 [00:00<00:04, 37.23it/s][A
+propagate in video:   5%|▌         | 9/165 [00:00<00:05, 27.46it/s][A
+propagate in video:   7%|▋         | 12/165 [00:00<00:06, 25.02it/s][A
+propagate in video:   9%|▉         | 15/165 [00:00<00:06, 23.98it/s][A
+propagate in video:  11%|█         | 18/165 [00:00<00:06, 23.55it/s][A
+propagate in video:  13%|█▎        | 21/165 [00:00<00:06, 23.36it/s][A
+propagate in video:  15%|█▍        | 24/165 [00:00<00:06, 23.31it/s][A
+propagate in video:  16%|█▋        | 27/165 [00:01<00:05, 23.27it/s][A
+propagate in video:  18%|█▊        | 30/165 [00:01<00:05, 23.24it/s][A
+propagate in video:  20%|██        | 33/165 [00:01<00:05, 23.23it/s][A
+propagate in video:  22%|██▏       | 36/165 [00:01<00:05, 23.24it/s][A
+propagate in video:  24%|██▎       | 39/165 [00:01<00:05, 23.19it/s][A
+propagate in video:  25%|██▌       | 42/165 [00:01<00:05, 23.17it/s][A
+propagate in video:  27%|██▋       | 45/165 [00:01<00:05, 23.15it/s][A
+propagate in video:  29%|██▉       | 48/165 [00:02<00:05, 23.13it/s][A
+propagate in video:  31%|███       | 51/165 [00:02<00:04, 23.11it/s][A
+propagate in video:  33%|███▎      | 54/165 [00:02<00:04, 23.11it/s][A
+propagate in video:  35%|███▍      | 57/165 [00:02<00:04, 23.10it/s][A
+propagate in video:  36%|███▋      | 60/165 [00:02<00:04, 23.10it/s][A
+propagate in video:  38%|███▊      | 63/165 [00:02<00:04, 23.09it/s][A
+propagate in video:  40%|████      | 66/165 [00:02<00:04, 23.09it/s][A
+propagate in video:  42%|████▏     | 69/165 [00:02<00:04, 23.09it/s][A
+propagate in video:  44%|████▎     | 72/165 [00:03<00:04, 23.10it/s][A
+propagate in video:  45%|████▌     | 75/165 [00:03<00:03, 23.14it/s][A
+propagate in video:  47%|████▋     | 78/165 [00:03<00:03, 23.18it/s][A
+propagate in video:  49%|████▉     | 81/165 [00:03<00:03, 23.21it/s][A
+propagate in video:  51%|█████     | 84/165 [00:03<00:03, 23.23it/s][A
+propagate in video:  53%|█████▎    | 87/165 [00:03<00:03, 23.24it/s][A
+propagate in video:  55%|█████▍    | 90/165 [00:03<00:03, 23.25it/s][A
+propagate in video:  56%|█████▋    | 93/165 [00:03<00:03, 23.26it/s][A
+propagate in video:  58%|█████▊    | 96/165 [00:04<00:02, 23.25it/s][A
+propagate in video:  60%|██████    | 99/165 [00:04<00:02, 23.23it/s][A
+propagate in video:  62%|██████▏   | 102/165 [00:04<00:02, 23.21it/s][A
+propagate in video:  64%|██████▎   | 105/165 [00:04<00:02, 23.18it/s][A
+propagate in video:  65%|██████▌   | 108/165 [00:04<00:02, 23.20it/s][A
+propagate in video:  67%|██████▋   | 111/165 [00:04<00:02, 23.16it/s][A
+propagate in video:  69%|██████▉   | 114/165 [00:04<00:02, 23.18it/s][A
+propagate in video:  71%|███████   | 117/165 [00:04<00:02, 23.16it/s][A
+propagate in video:  73%|███████▎  | 120/165 [00:05<00:01, 23.20it/s][A
+propagate in video:  75%|███████▍  | 123/165 [00:05<00:01, 23.22it/s][A
+propagate in video:  76%|███████▋  | 126/165 [00:05<00:01, 23.24it/s][A
+propagate in video:  78%|███████▊  | 129/165 [00:05<00:01, 23.24it/s][A
+propagate in video:  80%|████████  | 132/165 [00:05<00:01, 23.24it/s][A
+propagate in video:  82%|████████▏ | 135/165 [00:05<00:01, 23.22it/s][A
+propagate in video:  84%|████████▎ | 138/165 [00:05<00:01, 23.19it/s][A
+propagate in video:  85%|████████▌ | 141/165 [00:06<00:01, 23.18it/s][A
+propagate in video:  87%|████████▋ | 144/165 [00:06<00:00, 23.18it/s][A
+propagate in video:  89%|████████▉ | 147/165 [00:06<00:00, 23.21it/s][A
+propagate in video:  91%|█████████ | 150/165 [00:06<00:00, 23.23it/s][A
+propagate in video:  93%|█████████▎| 153/165 [00:06<00:00, 23.24it/s][A
+propagate in video:  95%|█████████▍| 156/165 [00:06<00:00, 23.20it/s][A
+propagate in video:  96%|█████████▋| 159/165 [00:06<00:00, 23.22it/s][A
+propagate in video:  98%|█████████▊| 162/165 [00:06<00:00, 23.24it/s][A
+propagate in video: 100%|██████████| 165/165 [00:07<00:00, 23.25it/s][Apropagate in video: 100%|██████████| 165/165 [00:07<00:00, 23.37it/s]
+episodes:  75%|███████▌  | 33/44 [04:09<01:31,  8.32s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193018538851: wrote viewforce_pseudo_force_fz.npz, frames=165, mask_frac median=0.1399
+  Prompt points: [[93.43213653564453, 119.8132095336914], [251.36997985839844, 112.39125061035156]]
+
+frame loading (JPEG):   0%|          | 0/106 [00:00<?, ?it/s][A
+frame loading (JPEG):   6%|▌         | 6/106 [00:00<00:01, 55.21it/s][A
+frame loading (JPEG):  11%|█▏        | 12/106 [00:00<00:02, 46.67it/s][A
+frame loading (JPEG):  17%|█▋        | 18/106 [00:00<00:01, 49.21it/s][A
+frame loading (JPEG):  23%|██▎       | 24/106 [00:00<00:01, 50.45it/s][A
+frame loading (JPEG):  28%|██▊       | 30/106 [00:00<00:01, 51.27it/s][A
+frame loading (JPEG):  34%|███▍      | 36/106 [00:00<00:01, 51.62it/s][A
+frame loading (JPEG):  40%|███▉      | 42/106 [00:00<00:01, 51.98it/s][A
+frame loading (JPEG):  45%|████▌     | 48/106 [00:00<00:01, 52.12it/s][A
+frame loading (JPEG):  51%|█████     | 54/106 [00:01<00:00, 52.28it/s][A
+frame loading (JPEG):  57%|█████▋    | 60/106 [00:01<00:00, 48.67it/s][A
+frame loading (JPEG):  62%|██████▏   | 66/106 [00:01<00:00, 49.77it/s][A
+frame loading (JPEG):  68%|██████▊   | 72/106 [00:01<00:00, 50.59it/s][A
+frame loading (JPEG):  74%|███████▎  | 78/106 [00:01<00:00, 51.13it/s][A
+frame loading (JPEG):  79%|███████▉  | 84/106 [00:01<00:00, 51.53it/s][A
+frame loading (JPEG):  85%|████████▍ | 90/106 [00:01<00:00, 51.87it/s][A
+frame loading (JPEG):  91%|█████████ | 96/106 [00:01<00:00, 52.12it/s][A
+frame loading (JPEG):  96%|█████████▌| 102/106 [00:01<00:00, 52.24it/s][Aframe loading (JPEG): 100%|██████████| 106/106 [00:02<00:00, 51.26it/s]
+
+propagate in video:   0%|          | 0/106 [00:00<?, ?it/s][A
+propagate in video:   5%|▍         | 5/106 [00:00<00:02, 37.10it/s][A
+propagate in video:   8%|▊         | 9/106 [00:00<00:03, 27.31it/s][A
+propagate in video:  11%|█▏        | 12/106 [00:00<00:03, 24.86it/s][A
+propagate in video:  14%|█▍        | 15/106 [00:00<00:03, 23.87it/s][A
+propagate in video:  17%|█▋        | 18/106 [00:00<00:03, 23.43it/s][A
+propagate in video:  20%|█▉        | 21/106 [00:00<00:03, 23.25it/s][A
+propagate in video:  23%|██▎       | 24/106 [00:00<00:03, 23.24it/s][A
+propagate in video:  25%|██▌       | 27/106 [00:01<00:03, 23.23it/s][A
+propagate in video:  28%|██▊       | 30/106 [00:01<00:03, 23.24it/s][A
+propagate in video:  31%|███       | 33/106 [00:01<00:03, 23.25it/s][A
+propagate in video:  34%|███▍      | 36/106 [00:01<00:03, 23.26it/s][A
+propagate in video:  37%|███▋      | 39/106 [00:01<00:02, 23.23it/s][A
+propagate in video:  40%|███▉      | 42/106 [00:01<00:02, 23.22it/s][A
+propagate in video:  42%|████▏     | 45/106 [00:01<00:02, 23.23it/s][A
+propagate in video:  45%|████▌     | 48/106 [00:02<00:02, 23.19it/s][A
+propagate in video:  48%|████▊     | 51/106 [00:02<00:02, 23.15it/s][A
+propagate in video:  51%|█████     | 54/106 [00:02<00:02, 23.14it/s][A
+propagate in video:  54%|█████▍    | 57/106 [00:02<00:02, 23.16it/s][A
+propagate in video:  57%|█████▋    | 60/106 [00:02<00:01, 23.14it/s][A
+propagate in video:  59%|█████▉    | 63/106 [00:02<00:01, 23.13it/s][A
+propagate in video:  62%|██████▏   | 66/106 [00:02<00:01, 23.11it/s][A
+propagate in video:  65%|██████▌   | 69/106 [00:02<00:01, 23.12it/s][A
+propagate in video:  68%|██████▊   | 72/106 [00:03<00:01, 23.10it/s][A
+propagate in video:  71%|███████   | 75/106 [00:03<00:01, 23.10it/s][A
+propagate in video:  74%|███████▎  | 78/106 [00:03<00:01, 23.09it/s][A
+propagate in video:  76%|███████▋  | 81/106 [00:03<00:01, 23.10it/s][A
+propagate in video:  79%|███████▉  | 84/106 [00:03<00:00, 23.09it/s][A
+propagate in video:  82%|████████▏ | 87/106 [00:03<00:00, 23.11it/s][A
+propagate in video:  85%|████████▍ | 90/106 [00:03<00:00, 23.10it/s][A
+propagate in video:  88%|████████▊ | 93/106 [00:03<00:00, 23.11it/s][A
+propagate in video:  91%|█████████ | 96/106 [00:04<00:00, 23.10it/s][A
+propagate in video:  93%|█████████▎| 99/106 [00:04<00:00, 23.13it/s][A
+propagate in video:  96%|█████████▌| 102/106 [00:04<00:00, 23.12it/s][A
+propagate in video:  99%|█████████▉| 105/106 [00:04<00:00, 23.16it/s][Apropagate in video: 100%|██████████| 106/106 [00:04<00:00, 23.42it/s]
+episodes:  77%|███████▋  | 34/44 [04:17<01:20,  8.06s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193143505576_fail: wrote viewforce_pseudo_force_fz.npz, frames=106, mask_frac median=0.1394
+  Prompt points: [[92.92924499511719, 119.39900207519531], [248.180908203125, 119.5634536743164]]
+
+frame loading (JPEG):   0%|          | 0/70 [00:00<?, ?it/s][A
+frame loading (JPEG):   7%|▋         | 5/70 [00:00<00:01, 45.69it/s][A
+frame loading (JPEG):  14%|█▍        | 10/70 [00:00<00:01, 47.12it/s][A
+frame loading (JPEG):  23%|██▎       | 16/70 [00:00<00:01, 49.17it/s][A
+frame loading (JPEG):  30%|███       | 21/70 [00:00<00:01, 45.32it/s][A
+frame loading (JPEG):  39%|███▊      | 27/70 [00:00<00:00, 47.53it/s][A
+frame loading (JPEG):  47%|████▋     | 33/70 [00:00<00:00, 48.91it/s][A
+frame loading (JPEG):  56%|█████▌    | 39/70 [00:00<00:00, 49.79it/s][A
+frame loading (JPEG):  64%|██████▍   | 45/70 [00:00<00:00, 50.41it/s][A
+frame loading (JPEG):  73%|███████▎  | 51/70 [00:01<00:00, 50.71it/s][A
+frame loading (JPEG):  81%|████████▏ | 57/70 [00:01<00:00, 51.01it/s][A
+frame loading (JPEG):  90%|█████████ | 63/70 [00:01<00:00, 51.20it/s][A
+frame loading (JPEG):  99%|█████████▊| 69/70 [00:01<00:00, 51.29it/s][Aframe loading (JPEG): 100%|██████████| 70/70 [00:01<00:00, 49.82it/s]
+
+propagate in video:   0%|          | 0/70 [00:00<?, ?it/s][A
+propagate in video:   7%|▋         | 5/70 [00:00<00:01, 37.22it/s][A
+propagate in video:  13%|█▎        | 9/70 [00:00<00:02, 27.48it/s][A
+propagate in video:  17%|█▋        | 12/70 [00:00<00:02, 25.05it/s][A
+propagate in video:  21%|██▏       | 15/70 [00:00<00:02, 23.99it/s][A
+propagate in video:  26%|██▌       | 18/70 [00:00<00:02, 23.58it/s][A
+propagate in video:  30%|███       | 21/70 [00:00<00:02, 23.39it/s][A
+propagate in video:  34%|███▍      | 24/70 [00:00<00:01, 23.32it/s][A
+propagate in video:  39%|███▊      | 27/70 [00:01<00:01, 23.29it/s][A
+propagate in video:  43%|████▎     | 30/70 [00:01<00:01, 23.22it/s][A
+propagate in video:  47%|████▋     | 33/70 [00:01<00:01, 23.18it/s][A
+propagate in video:  51%|█████▏    | 36/70 [00:01<00:01, 23.20it/s][A
+propagate in video:  56%|█████▌    | 39/70 [00:01<00:01, 23.22it/s][A
+propagate in video:  60%|██████    | 42/70 [00:01<00:01, 23.22it/s][A
+propagate in video:  64%|██████▍   | 45/70 [00:01<00:01, 23.24it/s][A
+propagate in video:  69%|██████▊   | 48/70 [00:02<00:00, 23.20it/s][A
+propagate in video:  73%|███████▎  | 51/70 [00:02<00:00, 23.22it/s][A
+propagate in video:  77%|███████▋  | 54/70 [00:02<00:00, 23.20it/s][A
+propagate in video:  81%|████████▏ | 57/70 [00:02<00:00, 23.17it/s][A
+propagate in video:  86%|████████▌ | 60/70 [00:02<00:00, 23.14it/s][A
+propagate in video:  90%|█████████ | 63/70 [00:02<00:00, 23.13it/s][A
+propagate in video:  94%|█████████▍| 66/70 [00:02<00:00, 23.11it/s][A
+propagate in video:  99%|█████████▊| 69/70 [00:02<00:00, 23.11it/s][Apropagate in video: 100%|██████████| 70/70 [00:02<00:00, 23.61it/s]
+episodes:  80%|███████▉  | 35/44 [04:22<01:04,  7.13s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193211471198_fail: wrote viewforce_pseudo_force_fz.npz, frames=70, mask_frac median=0.1381
+  Prompt points: [[92.67350006103516, 118.71736145019531], [247.9438018798828, 120.32735443115234]]
+
+frame loading (JPEG):   0%|          | 0/58 [00:00<?, ?it/s][A
+frame loading (JPEG):   9%|▊         | 5/58 [00:00<00:01, 45.58it/s][A
+frame loading (JPEG):  17%|█▋        | 10/58 [00:00<00:01, 43.34it/s][A
+frame loading (JPEG):  28%|██▊       | 16/58 [00:00<00:00, 46.71it/s][A
+frame loading (JPEG):  38%|███▊      | 22/58 [00:00<00:00, 48.45it/s][A
+frame loading (JPEG):  48%|████▊     | 28/58 [00:00<00:00, 45.59it/s][A
+frame loading (JPEG):  59%|█████▊    | 34/58 [00:00<00:00, 47.44it/s][A
+frame loading (JPEG):  69%|██████▉   | 40/58 [00:00<00:00, 48.60it/s][A
+frame loading (JPEG):  79%|███████▉  | 46/58 [00:00<00:00, 49.39it/s][A
+frame loading (JPEG):  90%|████████▉ | 52/58 [00:01<00:00, 49.95it/s][A
+frame loading (JPEG): 100%|██████████| 58/58 [00:01<00:00, 50.41it/s][Aframe loading (JPEG): 100%|██████████| 58/58 [00:01<00:00, 48.53it/s]
+
+propagate in video:   0%|          | 0/58 [00:00<?, ?it/s][A
+propagate in video:   9%|▊         | 5/58 [00:00<00:01, 37.22it/s][A
+propagate in video:  16%|█▌        | 9/58 [00:00<00:01, 27.20it/s][A
+propagate in video:  21%|██        | 12/58 [00:00<00:01, 24.79it/s][A
+propagate in video:  26%|██▌       | 15/58 [00:00<00:01, 23.74it/s][A
+propagate in video:  31%|███       | 18/58 [00:00<00:01, 23.26it/s][A
+propagate in video:  36%|███▌      | 21/58 [00:00<00:01, 23.13it/s][A
+propagate in video:  41%|████▏     | 24/58 [00:00<00:01, 23.14it/s][A
+propagate in video:  47%|████▋     | 27/58 [00:01<00:01, 23.17it/s][A
+propagate in video:  52%|█████▏    | 30/58 [00:01<00:01, 23.20it/s][A
+propagate in video:  57%|█████▋    | 33/58 [00:01<00:01, 23.21it/s][A
+propagate in video:  62%|██████▏   | 36/58 [00:01<00:00, 23.17it/s][A
+propagate in video:  67%|██████▋   | 39/58 [00:01<00:00, 23.15it/s][A
+propagate in video:  72%|███████▏  | 42/58 [00:01<00:00, 23.13it/s][A
+propagate in video:  78%|███████▊  | 45/58 [00:01<00:00, 23.12it/s][A
+propagate in video:  83%|████████▎ | 48/58 [00:02<00:00, 23.11it/s][A
+propagate in video:  88%|████████▊ | 51/58 [00:02<00:00, 23.12it/s][A
+propagate in video:  93%|█████████▎| 54/58 [00:02<00:00, 23.17it/s][A
+propagate in video:  98%|█████████▊| 57/58 [00:02<00:00, 23.20it/s][Apropagate in video: 100%|██████████| 58/58 [00:02<00:00, 23.63it/s]
+episodes:  82%|████████▏ | 36/44 [04:26<00:49,  6.24s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193311787526_fail: wrote viewforce_pseudo_force_fz.npz, frames=58, mask_frac median=0.2612
+  Prompt points: [[93.00077056884766, 119.17719268798828], [248.60231018066406, 117.87731170654297]]
+
+frame loading (JPEG):   0%|          | 0/88 [00:00<?, ?it/s][A
+frame loading (JPEG):   7%|▋         | 6/88 [00:00<00:01, 54.71it/s][A
+frame loading (JPEG):  14%|█▎        | 12/88 [00:00<00:01, 52.62it/s][A
+frame loading (JPEG):  20%|██        | 18/88 [00:00<00:01, 52.01it/s][A
+frame loading (JPEG):  27%|██▋       | 24/88 [00:00<00:01, 51.69it/s][A
+frame loading (JPEG):  34%|███▍      | 30/88 [00:00<00:01, 47.44it/s][A
+frame loading (JPEG):  41%|████      | 36/88 [00:00<00:01, 48.66it/s][A
+frame loading (JPEG):  48%|████▊     | 42/88 [00:00<00:00, 49.51it/s][A
+frame loading (JPEG):  55%|█████▍    | 48/88 [00:00<00:00, 50.07it/s][A
+frame loading (JPEG):  61%|██████▏   | 54/88 [00:01<00:00, 50.44it/s][A
+frame loading (JPEG):  68%|██████▊   | 60/88 [00:01<00:00, 50.70it/s][A
+frame loading (JPEG):  75%|███████▌  | 66/88 [00:01<00:00, 50.91it/s][A
+frame loading (JPEG):  82%|████████▏ | 72/88 [00:01<00:00, 51.01it/s][A
+frame loading (JPEG):  89%|████████▊ | 78/88 [00:01<00:00, 47.71it/s][A
+frame loading (JPEG):  95%|█████████▌| 84/88 [00:01<00:00, 48.80it/s][Aframe loading (JPEG): 100%|██████████| 88/88 [00:01<00:00, 49.89it/s]
+
+propagate in video:   0%|          | 0/88 [00:00<?, ?it/s][A
+propagate in video:   6%|▌         | 5/88 [00:00<00:02, 37.14it/s][A
+propagate in video:  10%|█         | 9/88 [00:00<00:02, 27.34it/s][A
+propagate in video:  14%|█▎        | 12/88 [00:00<00:03, 24.88it/s][A
+propagate in video:  17%|█▋        | 15/88 [00:00<00:03, 23.86it/s][A
+propagate in video:  20%|██        | 18/88 [00:00<00:02, 23.41it/s][A
+propagate in video:  24%|██▍       | 21/88 [00:00<00:02, 23.23it/s][A
+propagate in video:  27%|██▋       | 24/88 [00:00<00:02, 23.24it/s][A
+propagate in video:  31%|███       | 27/88 [00:01<00:02, 23.20it/s][A
+propagate in video:  34%|███▍      | 30/88 [00:01<00:02, 23.21it/s][A
+propagate in video:  38%|███▊      | 33/88 [00:01<00:02, 23.18it/s][A
+propagate in video:  41%|████      | 36/88 [00:01<00:02, 23.20it/s][A
+propagate in video:  44%|████▍     | 39/88 [00:01<00:02, 23.18it/s][A
+propagate in video:  48%|████▊     | 42/88 [00:01<00:01, 23.20it/s][A
+propagate in video:  51%|█████     | 45/88 [00:01<00:01, 23.17it/s][A
+propagate in video:  55%|█████▍    | 48/88 [00:02<00:01, 23.14it/s][A
+propagate in video:  58%|█████▊    | 51/88 [00:02<00:01, 23.12it/s][A
+propagate in video:  61%|██████▏   | 54/88 [00:02<00:01, 23.11it/s][A
+propagate in video:  65%|██████▍   | 57/88 [00:02<00:01, 23.10it/s][A
+propagate in video:  68%|██████▊   | 60/88 [00:02<00:01, 23.09it/s][A
+propagate in video:  72%|███████▏  | 63/88 [00:02<00:01, 23.08it/s][A
+propagate in video:  75%|███████▌  | 66/88 [00:02<00:00, 23.08it/s][A
+propagate in video:  78%|███████▊  | 69/88 [00:02<00:00, 23.08it/s][A
+propagate in video:  82%|████████▏ | 72/88 [00:03<00:00, 23.07it/s][A
+propagate in video:  85%|████████▌ | 75/88 [00:03<00:00, 23.07it/s][A
+propagate in video:  89%|████████▊ | 78/88 [00:03<00:00, 23.12it/s][A
+propagate in video:  92%|█████████▏| 81/88 [00:03<00:00, 23.12it/s][A
+propagate in video:  95%|█████████▌| 84/88 [00:03<00:00, 23.16it/s][A
+propagate in video:  99%|█████████▉| 87/88 [00:03<00:00, 23.19it/s][Apropagate in video: 100%|██████████| 88/88 [00:03<00:00, 23.47it/s]
+episodes:  84%|████████▍ | 37/44 [04:32<00:43,  6.25s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193333932114_fail: wrote viewforce_pseudo_force_fz.npz, frames=88, mask_frac median=0.1384
+  Prompt points: [[92.67344665527344, 117.47130584716797], [248.45021057128906, 118.6644287109375]]
+
+frame loading (JPEG):   0%|          | 0/160 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▍         | 6/160 [00:00<00:02, 52.37it/s][A
+frame loading (JPEG):   8%|▊         | 12/160 [00:00<00:02, 51.58it/s][A
+frame loading (JPEG):  11%|█▏        | 18/160 [00:00<00:03, 46.32it/s][A
+frame loading (JPEG):  15%|█▌        | 24/160 [00:00<00:02, 48.23it/s][A
+frame loading (JPEG):  19%|█▉        | 30/160 [00:00<00:02, 49.25it/s][A
+frame loading (JPEG):  22%|██▎       | 36/160 [00:00<00:02, 49.91it/s][A
+frame loading (JPEG):  26%|██▋       | 42/160 [00:00<00:02, 50.41it/s][A
+frame loading (JPEG):  30%|███       | 48/160 [00:00<00:02, 50.66it/s][A
+frame loading (JPEG):  34%|███▍      | 54/160 [00:01<00:02, 50.87it/s][A
+frame loading (JPEG):  38%|███▊      | 60/160 [00:01<00:01, 50.98it/s][A
+frame loading (JPEG):  41%|████▏     | 66/160 [00:01<00:01, 47.60it/s][A
+frame loading (JPEG):  45%|████▌     | 72/160 [00:01<00:01, 48.65it/s][A
+frame loading (JPEG):  49%|████▉     | 78/160 [00:01<00:01, 49.40it/s][A
+frame loading (JPEG):  52%|█████▎    | 84/160 [00:01<00:01, 49.94it/s][A
+frame loading (JPEG):  56%|█████▋    | 90/160 [00:01<00:01, 50.39it/s][A
+frame loading (JPEG):  60%|██████    | 96/160 [00:01<00:01, 50.71it/s][A
+frame loading (JPEG):  64%|██████▍   | 102/160 [00:02<00:01, 50.91it/s][A
+frame loading (JPEG):  68%|██████▊   | 108/160 [00:02<00:01, 51.01it/s][A
+frame loading (JPEG):  71%|███████▏  | 114/160 [00:02<00:00, 47.73it/s][A
+frame loading (JPEG):  75%|███████▌  | 120/160 [00:02<00:00, 48.78it/s][A
+frame loading (JPEG):  79%|███████▉  | 126/160 [00:02<00:00, 49.51it/s][A
+frame loading (JPEG):  82%|████████▎ | 132/160 [00:02<00:00, 50.05it/s][A
+frame loading (JPEG):  86%|████████▋ | 138/160 [00:02<00:00, 50.43it/s][A
+frame loading (JPEG):  90%|█████████ | 144/160 [00:02<00:00, 50.72it/s][A
+frame loading (JPEG):  94%|█████████▍| 150/160 [00:03<00:00, 50.93it/s][A
+frame loading (JPEG):  98%|█████████▊| 156/160 [00:03<00:00, 51.07it/s][Aframe loading (JPEG): 100%|██████████| 160/160 [00:03<00:00, 50.01it/s]
+
+propagate in video:   0%|          | 0/160 [00:00<?, ?it/s][A
+propagate in video:   3%|▎         | 5/160 [00:00<00:04, 37.22it/s][A
+propagate in video:   6%|▌         | 9/160 [00:00<00:05, 27.25it/s][A
+propagate in video:   8%|▊         | 12/160 [00:00<00:05, 24.84it/s][A
+propagate in video:   9%|▉         | 15/160 [00:00<00:06, 23.80it/s][A
+propagate in video:  11%|█▏        | 18/160 [00:00<00:06, 23.32it/s][A
+propagate in video:  13%|█▎        | 21/160 [00:00<00:05, 23.19it/s][A
+propagate in video:  15%|█▌        | 24/160 [00:00<00:05, 23.19it/s][A
+propagate in video:  17%|█▋        | 27/160 [00:01<00:05, 23.20it/s][A
+propagate in video:  19%|█▉        | 30/160 [00:01<00:05, 23.23it/s][A
+propagate in video:  21%|██        | 33/160 [00:01<00:05, 23.24it/s][A
+propagate in video:  22%|██▎       | 36/160 [00:01<00:05, 23.25it/s][A
+propagate in video:  24%|██▍       | 39/160 [00:01<00:05, 23.22it/s][A
+propagate in video:  26%|██▋       | 42/160 [00:01<00:05, 23.20it/s][A
+propagate in video:  28%|██▊       | 45/160 [00:01<00:04, 23.19it/s][A
+propagate in video:  30%|███       | 48/160 [00:02<00:04, 23.15it/s][A
+propagate in video:  32%|███▏      | 51/160 [00:02<00:04, 23.15it/s][A
+propagate in video:  34%|███▍      | 54/160 [00:02<00:04, 23.13it/s][A
+propagate in video:  36%|███▌      | 57/160 [00:02<00:04, 23.12it/s][A
+propagate in video:  38%|███▊      | 60/160 [00:02<00:04, 23.11it/s][A
+propagate in video:  39%|███▉      | 63/160 [00:02<00:04, 23.11it/s][A
+propagate in video:  41%|████▏     | 66/160 [00:02<00:04, 23.10it/s][A
+propagate in video:  43%|████▎     | 69/160 [00:02<00:03, 23.11it/s][A
+propagate in video:  45%|████▌     | 72/160 [00:03<00:03, 23.15it/s][A
+propagate in video:  47%|████▋     | 75/160 [00:03<00:03, 23.18it/s][A
+propagate in video:  49%|████▉     | 78/160 [00:03<00:03, 23.21it/s][A
+propagate in video:  51%|█████     | 81/160 [00:03<00:03, 23.22it/s][A
+propagate in video:  52%|█████▎    | 84/160 [00:03<00:03, 23.23it/s][A
+propagate in video:  54%|█████▍    | 87/160 [00:03<00:03, 23.22it/s][A
+propagate in video:  56%|█████▋    | 90/160 [00:03<00:03, 23.23it/s][A
+propagate in video:  58%|█████▊    | 93/160 [00:03<00:02, 23.19it/s][A
+propagate in video:  60%|██████    | 96/160 [00:04<00:02, 23.21it/s][A
+propagate in video:  62%|██████▏   | 99/160 [00:04<00:02, 23.21it/s][A
+propagate in video:  64%|██████▍   | 102/160 [00:04<00:02, 23.21it/s][A
+propagate in video:  66%|██████▌   | 105/160 [00:04<00:02, 23.17it/s][A
+propagate in video:  68%|██████▊   | 108/160 [00:04<00:02, 23.19it/s][A
+propagate in video:  69%|██████▉   | 111/160 [00:04<00:02, 23.17it/s][A
+propagate in video:  71%|███████▏  | 114/160 [00:04<00:01, 23.14it/s][A
+propagate in video:  73%|███████▎  | 117/160 [00:04<00:01, 23.16it/s][A
+propagate in video:  75%|███████▌  | 120/160 [00:05<00:01, 23.19it/s][A
+propagate in video:  77%|███████▋  | 123/160 [00:05<00:01, 23.22it/s][A
+propagate in video:  79%|███████▉  | 126/160 [00:05<00:01, 23.24it/s][A
+propagate in video:  81%|████████  | 129/160 [00:05<00:01, 23.25it/s][A
+propagate in video:  82%|████████▎ | 132/160 [00:05<00:01, 23.24it/s][A
+propagate in video:  84%|████████▍ | 135/160 [00:05<00:01, 23.24it/s][A
+propagate in video:  86%|████████▋ | 138/160 [00:05<00:00, 23.19it/s][A
+propagate in video:  88%|████████▊ | 141/160 [00:06<00:00, 21.95it/s][A
+propagate in video:  90%|█████████ | 144/160 [00:06<00:00, 21.96it/s][A
+propagate in video:  92%|█████████▏| 147/160 [00:06<00:00, 21.90it/s][A
+propagate in video:  94%|█████████▍| 150/160 [00:06<00:00, 22.02it/s][A
+propagate in video:  96%|█████████▌| 153/160 [00:06<00:00, 22.26it/s][A
+propagate in video:  98%|█████████▊| 156/160 [00:06<00:00, 22.49it/s][A
+propagate in video:  99%|█████████▉| 159/160 [00:06<00:00, 22.71it/s][Apropagate in video: 100%|██████████| 160/160 [00:06<00:00, 23.19it/s]
+episodes:  86%|████████▋ | 38/44 [04:43<00:46,  7.76s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193404210454: wrote viewforce_pseudo_force_fz.npz, frames=160, mask_frac median=0.2605
+  Prompt points: [[92.96866607666016, 119.31745147705078], [248.41465759277344, 119.13677215576172]]
+
+frame loading (JPEG):   0%|          | 0/91 [00:00<?, ?it/s][A
+frame loading (JPEG):   7%|▋         | 6/91 [00:00<00:01, 52.64it/s][A
+frame loading (JPEG):  13%|█▎        | 12/91 [00:00<00:01, 45.32it/s][A
+frame loading (JPEG):  20%|█▉        | 18/91 [00:00<00:01, 47.88it/s][A
+frame loading (JPEG):  26%|██▋       | 24/91 [00:00<00:01, 49.23it/s][A
+frame loading (JPEG):  33%|███▎      | 30/91 [00:00<00:01, 49.96it/s][A
+frame loading (JPEG):  40%|███▉      | 36/91 [00:00<00:01, 50.42it/s][A
+frame loading (JPEG):  46%|████▌     | 42/91 [00:00<00:00, 50.74it/s][A
+frame loading (JPEG):  53%|█████▎    | 48/91 [00:00<00:00, 50.93it/s][A
+frame loading (JPEG):  59%|█████▉    | 54/91 [00:01<00:00, 51.03it/s][A
+frame loading (JPEG):  66%|██████▌   | 60/91 [00:01<00:00, 51.15it/s][A
+frame loading (JPEG):  73%|███████▎  | 66/91 [00:01<00:00, 47.66it/s][A
+frame loading (JPEG):  79%|███████▉  | 72/91 [00:01<00:00, 48.75it/s][A
+frame loading (JPEG):  86%|████████▌ | 78/91 [00:01<00:00, 49.52it/s][A
+frame loading (JPEG):  92%|█████████▏| 84/91 [00:01<00:00, 50.07it/s][A
+frame loading (JPEG):  99%|█████████▉| 90/91 [00:01<00:00, 50.49it/s][Aframe loading (JPEG): 100%|██████████| 91/91 [00:01<00:00, 49.85it/s]
+
+propagate in video:   0%|          | 0/91 [00:00<?, ?it/s][A
+propagate in video:   5%|▌         | 5/91 [00:00<00:02, 37.21it/s][A
+propagate in video:  10%|▉         | 9/91 [00:00<00:02, 27.49it/s][A
+propagate in video:  13%|█▎        | 12/91 [00:00<00:03, 25.06it/s][A
+propagate in video:  16%|█▋        | 15/91 [00:00<00:03, 24.00it/s][A
+propagate in video:  20%|█▉        | 18/91 [00:00<00:03, 23.59it/s][A
+propagate in video:  23%|██▎       | 21/91 [00:00<00:02, 23.39it/s][A
+propagate in video:  26%|██▋       | 24/91 [00:00<00:02, 23.30it/s][A
+propagate in video:  30%|██▉       | 27/91 [00:01<00:02, 23.29it/s][A
+propagate in video:  33%|███▎      | 30/91 [00:01<00:02, 23.23it/s][A
+propagate in video:  36%|███▋      | 33/91 [00:01<00:02, 23.24it/s][A
+propagate in video:  40%|███▉      | 36/91 [00:01<00:02, 23.19it/s][A
+propagate in video:  43%|████▎     | 39/91 [00:01<00:02, 23.18it/s][A
+propagate in video:  46%|████▌     | 42/91 [00:01<00:02, 23.15it/s][A
+propagate in video:  49%|████▉     | 45/91 [00:01<00:01, 23.14it/s][A
+propagate in video:  53%|█████▎    | 48/91 [00:02<00:01, 23.12it/s][A
+propagate in video:  56%|█████▌    | 51/91 [00:02<00:01, 23.13it/s][A
+propagate in video:  59%|█████▉    | 54/91 [00:02<00:01, 23.11it/s][A
+propagate in video:  63%|██████▎   | 57/91 [00:02<00:01, 23.12it/s][A
+propagate in video:  66%|██████▌   | 60/91 [00:02<00:01, 23.17it/s][A
+propagate in video:  69%|██████▉   | 63/91 [00:02<00:01, 23.20it/s][A
+propagate in video:  73%|███████▎  | 66/91 [00:02<00:01, 23.17it/s][A
+propagate in video:  76%|███████▌  | 69/91 [00:02<00:00, 23.18it/s][A
+propagate in video:  79%|███████▉  | 72/91 [00:03<00:00, 23.21it/s][A
+propagate in video:  82%|████████▏ | 75/91 [00:03<00:00, 23.23it/s][A
+propagate in video:  86%|████████▌ | 78/91 [00:03<00:00, 23.21it/s][A
+propagate in video:  89%|████████▉ | 81/91 [00:03<00:00, 23.20it/s][A
+propagate in video:  92%|█████████▏| 84/91 [00:03<00:00, 23.22it/s][A
+propagate in video:  96%|█████████▌| 87/91 [00:03<00:00, 23.24it/s][A
+propagate in video:  99%|█████████▉| 90/91 [00:03<00:00, 23.24it/s][Apropagate in video: 100%|██████████| 91/91 [00:03<00:00, 23.52it/s]
+episodes:  89%|████████▊ | 39/44 [04:50<00:36,  7.36s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193440463605_fail: wrote viewforce_pseudo_force_fz.npz, frames=91, mask_frac median=0.2534
+  Prompt points: [[92.75019073486328, 118.55635833740234], [248.32034301757812, 118.97286987304688]]
+
+frame loading (JPEG):   0%|          | 0/101 [00:00<?, ?it/s][A
+frame loading (JPEG):   6%|▌         | 6/101 [00:00<00:01, 54.94it/s][A
+frame loading (JPEG):  12%|█▏        | 12/101 [00:00<00:01, 52.60it/s][A
+frame loading (JPEG):  18%|█▊        | 18/101 [00:00<00:01, 51.97it/s][A
+frame loading (JPEG):  24%|██▍       | 24/101 [00:00<00:01, 47.24it/s][A
+frame loading (JPEG):  30%|██▉       | 30/101 [00:00<00:01, 48.62it/s][A
+frame loading (JPEG):  36%|███▌      | 36/101 [00:00<00:01, 49.57it/s][A
+frame loading (JPEG):  42%|████▏     | 42/101 [00:00<00:01, 50.15it/s][A
+frame loading (JPEG):  48%|████▊     | 48/101 [00:00<00:01, 50.48it/s][A
+frame loading (JPEG):  53%|█████▎    | 54/101 [00:01<00:00, 50.72it/s][A
+frame loading (JPEG):  59%|█████▉    | 60/101 [00:01<00:00, 50.91it/s][A
+frame loading (JPEG):  65%|██████▌   | 66/101 [00:01<00:00, 51.01it/s][A
+frame loading (JPEG):  71%|███████▏  | 72/101 [00:01<00:00, 47.71it/s][A
+frame loading (JPEG):  77%|███████▋  | 78/101 [00:01<00:00, 48.69it/s][A
+frame loading (JPEG):  83%|████████▎ | 84/101 [00:01<00:00, 49.44it/s][A
+frame loading (JPEG):  89%|████████▉ | 90/101 [00:01<00:00, 49.95it/s][A
+frame loading (JPEG):  95%|█████████▌| 96/101 [00:01<00:00, 50.39it/s][Aframe loading (JPEG): 100%|██████████| 101/101 [00:02<00:00, 50.07it/s]
+
+propagate in video:   0%|          | 0/101 [00:00<?, ?it/s][A
+propagate in video:   5%|▍         | 5/101 [00:00<00:02, 37.19it/s][A
+propagate in video:   9%|▉         | 9/101 [00:00<00:03, 27.14it/s][A
+propagate in video:  12%|█▏        | 12/101 [00:00<00:03, 24.72it/s][A
+propagate in video:  15%|█▍        | 15/101 [00:00<00:03, 23.64it/s][A
+propagate in video:  18%|█▊        | 18/101 [00:00<00:03, 23.16it/s][A
+propagate in video:  21%|██        | 21/101 [00:00<00:03, 23.07it/s][A
+propagate in video:  24%|██▍       | 24/101 [00:00<00:03, 23.07it/s][A
+propagate in video:  27%|██▋       | 27/101 [00:01<00:03, 23.13it/s][A
+propagate in video:  30%|██▉       | 30/101 [00:01<00:03, 23.18it/s][A
+propagate in video:  33%|███▎      | 33/101 [00:01<00:02, 23.21it/s][A
+propagate in video:  36%|███▌      | 36/101 [00:01<00:02, 23.22it/s][A
+propagate in video:  39%|███▊      | 39/101 [00:01<00:02, 23.18it/s][A
+propagate in video:  42%|████▏     | 42/101 [00:01<00:02, 23.19it/s][A
+propagate in video:  45%|████▍     | 45/101 [00:01<00:02, 23.22it/s][A
+propagate in video:  48%|████▊     | 48/101 [00:02<00:02, 23.23it/s][A
+propagate in video:  50%|█████     | 51/101 [00:02<00:02, 23.22it/s][A
+propagate in video:  53%|█████▎    | 54/101 [00:02<00:02, 23.23it/s][A
+propagate in video:  56%|█████▋    | 57/101 [00:02<00:01, 23.24it/s][A
+propagate in video:  59%|█████▉    | 60/101 [00:02<00:01, 23.25it/s][A
+propagate in video:  62%|██████▏   | 63/101 [00:02<00:01, 23.26it/s][A
+propagate in video:  65%|██████▌   | 66/101 [00:02<00:01, 23.25it/s][A
+propagate in video:  68%|██████▊   | 69/101 [00:02<00:01, 23.24it/s][A
+propagate in video:  71%|███████▏  | 72/101 [00:03<00:01, 23.21it/s][A
+propagate in video:  74%|███████▍  | 75/101 [00:03<00:01, 23.19it/s][A
+propagate in video:  77%|███████▋  | 78/101 [00:03<00:00, 23.17it/s][A
+propagate in video:  80%|████████  | 81/101 [00:03<00:00, 23.14it/s][A
+propagate in video:  83%|████████▎ | 84/101 [00:03<00:00, 23.13it/s][A
+propagate in video:  86%|████████▌ | 87/101 [00:03<00:00, 23.10it/s][A
+propagate in video:  89%|████████▉ | 90/101 [00:03<00:00, 23.10it/s][A
+propagate in video:  92%|█████████▏| 93/101 [00:03<00:00, 23.09it/s][A
+propagate in video:  95%|█████████▌| 96/101 [00:04<00:00, 23.10it/s][A
+propagate in video:  98%|█████████▊| 99/101 [00:04<00:00, 23.09it/s][Apropagate in video: 100%|██████████| 101/101 [00:04<00:00, 23.42it/s]
+episodes:  91%|█████████ | 40/44 [04:57<00:29,  7.30s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193507547046_fail: wrote viewforce_pseudo_force_fz.npz, frames=101, mask_frac median=0.2034
+  Prompt points: [[92.92295837402344, 119.18981170654297], [248.87950134277344, 118.64691162109375]]
+
+frame loading (JPEG):   0%|          | 0/124 [00:00<?, ?it/s][A
+frame loading (JPEG):   4%|▍         | 5/124 [00:00<00:02, 46.25it/s][A
+frame loading (JPEG):   9%|▉         | 11/124 [00:00<00:02, 48.98it/s][A
+frame loading (JPEG):  13%|█▎        | 16/124 [00:00<00:02, 44.93it/s][A
+frame loading (JPEG):  18%|█▊        | 22/124 [00:00<00:02, 47.69it/s][A
+frame loading (JPEG):  23%|██▎       | 28/124 [00:00<00:01, 49.27it/s][A
+frame loading (JPEG):  27%|██▋       | 34/124 [00:00<00:01, 50.22it/s][A
+frame loading (JPEG):  32%|███▏      | 40/124 [00:00<00:01, 50.83it/s][A
+frame loading (JPEG):  37%|███▋      | 46/124 [00:00<00:01, 51.26it/s][A
+frame loading (JPEG):  42%|████▏     | 52/124 [00:01<00:01, 51.63it/s][A
+frame loading (JPEG):  47%|████▋     | 58/124 [00:01<00:01, 51.82it/s][A
+frame loading (JPEG):  52%|█████▏    | 64/124 [00:01<00:01, 51.99it/s][A
+frame loading (JPEG):  56%|█████▋    | 70/124 [00:01<00:01, 48.52it/s][A
+frame loading (JPEG):  61%|██████▏   | 76/124 [00:01<00:00, 49.61it/s][A
+frame loading (JPEG):  66%|██████▌   | 82/124 [00:01<00:00, 50.39it/s][A
+frame loading (JPEG):  71%|███████   | 88/124 [00:01<00:00, 50.93it/s][A
+frame loading (JPEG):  76%|███████▌  | 94/124 [00:01<00:00, 51.33it/s][A
+frame loading (JPEG):  81%|████████  | 100/124 [00:01<00:00, 51.59it/s][A
+frame loading (JPEG):  85%|████████▌ | 106/124 [00:02<00:00, 51.73it/s][A
+frame loading (JPEG):  90%|█████████ | 112/124 [00:02<00:00, 51.81it/s][A
+frame loading (JPEG):  95%|█████████▌| 118/124 [00:02<00:00, 48.48it/s][A
+frame loading (JPEG): 100%|██████████| 124/124 [00:02<00:00, 49.56it/s][Aframe loading (JPEG): 100%|██████████| 124/124 [00:02<00:00, 50.12it/s]
+
+propagate in video:   0%|          | 0/124 [00:00<?, ?it/s][A
+propagate in video:   4%|▍         | 5/124 [00:00<00:03, 37.17it/s][A
+propagate in video:   7%|▋         | 9/124 [00:00<00:04, 27.35it/s][A
+propagate in video:  10%|▉         | 12/124 [00:00<00:04, 24.90it/s][A
+propagate in video:  12%|█▏        | 15/124 [00:00<00:04, 23.92it/s][A
+propagate in video:  15%|█▍        | 18/124 [00:00<00:04, 23.47it/s][A
+propagate in video:  17%|█▋        | 21/124 [00:00<00:04, 23.29it/s][A
+propagate in video:  19%|█▉        | 24/124 [00:00<00:04, 23.26it/s][A
+propagate in video:  22%|██▏       | 27/124 [00:01<00:04, 23.24it/s][A
+propagate in video:  24%|██▍       | 30/124 [00:01<00:04, 23.20it/s][A
+propagate in video:  27%|██▋       | 33/124 [00:01<00:03, 23.21it/s][A
+propagate in video:  29%|██▉       | 36/124 [00:01<00:03, 23.21it/s][A
+propagate in video:  31%|███▏      | 39/124 [00:01<00:03, 23.21it/s][A
+propagate in video:  34%|███▍      | 42/124 [00:01<00:03, 23.17it/s][A
+propagate in video:  36%|███▋      | 45/124 [00:01<00:03, 23.14it/s][A
+propagate in video:  39%|███▊      | 48/124 [00:02<00:03, 23.12it/s][A
+propagate in video:  41%|████      | 51/124 [00:02<00:03, 23.12it/s][A
+propagate in video:  44%|████▎     | 54/124 [00:02<00:03, 23.11it/s][A
+propagate in video:  46%|████▌     | 57/124 [00:02<00:02, 23.11it/s][A
+propagate in video:  48%|████▊     | 60/124 [00:02<00:02, 23.10it/s][A
+propagate in video:  51%|█████     | 63/124 [00:02<00:02, 23.10it/s][A
+propagate in video:  53%|█████▎    | 66/124 [00:02<00:02, 23.09it/s][A
+propagate in video:  56%|█████▌    | 69/124 [00:02<00:02, 23.09it/s][A
+propagate in video:  58%|█████▊    | 72/124 [00:03<00:02, 23.08it/s][A
+propagate in video:  60%|██████    | 75/124 [00:03<00:02, 23.07it/s][A
+propagate in video:  63%|██████▎   | 78/124 [00:03<00:01, 23.07it/s][A
+propagate in video:  65%|██████▌   | 81/124 [00:03<00:01, 23.08it/s][A
+propagate in video:  68%|██████▊   | 84/124 [00:03<00:01, 23.11it/s][A
+propagate in video:  70%|███████   | 87/124 [00:03<00:01, 23.16it/s][A
+propagate in video:  73%|███████▎  | 90/124 [00:03<00:01, 23.20it/s][A
+propagate in video:  75%|███████▌  | 93/124 [00:03<00:01, 23.21it/s][A
+propagate in video:  77%|███████▋  | 96/124 [00:04<00:01, 23.22it/s][A
+propagate in video:  80%|███████▉  | 99/124 [00:04<00:01, 23.22it/s][A
+propagate in video:  82%|████████▏ | 102/124 [00:04<00:00, 23.23it/s][A
+propagate in video:  85%|████████▍ | 105/124 [00:04<00:00, 23.24it/s][A
+propagate in video:  87%|████████▋ | 108/124 [00:04<00:00, 23.25it/s][A
+propagate in video:  90%|████████▉ | 111/124 [00:04<00:00, 23.25it/s][A
+propagate in video:  92%|█████████▏| 114/124 [00:04<00:00, 23.26it/s][A
+propagate in video:  94%|█████████▍| 117/124 [00:04<00:00, 23.23it/s][A
+propagate in video:  97%|█████████▋| 120/124 [00:05<00:00, 23.20it/s][A
+propagate in video:  99%|█████████▉| 123/124 [00:05<00:00, 23.22it/s][Apropagate in video: 100%|██████████| 124/124 [00:05<00:00, 23.40it/s]
+episodes:  93%|█████████▎| 41/44 [05:06<00:23,  7.74s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193536877053: wrote viewforce_pseudo_force_fz.npz, frames=124, mask_frac median=0.1404
+  Prompt points: [[92.96278381347656, 118.22496795654297], [249.33718872070312, 116.43316650390625]]
+
+frame loading (JPEG):   0%|          | 0/93 [00:00<?, ?it/s][A
+frame loading (JPEG):   6%|▋         | 6/93 [00:00<00:01, 56.22it/s][A
+frame loading (JPEG):  13%|█▎        | 12/93 [00:00<00:01, 54.03it/s][A
+frame loading (JPEG):  19%|█▉        | 18/93 [00:00<00:01, 47.90it/s][A
+frame loading (JPEG):  26%|██▌       | 24/93 [00:00<00:01, 49.48it/s][A
+frame loading (JPEG):  32%|███▏      | 30/93 [00:00<00:01, 50.48it/s][A
+frame loading (JPEG):  39%|███▊      | 36/93 [00:00<00:01, 51.07it/s][A
+frame loading (JPEG):  45%|████▌     | 42/93 [00:00<00:00, 51.47it/s][A
+frame loading (JPEG):  52%|█████▏    | 48/93 [00:00<00:00, 51.69it/s][A
+frame loading (JPEG):  58%|█████▊    | 54/93 [00:01<00:00, 51.83it/s][A
+frame loading (JPEG):  65%|██████▍   | 60/93 [00:01<00:00, 51.97it/s][A
+frame loading (JPEG):  71%|███████   | 66/93 [00:01<00:00, 52.06it/s][A
+frame loading (JPEG):  77%|███████▋  | 72/93 [00:01<00:00, 48.60it/s][A
+frame loading (JPEG):  84%|████████▍ | 78/93 [00:01<00:00, 49.73it/s][A
+frame loading (JPEG):  90%|█████████ | 84/93 [00:01<00:00, 50.48it/s][A
+frame loading (JPEG):  97%|█████████▋| 90/93 [00:01<00:00, 51.08it/s][Aframe loading (JPEG): 100%|██████████| 93/93 [00:01<00:00, 50.97it/s]
+
+propagate in video:   0%|          | 0/93 [00:00<?, ?it/s][A
+propagate in video:   5%|▌         | 5/93 [00:00<00:02, 37.15it/s][A
+propagate in video:  10%|▉         | 9/93 [00:00<00:03, 27.30it/s][A
+propagate in video:  13%|█▎        | 12/93 [00:00<00:03, 24.85it/s][A
+propagate in video:  16%|█▌        | 15/93 [00:00<00:03, 23.85it/s][A
+propagate in video:  19%|█▉        | 18/93 [00:00<00:03, 23.40it/s][A
+propagate in video:  23%|██▎       | 21/93 [00:00<00:03, 23.23it/s][A
+propagate in video:  26%|██▌       | 24/93 [00:00<00:02, 23.23it/s][A
+propagate in video:  29%|██▉       | 27/93 [00:01<00:02, 23.24it/s][A
+propagate in video:  32%|███▏      | 30/93 [00:01<00:02, 23.25it/s][A
+propagate in video:  35%|███▌      | 33/93 [00:01<00:02, 23.22it/s][A
+propagate in video:  39%|███▊      | 36/93 [00:01<00:02, 23.17it/s][A
+propagate in video:  42%|████▏     | 39/93 [00:01<00:02, 23.16it/s][A
+propagate in video:  45%|████▌     | 42/93 [00:01<00:02, 23.13it/s][A
+propagate in video:  48%|████▊     | 45/93 [00:01<00:02, 23.15it/s][A
+propagate in video:  52%|█████▏    | 48/93 [00:02<00:01, 23.19it/s][A
+propagate in video:  55%|█████▍    | 51/93 [00:02<00:01, 23.22it/s][A
+propagate in video:  58%|█████▊    | 54/93 [00:02<00:01, 23.23it/s][A
+propagate in video:  61%|██████▏   | 57/93 [00:02<00:01, 23.24it/s][A
+propagate in video:  65%|██████▍   | 60/93 [00:02<00:01, 23.20it/s][A
+propagate in video:  68%|██████▊   | 63/93 [00:02<00:01, 23.17it/s][A
+propagate in video:  71%|███████   | 66/93 [00:02<00:01, 23.16it/s][A
+propagate in video:  74%|███████▍  | 69/93 [00:02<00:01, 23.19it/s][A
+propagate in video:  77%|███████▋  | 72/93 [00:03<00:00, 23.18it/s][A
+propagate in video:  81%|████████  | 75/93 [00:03<00:00, 23.16it/s][A
+propagate in video:  84%|████████▍ | 78/93 [00:03<00:00, 23.19it/s][A
+propagate in video:  87%|████████▋ | 81/93 [00:03<00:00, 23.15it/s][A
+propagate in video:  90%|█████████ | 84/93 [00:03<00:00, 23.12it/s][A
+propagate in video:  94%|█████████▎| 87/93 [00:03<00:00, 23.10it/s][A
+propagate in video:  97%|█████████▋| 90/93 [00:03<00:00, 23.09it/s][A
+propagate in video: 100%|██████████| 93/93 [00:03<00:00, 23.10it/s][Apropagate in video: 100%|██████████| 93/93 [00:03<00:00, 23.47it/s]
+episodes:  95%|█████████▌| 42/44 [05:12<00:14,  7.39s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193628258651_fail: wrote viewforce_pseudo_force_fz.npz, frames=93, mask_frac median=0.1383
+  Prompt points: [[92.75463104248047, 118.94491577148438], [248.84523010253906, 117.98938751220703]]
+
+frame loading (JPEG):   0%|          | 0/106 [00:00<?, ?it/s][A
+frame loading (JPEG):   6%|▌         | 6/106 [00:00<00:01, 56.12it/s][A
+frame loading (JPEG):  11%|█▏        | 12/106 [00:00<00:01, 53.78it/s][A
+frame loading (JPEG):  17%|█▋        | 18/106 [00:00<00:01, 50.43it/s][A
+frame loading (JPEG):  23%|██▎       | 24/106 [00:00<00:01, 46.74it/s][A
+frame loading (JPEG):  28%|██▊       | 30/106 [00:00<00:01, 48.50it/s][A
+frame loading (JPEG):  34%|███▍      | 36/106 [00:00<00:01, 49.74it/s][A
+frame loading (JPEG):  40%|███▉      | 42/106 [00:00<00:01, 50.51it/s][A
+frame loading (JPEG):  45%|████▌     | 48/106 [00:00<00:01, 51.04it/s][A
+frame loading (JPEG):  51%|█████     | 54/106 [00:01<00:01, 51.40it/s][A
+frame loading (JPEG):  57%|█████▋    | 60/106 [00:01<00:00, 51.62it/s][A
+frame loading (JPEG):  62%|██████▏   | 66/106 [00:01<00:00, 51.75it/s][A
+frame loading (JPEG):  68%|██████▊   | 72/106 [00:01<00:00, 48.33it/s][A
+frame loading (JPEG):  74%|███████▎  | 78/106 [00:01<00:00, 49.51it/s][A
+frame loading (JPEG):  79%|███████▉  | 84/106 [00:01<00:00, 50.42it/s][A
+frame loading (JPEG):  85%|████████▍ | 90/106 [00:01<00:00, 50.75it/s][A
+frame loading (JPEG):  91%|█████████ | 96/106 [00:01<00:00, 51.19it/s][A
+frame loading (JPEG):  96%|█████████▌| 102/106 [00:02<00:00, 51.47it/s][Aframe loading (JPEG): 100%|██████████| 106/106 [00:02<00:00, 50.67it/s]
+
+propagate in video:   0%|          | 0/106 [00:00<?, ?it/s][A
+propagate in video:   5%|▍         | 5/106 [00:00<00:02, 37.14it/s][A
+propagate in video:   8%|▊         | 9/106 [00:00<00:03, 27.46it/s][A
+propagate in video:  11%|█▏        | 12/106 [00:00<00:03, 25.04it/s][A
+propagate in video:  14%|█▍        | 15/106 [00:00<00:03, 23.93it/s][A
+propagate in video:  17%|█▋        | 18/106 [00:00<00:03, 23.50it/s][A
+propagate in video:  20%|█▉        | 21/106 [00:00<00:03, 23.34it/s][A
+propagate in video:  23%|██▎       | 24/106 [00:00<00:03, 23.31it/s][A
+propagate in video:  25%|██▌       | 27/106 [00:01<00:03, 23.29it/s][A
+propagate in video:  28%|██▊       | 30/106 [00:01<00:03, 23.26it/s][A
+propagate in video:  31%|███       | 33/106 [00:01<00:03, 23.26it/s][A
+propagate in video:  34%|███▍      | 36/106 [00:01<00:03, 23.27it/s][A
+propagate in video:  37%|███▋      | 39/106 [00:01<00:02, 23.24it/s][A
+propagate in video:  40%|███▉      | 42/106 [00:01<00:02, 23.24it/s][A
+propagate in video:  42%|████▏     | 45/106 [00:01<00:02, 23.22it/s][A
+propagate in video:  45%|████▌     | 48/106 [00:02<00:02, 23.18it/s][A
+propagate in video:  48%|████▊     | 51/106 [00:02<00:02, 23.15it/s][A
+propagate in video:  51%|█████     | 54/106 [00:02<00:02, 23.13it/s][A
+propagate in video:  54%|█████▍    | 57/106 [00:02<00:02, 23.11it/s][A
+propagate in video:  57%|█████▋    | 60/106 [00:02<00:01, 23.11it/s][A
+propagate in video:  59%|█████▉    | 63/106 [00:02<00:01, 23.09it/s][A
+propagate in video:  62%|██████▏   | 66/106 [00:02<00:01, 23.12it/s][A
+propagate in video:  65%|██████▌   | 69/106 [00:02<00:01, 23.12it/s][A
+propagate in video:  68%|██████▊   | 72/106 [00:03<00:01, 23.12it/s][A
+propagate in video:  71%|███████   | 75/106 [00:03<00:01, 23.11it/s][A
+propagate in video:  74%|███████▎  | 78/106 [00:03<00:01, 23.11it/s][A
+propagate in video:  76%|███████▋  | 81/106 [00:03<00:01, 23.11it/s][A
+propagate in video:  79%|███████▉  | 84/106 [00:03<00:00, 23.13it/s][A
+propagate in video:  82%|████████▏ | 87/106 [00:03<00:00, 23.16it/s][A
+propagate in video:  85%|████████▍ | 90/106 [00:03<00:00, 23.15it/s][A
+propagate in video:  88%|████████▊ | 93/106 [00:03<00:00, 23.12it/s][A
+propagate in video:  91%|█████████ | 96/106 [00:04<00:00, 23.12it/s][A
+propagate in video:  93%|█████████▎| 99/106 [00:04<00:00, 23.11it/s][A
+propagate in video:  96%|█████████▌| 102/106 [00:04<00:00, 23.10it/s][A
+propagate in video:  99%|█████████▉| 105/106 [00:04<00:00, 23.09it/s][Apropagate in video: 100%|██████████| 106/106 [00:04<00:00, 23.43it/s]
+episodes:  98%|█████████▊| 43/44 [05:20<00:07,  7.41s/it]WARNING:libav.h264:Application has requested 64 threads. Using a thread count greater than 16 is not recommended.
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193658927249: wrote viewforce_pseudo_force_fz.npz, frames=106, mask_frac median=0.1388
+  Prompt points: [[92.52420043945312, 118.10601806640625], [248.3336944580078, 117.92668151855469]]
+
+frame loading (JPEG):   0%|          | 0/101 [00:00<?, ?it/s][A
+frame loading (JPEG):   6%|▌         | 6/101 [00:00<00:01, 53.31it/s][A
+frame loading (JPEG):  12%|█▏        | 12/101 [00:00<00:01, 52.15it/s][A
+frame loading (JPEG):  18%|█▊        | 18/101 [00:00<00:01, 51.81it/s][A
+frame loading (JPEG):  24%|██▍       | 24/101 [00:00<00:01, 47.17it/s][A
+frame loading (JPEG):  30%|██▉       | 30/101 [00:00<00:01, 48.55it/s][A
+frame loading (JPEG):  36%|███▌      | 36/101 [00:00<00:01, 49.41it/s][A
+frame loading (JPEG):  42%|████▏     | 42/101 [00:00<00:01, 50.04it/s][A
+frame loading (JPEG):  48%|████▊     | 48/101 [00:00<00:01, 50.37it/s][A
+frame loading (JPEG):  53%|█████▎    | 54/101 [00:01<00:00, 50.63it/s][A
+frame loading (JPEG):  59%|█████▉    | 60/101 [00:01<00:00, 50.82it/s][A
+frame loading (JPEG):  65%|██████▌   | 66/101 [00:01<00:00, 50.95it/s][A
+frame loading (JPEG):  71%|███████▏  | 72/101 [00:01<00:00, 47.56it/s][A
+frame loading (JPEG):  77%|███████▋  | 78/101 [00:01<00:00, 48.65it/s][A
+frame loading (JPEG):  83%|████████▎ | 84/101 [00:01<00:00, 49.44it/s][A
+frame loading (JPEG):  89%|████████▉ | 90/101 [00:01<00:00, 49.98it/s][A
+frame loading (JPEG):  95%|█████████▌| 96/101 [00:01<00:00, 50.35it/s][Aframe loading (JPEG): 100%|██████████| 101/101 [00:02<00:00, 49.97it/s]
+
+propagate in video:   0%|          | 0/101 [00:00<?, ?it/s][A
+propagate in video:   5%|▍         | 5/101 [00:00<00:02, 37.20it/s][A
+propagate in video:   9%|▉         | 9/101 [00:00<00:03, 27.43it/s][A
+propagate in video:  12%|█▏        | 12/101 [00:00<00:03, 25.00it/s][A
+propagate in video:  15%|█▍        | 15/101 [00:00<00:03, 23.97it/s][A
+propagate in video:  18%|█▊        | 18/101 [00:00<00:03, 23.53it/s][A
+propagate in video:  21%|██        | 21/101 [00:00<00:03, 23.35it/s][A
+propagate in video:  24%|██▍       | 24/101 [00:00<00:03, 23.33it/s][A
+propagate in video:  27%|██▋       | 27/101 [00:01<00:03, 23.29it/s][A
+propagate in video:  30%|██▉       | 30/101 [00:01<00:03, 23.22it/s][A
+propagate in video:  33%|███▎      | 33/101 [00:01<00:02, 23.21it/s][A
+propagate in video:  36%|███▌      | 36/101 [00:01<00:02, 23.23it/s][A
+propagate in video:  39%|███▊      | 39/101 [00:01<00:02, 23.24it/s][A
+propagate in video:  42%|████▏     | 42/101 [00:01<00:02, 23.25it/s][A
+propagate in video:  45%|████▍     | 45/101 [00:01<00:02, 23.25it/s][A
+propagate in video:  48%|████▊     | 48/101 [00:02<00:02, 23.25it/s][A
+propagate in video:  50%|█████     | 51/101 [00:02<00:02, 23.24it/s][A
+propagate in video:  53%|█████▎    | 54/101 [00:02<00:02, 23.24it/s][A
+propagate in video:  56%|█████▋    | 57/101 [00:02<00:01, 23.19it/s][A
+propagate in video:  59%|█████▉    | 60/101 [00:02<00:01, 23.14it/s][A
+propagate in video:  62%|██████▏   | 63/101 [00:02<00:01, 23.13it/s][A
+propagate in video:  65%|██████▌   | 66/101 [00:02<00:01, 23.11it/s][A
+propagate in video:  68%|██████▊   | 69/101 [00:02<00:01, 23.11it/s][A
+propagate in video:  71%|███████▏  | 72/101 [00:03<00:01, 23.10it/s][A
+propagate in video:  74%|███████▍  | 75/101 [00:03<00:01, 23.09it/s][A
+propagate in video:  77%|███████▋  | 78/101 [00:03<00:00, 23.09it/s][A
+propagate in video:  80%|████████  | 81/101 [00:03<00:00, 23.08it/s][A
+propagate in video:  83%|████████▎ | 84/101 [00:03<00:00, 23.07it/s][A
+propagate in video:  86%|████████▌ | 87/101 [00:03<00:00, 23.07it/s][A
+propagate in video:  89%|████████▉ | 90/101 [00:03<00:00, 23.07it/s][A
+propagate in video:  92%|█████████▏| 93/101 [00:03<00:00, 23.08it/s][A
+propagate in video:  95%|█████████▌| 96/101 [00:04<00:00, 23.08it/s][A
+propagate in video:  98%|█████████▊| 99/101 [00:04<00:00, 23.08it/s][Apropagate in video: 100%|██████████| 101/101 [00:04<00:00, 23.45it/s]
+episodes: 100%|██████████| 44/44 [05:27<00:00,  7.32s/it]episodes: 100%|██████████| 44/44 [05:27<00:00,  7.44s/it]
+third_party/forcelens_dp/data/flip/flip_obj_4_stage2_all/episodes/20260726T193727437347_fail: wrote viewforce_pseudo_force_fz.npz, frames=101, mask_frac median=0.1395
