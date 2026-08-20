@@ -1,6 +1,18 @@
-# Force Estimation Notes
+# Force-estimation notes
 
-## 2026-05-22: Spatial Force Head
+This file preserves dated experiment decisions and observations. For current
+usage, start with [Training](training.md) and
+[Inference](inference.md).
+
+## 2026-05-20: Low-resolution robot input
+
+A robot test delivered `84x84` wrist images to the policy server even though
+the force-estimator pipeline trains from the original episode frames before
+resizing masked inputs to `256x256`. Detail lost before transport cannot be
+recovered server-side; use rollout recordings to compare received images with
+training inputs when diagnosing estimator drift.
+
+## 2026-05-22: Spatial force head
 
 Motivation: real coke-grasp overlays show visible deformation in the orange
 fin-ray stripes and green outer edge. The original force estimator used an
@@ -58,7 +70,7 @@ Current hypothesis:
 - A later version may add reference-frame difference or optical-flow inputs, but
   this change keeps the dataset and input format unchanged.
 
-## 2026-05-22: Optional Edge Input
+## 2026-05-22: Optional edge input
 
 Motivation: the orange fin-ray stripes are useful only if the model reads their
 deformation. A pure RGB input may let the model rely on coarse color/mask
@@ -94,7 +106,7 @@ python scripts/train.py \
   --wandb-project force_estimation
 ```
 
-## 2026-05-23: Validation Split by Episode Number
+## 2026-05-23: Validation split by episode number
 
 The earlier `--val-count 5` split held out the last five sorted episodes. In
 `data_ball_260422`, those later episodes contain many near-zero Fz frames, while

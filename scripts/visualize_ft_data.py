@@ -37,12 +37,18 @@ def main():
     parser.add_argument("--downsample", type=int, default=1, help="Keep every N points (default: 1)")
     parser.add_argument("--save", default=None, help="Optional image output path, e.g., ft_plot.png")
     args = parser.parse_args()
+    if args.smooth <= 0:
+        parser.error("--smooth must be positive")
+    if args.downsample <= 0:
+        parser.error("--downsample must be positive")
 
     csv_path = Path(args.csv)
     if not csv_path.exists():
         raise FileNotFoundError(f"CSV file not found: {csv_path}")
 
     data = load_csv(csv_path)
+    if args.smooth > len(data["timestamp"]):
+        parser.error("--smooth cannot exceed the number of CSV rows")
 
     t = data["timestamp"] - data["timestamp"][0]
     fx = moving_average(data["Fx"], args.smooth)
@@ -52,7 +58,7 @@ def main():
     my = moving_average(data["My"], args.smooth)
     mz = moving_average(data["Mz"], args.smooth)
 
-    step = max(1, args.downsample)
+    step = args.downsample
     t = t[::step]
     fx = fx[::step]
     fy = fy[::step]
@@ -84,10 +90,13 @@ def main():
     fig.tight_layout()
 
     if args.save:
-        fig.savefig(args.save, dpi=160)
-        print(f"Saved plot to: {args.save}")
-
-    plt.show()
+        output_path = Path(args.save)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(output_path, dpi=160)
+        plt.close(fig)
+        print(f"Saved plot to: {output_path}")
+    else:
+        plt.show()
 
 
 if __name__ == "__main__":

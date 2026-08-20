@@ -53,6 +53,22 @@ def read_video_rgb(video_path: Union[str, Path], image_size: tuple[int, int]) ->
     return np.stack(frames, axis=0)
 
 
+def read_edge_obs(edge_path: Union[str, Path], image_size: tuple[int, int]) -> np.ndarray:
+    data = np.load(edge_path)
+    if "edge" not in data:
+        raise ValueError(f"{edge_path} does not contain an 'edge' array")
+    edge = data["edge"]
+    if edge.ndim != 3:
+        raise ValueError(f"Expected edge obs with shape (T,H,W), got {edge.shape}")
+    out_h, out_w = image_size
+    frames = []
+    for frame in edge:
+        if frame.shape[0] != out_h or frame.shape[1] != out_w:
+            frame = cv.resize(frame, (out_w, out_h), interpolation=cv.INTER_AREA)
+        frames.append(frame)
+    return np.stack(frames, axis=0)
+
+
 def _stack_agent_pos(items: Iterable[dict]) -> np.ndarray:
     return np.stack(
         [
@@ -94,6 +110,8 @@ class FlipDeltaForceDataset(Dataset):
         force_mode: str = "magnitude",
         action_mode: str = "obs_delta",
         image_normalization: str = "zero_one",
+        critic_image_mode: str = "rgb",
+        edge_obs_name: str = "viewforce_edge_obs.npz",
         target_mode: str = "delta_trajectory",
     ) -> None:
         self.dataset_path = Path(dataset_path)
@@ -105,6 +123,8 @@ class FlipDeltaForceDataset(Dataset):
         self.force_mode = force_mode
         self.action_mode = action_mode
         self.image_normalization = image_normalization
+        self.critic_image_mode = critic_image_mode
+        self.edge_obs_name = edge_obs_name
         self.target_mode = target_mode
         if self.force_mode not in {"magnitude", "signed"}:
             raise ValueError("force_mode must be 'magnitude' or 'signed'")
@@ -116,15 +136,18 @@ class FlipDeltaForceDataset(Dataset):
             raise ValueError(
                 "image_normalization must be 'zero_one' or 'minus_one_one'"
             )
+        if self.critic_image_mode not in {"rgb", "edge", "none"}:
+            raise ValueError("critic_image_mode must be 'rgb', 'edge', or 'none'")
         if self.target_mode not in {
             "delta_trajectory",
             "final_delta",
             "max_delta",
             "mean_delta",
+            "future_peak",
         }:
             raise ValueError(
                 "target_mode must be one of: delta_trajectory, final_delta, "
-                "max_delta, mean_delta"
+                "max_delta, mean_delta, future_peak"
             )
 
         self.episodes = []
@@ -137,7 +160,19 @@ class FlipDeltaForceDataset(Dataset):
                     "Run scripts/precompute_flip_pseudo_force.py first."
                 )
             data = joblib.load(ep_dir / "data.pkl")
-            frames = read_video_rgb(ep_dir / "wrist_image.mp4", self.image_size)
+            if self.critic_image_mode == "none":
+                frames = None
+            elif self.critic_image_mode == "edge":
+                edge_path = ep_dir / self.edge_obs_name
+                if not edge_path.is_file():
+                    raise FileNotFoundError(
+                        f"Missing edge observations: {edge_path}. "
+                        "Run scripts/precompute_flip_pseudo_force.py with "
+                        "--edge-output-name first."
+                    )
+                frames = read_edge_obs(edge_path, self.image_size)
+            else:
+                frames = read_video_rgb(ep_dir / "wrist_image.mp4", self.image_size)
             agent_pos = _stack_agent_pos(data["observations"])
             actions = _stack_actions(data["actions"])
             labels = np.load(label_path)
@@ -150,8 +185,11 @@ class FlipDeltaForceDataset(Dataset):
             if self.force_mode == "magnitude":
                 force = np.abs(force)
 
-            n = min(len(frames), len(agent_pos), len(actions), len(force))
-            frames = frames[:n]
+            if frames is None:
+                n = min(len(agent_pos), len(actions), len(force))
+            else:
+                n = min(len(frames), len(agent_pos), len(actions), len(force))
+                frames = frames[:n]
             agent_pos = agent_pos[:n]
             actions = actions[:n]
             force = force[:n]
@@ -184,7 +222,10 @@ class FlipDeltaForceDataset(Dataset):
 
     @property
     def image_channels(self) -> int:
-        return self.obs_steps * 3
+        if self.critic_image_mode == "none":
+            return 0
+        channels_per_frame = 1 if self.critic_image_mode == "edge" else 3
+        return self.obs_steps * channels_per_frame
 
     @property
     def low_dim_dim(self) -> int:
@@ -195,13 +236,20 @@ class FlipDeltaForceDataset(Dataset):
         return self.pred_horizon if self.target_mode == "delta_trajectory" else 1
 
     def _image_history(self, frames: np.ndarray, t: int) -> torch.Tensor:
+        if self.critic_image_mode == "none":
+            return torch.empty((0, self.image_size[0], self.image_size[1])).float()
         idxs = [max(0, t - self.obs_steps + 1 + i) for i in range(self.obs_steps)]
         hist = frames[idxs].astype(np.float32) / 255.0
         if self.image_normalization == "minus_one_one":
             hist = hist * 2.0 - 1.0
-        hist = torch.from_numpy(hist).permute(0, 3, 1, 2).reshape(
-            self.image_channels, self.image_size[0], self.image_size[1]
-        )
+        if self.critic_image_mode == "edge":
+            hist = torch.from_numpy(hist[:, None, :, :]).reshape(
+                self.image_channels, self.image_size[0], self.image_size[1]
+            )
+        else:
+            hist = torch.from_numpy(hist).permute(0, 3, 1, 2).reshape(
+                self.image_channels, self.image_size[0], self.image_size[1]
+            )
         return hist
 
     def _agent_pos_history(self, agent_pos: np.ndarray, t: int) -> torch.Tensor:
@@ -243,6 +291,8 @@ class FlipDeltaForceDataset(Dataset):
             target = float(np.max(future) - current)
         elif self.target_mode == "mean_delta":
             target = float(np.mean(future) - current)
+        elif self.target_mode == "future_peak":
+            target = float(np.max(future))
         else:
             raise ValueError(f"Unsupported target_mode: {self.target_mode!r}")
         return np.asarray([[target]], dtype=np.float32)
@@ -255,6 +305,7 @@ class FlipDeltaForceDataset(Dataset):
         return {
             "image": self._image_history(ep["frames"], t),
             "agent_pos": self._agent_pos_history(ep["agent_pos"], t),
+            "current_force": torch.tensor([force[t]], dtype=torch.float32),
             "action_delta": torch.from_numpy(
                 self._action_delta(ep["actions"], ep["agent_pos"], t)
             ).float(),

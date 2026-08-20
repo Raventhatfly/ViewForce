@@ -66,15 +66,14 @@ def predict_episode_force(
     estimator: ViewForceEstimator,
     frames: np.ndarray,
     masks: np.ndarray,
-    force_keys: list[str],
     batch_size: int,
 ) -> tuple[np.ndarray, np.ndarray]:
+    if len(frames) == 0:
+        raise ValueError("Cannot predict force for an empty video")
     tensors = []
-    mask_fracs = []
     preds = []
     for frame, mask in zip(frames, masks):
         mask = mask.astype(bool)
-        mask_fracs.append(float(mask.mean()))
         tensors.append(
             masked_frame_to_tensor(
                 frame,
@@ -88,7 +87,26 @@ def predict_episode_force(
     if tensors:
         preds.append(_predict_batch(estimator, tensors))
     force = np.concatenate(preds, axis=0).astype(np.float32)
-    return force, np.asarray(mask_fracs, dtype=np.float32)
+    mask_fracs = masks.reshape(len(masks), -1).mean(axis=1, dtype=np.float32)
+    return force, mask_fracs
+
+
+def make_edge_observations(
+    frames: np.ndarray,
+    masks: np.ndarray,
+    image_size: tuple[int, int],
+) -> np.ndarray:
+    edges = np.empty((len(frames), *image_size), dtype=np.uint8)
+    for index, (frame, mask) in enumerate(zip(frames, masks)):
+        edge = masked_frame_to_tensor(
+            frame,
+            mask.astype(bool),
+            output_size=image_size,
+            input_mode="edge",
+        )[0]
+        edge_np = edge.detach().cpu().numpy()
+        edges[index] = np.rint(edge_np.clip(0.0, 1.0) * 255.0).astype(np.uint8)
+    return edges
 
 
 def color_masks(frames: np.ndarray) -> np.ndarray:
@@ -134,15 +152,18 @@ def sam2_masks(
     device: str,
     fallback_color: bool = False,
 ) -> np.ndarray:
+    if len(frames) == 0:
+        raise ValueError("Cannot segment an empty video")
     with tempfile.TemporaryDirectory(prefix="viewforce_flip_sam2_") as frame_dir:
         frame_dir = Path(frame_dir)
         for i, frame in enumerate(frames):
             Image.fromarray(frame).save(frame_dir / f"{i:06d}.jpg", quality=95)
 
         point_coords, point_labels = detect_prompt_points(frames[0])
+        device_type = torch.device(device).type
         autocast = (
-            torch.autocast(device, dtype=torch.bfloat16)
-            if device == "cuda"
+            torch.autocast(device_type, dtype=torch.bfloat16)
+            if device_type == "cuda"
             else contextlib.nullcontext()
         )
         segments = {}
@@ -245,8 +266,9 @@ def write_mask_preview(
 
 
 def _predict_batch(estimator: ViewForceEstimator, tensors: list[torch.Tensor]) -> np.ndarray:
-    x = torch.stack(tensors, dim=0).to(estimator.device)
-    with torch.no_grad():
+    use_cuda = torch.device(estimator.device).type == "cuda"
+    x = torch.stack(tensors, dim=0).to(estimator.device, non_blocking=use_cuda)
+    with torch.inference_mode():
         return estimator.model(x).detach().cpu().numpy()
 
 
@@ -262,6 +284,14 @@ def parse_args():
         default="checkpoints/viewforce_fz_edge_only_valmul10_trim01_v1/best.pt",
     )
     parser.add_argument("--output-name", default="viewforce_pseudo_force_fz.npz")
+    parser.add_argument(
+        "--edge-output-name",
+        default=None,
+        help=(
+            "Optional per-episode npz name for segmented Sobel edge observations "
+            "used by action-conditioned force critics."
+        ),
+    )
     parser.add_argument("--force-keys", nargs="+", default=["Fz"])
     parser.add_argument("--device", default=None)
     parser.add_argument("--batch-size", type=int, default=64)
@@ -306,7 +336,16 @@ def parse_args():
         default=None,
         help="Limit processed episodes, useful with --preview-only.",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.batch_size <= 0:
+        parser.error("--batch-size must be positive")
+    if any(size <= 0 for size in args.image_size):
+        parser.error("--image-size values must be positive")
+    if args.preview_frames <= 0:
+        parser.error("--preview-frames must be positive")
+    if args.max_episodes is not None and args.max_episodes <= 0:
+        parser.error("--max-episodes must be positive")
+    return args
 
 
 def main():
@@ -368,7 +407,13 @@ def main():
 
     for ep_dir in tqdm(episodes, desc="episodes"):
         out_path = ep_dir / args.output_name
-        if out_path.exists() and not args.overwrite:
+        edge_path = ep_dir / args.edge_output_name if args.edge_output_name else None
+        need_force = args.overwrite or not out_path.exists()
+        need_edge = (
+            edge_path is not None
+            and (args.overwrite or not edge_path.exists())
+        )
+        if not need_force and not need_edge:
             continue
         frames = read_video_rgb(ep_dir / "wrist_image.mp4", tuple(args.image_size))
         masks = make_masks(
@@ -387,11 +432,26 @@ def main():
                 args.preview_frames,
                 args.mask_mode,
             )
+        if need_edge:
+            edge = make_edge_observations(
+                frames,
+                masks,
+                tuple(args.image_size),
+            )
+            np.savez_compressed(
+                edge_path,
+                edge=edge,
+                image_size=np.asarray(args.image_size),
+                input_mode="edge",
+                mask_mode=args.mask_mode,
+            )
+            print(f"{ep_dir}: wrote {edge_path.name}, frames={len(edge)}")
+        if not need_force:
+            continue
         force, mask_frac = predict_episode_force(
             estimator,
             frames,
             masks,
-            force_keys=args.force_keys,
             batch_size=args.batch_size,
         )
         np.savez_compressed(

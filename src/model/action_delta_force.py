@@ -39,15 +39,25 @@ class ActionConditionedDeltaForceNet(nn.Module):
         self.low_dim_dim = int(low_dim_dim)
         self.output_horizon = int(output_horizon or pred_horizon)
 
-        channels = list(encoder_channels)
-        self.in_conv = DoubleConv(self.image_channels, channels[0])
-        self.down_blocks = nn.ModuleList(
-            [Down(channels[i], channels[i + 1]) for i in range(len(channels) - 1)]
-        )
-        bottleneck_channels = channels[-1] * 2
-        self.bottleneck = DoubleConv(channels[-1], bottleneck_channels)
-        self.visual_pool = nn.AdaptiveAvgPool2d((force_spatial_size, force_spatial_size))
-        visual_dim = bottleneck_channels * force_spatial_size * force_spatial_size
+        self.use_visual = self.image_channels > 0
+        if self.use_visual:
+            channels = list(encoder_channels)
+            self.in_conv = DoubleConv(self.image_channels, channels[0])
+            self.down_blocks = nn.ModuleList(
+                [Down(channels[i], channels[i + 1]) for i in range(len(channels) - 1)]
+            )
+            bottleneck_channels = channels[-1] * 2
+            self.bottleneck = DoubleConv(channels[-1], bottleneck_channels)
+            self.visual_pool = nn.AdaptiveAvgPool2d(
+                (force_spatial_size, force_spatial_size)
+            )
+            visual_dim = bottleneck_channels * force_spatial_size * force_spatial_size
+        else:
+            self.in_conv = None
+            self.down_blocks = nn.ModuleList()
+            self.bottleneck = None
+            self.visual_pool = None
+            visual_dim = 0
 
         action_in_dim = self.pred_horizon * self.action_dim
         self.action_encoder = nn.Sequential(
@@ -81,6 +91,8 @@ class ActionConditionedDeltaForceNet(nn.Module):
         )
 
     def encode_image(self, image: torch.Tensor) -> torch.Tensor:
+        if not self.use_visual:
+            return image.new_zeros((image.shape[0], 0))
         x = self.in_conv(image)
         for down in self.down_blocks:
             x = down(x)

@@ -3,4 +3,4 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
-exec "${SCRIPT_DIR}/train_berry_force_critic.sh" standard "$@"
+exec "${SCRIPT_DIR}/train_berry_force_critic.sh" h4 "$@"

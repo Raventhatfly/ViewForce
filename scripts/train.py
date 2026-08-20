@@ -22,7 +22,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
-import wandb
 from tqdm import tqdm
 
 from src.dataset import make_datasets
@@ -83,6 +82,8 @@ def parse_args():
     parser.add_argument("--output",       default="checkpoints",
                         help="Directory to save checkpoints.")
     parser.add_argument("--workers",      type=int,   default=4)
+    parser.add_argument("--device", default=None,
+                        help="Torch device. Defaults to CUDA when available, otherwise CPU.")
     parser.add_argument("--save-every",   type=int,   default=5,
                         help="Save a periodic checkpoint every N epochs.")
     parser.add_argument("--keep-last",    type=int,   default=3,
@@ -93,7 +94,45 @@ def parse_args():
                         help="W&B run name (defaults to auto).")
     parser.add_argument("--no-wandb",      action="store_true",
                         help="Disable W&B logging.")
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.epochs <= 0:
+        parser.error("--epochs must be positive")
+    if args.batch_size <= 0:
+        parser.error("--batch-size must be positive")
+    if args.workers < 0:
+        parser.error("--workers must be non-negative")
+    if args.lr <= 0:
+        parser.error("--lr must be positive")
+    if args.weight_decay < 0:
+        parser.error("--weight-decay must be non-negative")
+    if args.trim_seconds < 0:
+        parser.error("--trim-seconds must be non-negative")
+    if args.force_spatial_size <= 0:
+        parser.error("--force-spatial-size must be positive")
+    if args.save_every < 0:
+        parser.error("--save-every must be non-negative")
+    if args.keep_last < 0:
+        parser.error("--keep-last must be non-negative")
+    return args
+
+
+def resolve_device(requested) -> torch.device:
+    if requested is None:
+        return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device(requested)
+    if device.type == "cuda" and not torch.cuda.is_available():
+        raise RuntimeError(f"CUDA device requested but CUDA is unavailable: {requested}")
+    return device
+
+
+def load_wandb(disabled: bool):
+    if disabled:
+        return None
+    try:
+        import wandb
+    except ImportError as exc:
+        raise RuntimeError("wandb is not installed; install it or pass --no-wandb") from exc
+    return wandb
 
 
 def find_episodes(data_dir: str) -> list[str]:
@@ -109,6 +148,7 @@ def find_episodes(data_dir: str) -> list[str]:
 
 def main():
     args = parse_args()
+    wandb = load_wandb(args.no_wandb)
 
     # ---- Discover episodes -------------------------------------------------
     if args.episodes is not None:
@@ -136,19 +176,26 @@ def main():
         trim_seconds=args.trim_seconds,
         input_mode=args.input_mode,
     )
+    device = resolve_device(args.device)
+    use_cuda = device.type == "cuda"
+    loader_kwargs = {
+        "batch_size": args.batch_size,
+        "num_workers": args.workers,
+        "pin_memory": use_cuda,
+        "persistent_workers": args.workers > 0,
+    }
     train_loader = DataLoader(
-        train_ds, batch_size=args.batch_size,
-        shuffle=True, num_workers=args.workers, pin_memory=True,
+        train_ds, shuffle=True, **loader_kwargs,
     )
     val_loader = DataLoader(
-        val_ds, batch_size=args.batch_size,
-        shuffle=False, num_workers=args.workers, pin_memory=True,
+        val_ds, shuffle=False, **loader_kwargs,
     )
     print(f"Train: {len(train_ds)} samples  |  Val: {len(val_ds)} samples")
+    if len(train_ds) == 0 or len(val_ds) == 0:
+        raise RuntimeError("Training and validation datasets must both contain samples")
 
     # ---- Model (encoder-only UNet) ----------------------------------------
     force_dim = len(args.force_keys)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device: {device}")
 
     model = build_unet(
@@ -166,7 +213,7 @@ def main():
     print(f"Model parameters: {n_params:,}")
 
     # ---- W&B ------------------------------------------------------------------
-    use_wandb = not args.no_wandb
+    use_wandb = wandb is not None
     if use_wandb:
         ts = time.strftime("%Y%m%d_%H%M%S")
         run_name = f"{args.wandb_run}_{ts}" if args.wandb_run else f"{args.wandb_project}_{ts}"
@@ -196,10 +243,10 @@ def main():
         model.train()
         train_loss = 0.0
         for batch in tqdm(train_loader, desc=f"Ep {epoch}", leave=False, unit="batch"):
-            frame = batch["frame"].to(device)   # (B, 3, H, W)
-            force = batch["force"].to(device)   # (B, force_dim)
+            frame = batch["frame"].to(device, non_blocking=use_cuda)
+            force = batch["force"].to(device, non_blocking=use_cuda)
 
-            optimizer.zero_grad()
+            optimizer.zero_grad(set_to_none=True)
             pred = model(frame)
             loss = F.mse_loss(pred, force)
             loss.backward()
@@ -213,13 +260,15 @@ def main():
         # Validate
         model.eval()
         val_mae = 0.0
-        with torch.no_grad():
+        val_elements = 0
+        with torch.inference_mode():
             for batch in val_loader:
-                frame = batch["frame"].to(device)
-                force = batch["force"].to(device)
+                frame = batch["frame"].to(device, non_blocking=use_cuda)
+                force = batch["force"].to(device, non_blocking=use_cuda)
                 pred  = model(frame)
                 val_mae += (pred - force).abs().sum().item()
-        val_mae /= len(val_ds)
+                val_elements += force.numel()
+        val_mae /= val_elements
 
         lr_now = scheduler.get_last_lr()[0]
         epoch_bar.set_postfix(train_mse=f"{train_loss:.4f}", val_mae=f"{val_mae:.4f} N", lr=f"{lr_now:.2e}")

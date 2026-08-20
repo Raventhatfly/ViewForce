@@ -26,6 +26,7 @@ import torch
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from torch.utils.data import DataLoader
 
 from src.dataset import ForceDataset
 from src.model.unet import build_unet
@@ -54,13 +55,14 @@ def episode_number(path: str) -> Optional[int]:
 
 
 def parse_args():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--checkpoint", required=True)
-    parser.add_argument("--episode",    default=None,
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument("--episode", default=None,
                         help="Episode directory to evaluate on.")
-    parser.add_argument("--episodes", nargs="+", default=None,
+    source.add_argument("--episodes", nargs="+", default=None,
                         help="Explicit list of episode directories to evaluate.")
-    parser.add_argument("--data-dir", default=None,
+    source.add_argument("--data-dir", default=None,
                         help="Dataset folder containing EP* episode subdirectories.")
     parser.add_argument("--split", choices=("all", "train", "val"), default="all",
                         help="Subset to evaluate when --data-dir is used.")
@@ -72,7 +74,27 @@ def parse_args():
                              "checkpoint args when available.")
     parser.add_argument("--output", default="eval_output",
                         help="Directory for output plots.")
-    return parser.parse_args()
+    parser.add_argument("--batch-size", type=int, default=64,
+                        help="Inference batch size (default: 64).")
+    parser.add_argument("--workers", type=int, default=0,
+                        help="DataLoader workers (default: 0).")
+    parser.add_argument("--device", default=None,
+                        help="Torch device. Defaults to CUDA when available, otherwise CPU.")
+    args = parser.parse_args()
+    if args.batch_size <= 0:
+        parser.error("--batch-size must be positive")
+    if args.workers < 0:
+        parser.error("--workers must be non-negative")
+    return args
+
+
+def resolve_device(requested: Optional[str]) -> torch.device:
+    if requested is None:
+        return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device(requested)
+    if device.type == "cuda" and not torch.cuda.is_available():
+        raise RuntimeError(f"CUDA device requested but CUDA is unavailable: {requested}")
+    return device
 
 
 def resolve_eval_episodes(args, ckpt) -> list[str]:
@@ -123,7 +145,16 @@ def resolve_eval_episodes(args, ckpt) -> list[str]:
     return episodes
 
 
-def evaluate_episode(model, episode: str, force_keys: list[str], trim_seconds: float, device, output_root: str):
+def evaluate_episode(
+    model,
+    episode: str,
+    force_keys: list[str],
+    trim_seconds: float,
+    device: torch.device,
+    output_root: str,
+    batch_size: int,
+    workers: int,
+):
     episode_name = os.path.basename(os.path.normpath(episode))
 
     # ---- Dataset ----------------------------------------------------------
@@ -140,24 +171,27 @@ def evaluate_episode(model, episode: str, force_keys: list[str], trim_seconds: f
         return None
 
     # ---- Run inference ----------------------------------------------------
+    use_cuda = device.type == "cuda"
+    loader = DataLoader(
+        ds,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=workers,
+        pin_memory=use_cuda,
+        persistent_workers=workers > 0,
+    )
     all_pred = []
     all_gt = []
-    all_idx = []
 
-    with torch.no_grad():
-        for i in range(len(ds)):
-            sample = ds[i]
-            frame = sample["frame"].unsqueeze(0).to(device)
-            gt = sample["force"].numpy()
-            pred = model(frame)
+    with torch.inference_mode():
+        for batch in loader:
+            frame = batch["frame"].to(device, non_blocking=use_cuda)
+            all_pred.append(model(frame).cpu().numpy())
+            all_gt.append(batch["force"].numpy())
 
-            all_pred.append(pred.cpu().numpy()[0])
-            all_gt.append(gt)
-            all_idx.append(i)
-
-    all_pred = np.array(all_pred)
-    all_gt = np.array(all_gt)
-    all_idx = np.array(all_idx)
+    all_pred = np.concatenate(all_pred, axis=0)
+    all_gt = np.concatenate(all_gt, axis=0)
+    all_idx = np.arange(len(ds))
 
     # ---- Metrics ----------------------------------------------------------
     mae  = np.abs(all_pred - all_gt).mean(axis=0)
@@ -202,7 +236,7 @@ def main():
     args = parse_args()
     os.makedirs(args.output, exist_ok=True)
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = resolve_device(args.device)
 
     # ---- Load checkpoint --------------------------------------------------
     ckpt = torch.load(args.checkpoint, map_location=device)
@@ -241,7 +275,16 @@ def main():
 
     results = []
     for episode in episodes:
-        result = evaluate_episode(model, episode, force_keys, trim_seconds, device, args.output)
+        result = evaluate_episode(
+            model,
+            episode,
+            force_keys,
+            trim_seconds,
+            device,
+            args.output,
+            args.batch_size,
+            args.workers,
+        )
         if result is not None:
             results.append(result)
 

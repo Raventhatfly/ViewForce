@@ -8,7 +8,7 @@ ViewForce trains a UNet encoder to predict gripper contact force (Fz) from maske
 **Output**: predicted Fz (Newtons)  
 **Loss**: MSE
 
-## Input Modes
+## Input modes
 
 The default input is the masked RGB image:
 
@@ -43,7 +43,7 @@ or train edge-only:
 Checkpoints save `input_mode` in `ckpt["args"]`; evaluation and policy-server
 loading restore the matching number of input channels automatically.
 
-## Force Head Pooling
+## Force-head pooling
 
 The original force head used global average pooling:
 
@@ -51,9 +51,9 @@ The original force head used global average pooling:
 bottleneck feature -> AdaptiveAvgPool2d(1, 1) -> MLP -> force
 ```
 
-This is compatible with older checkpoints, but it can discard the spatial structure
-needed to read fin-ray stripe deformation. The current training default is spatial
-pooling:
+This is compatible with older checkpoints, but it can discard the spatial
+structure needed to read fin-ray stripe deformation. The current training
+default is spatial pooling:
 
 ```text
 bottleneck feature -> AdaptiveAvgPool2d(4, 4) -> flatten -> MLP -> force
@@ -69,8 +69,6 @@ Older checkpoints do not contain these args, so evaluation and policy-server
 loading default them to `avg`. New checkpoints store the selected pooling in the
 saved `args`.
 
----
-
 ## Step 1: Collect data
 
 Each episode folder must contain:
@@ -83,19 +81,17 @@ EP000XXX/
   force_timestamps.csv   # per-sample force + timestamps (~20 Hz)
 ```
 
----
-
 ## Step 2: Generate gripper masks
 
-Run SAM2 segmentation on the dataset folder. The script auto-detects the green gripper via HSV thresholding and propagates the mask with SAM2.
+Run SAM2 segmentation on the dataset folder. The script auto-detects the green
+gripper via HSV thresholding and propagates the mask with SAM2.
 
 ```bash
 python segment_gripper.py data/<dataset_folder>/
 ```
 
-This writes `mask.mp4` and `overlay.mp4` into each `EP*` subfolder. Use `--skip-existing` to skip episodes that already have a mask.
-
----
+This writes `mask.mp4` and `overlay.mp4` into each `EP*` subfolder. Use
+`--skip-existing` to skip episodes that already have a mask.
 
 ## Step 3: Train
 
@@ -103,7 +99,10 @@ This writes `mask.mp4` and `overlay.mp4` into each `EP*` subfolder. Use `--skip-
 python scripts/train.py --data-dir data/<dataset_folder>/
 ```
 
-The final 5 sorted episodes are held out as the validation set by default. Use `--val-count` to change this, or `--val-episode` to hold out one specific episode. Training episodes get random mild augmentation (±8% translation, ±5° rotation, 0.92–1.08 scale, 0.85–1.15 brightness); validation episodes do not.
+The final five sorted episodes are held out as the validation set by default.
+Use `--val-count` to change this, or `--val-episode` to hold out one specific
+episode. Training episodes get random mild augmentation (±8% translation, ±5°
+rotation, 0.92–1.08 scale, 0.85–1.15 brightness); validation episodes do not.
 
 For the `data_ball_260422` force-estimator runs, prefer validation by episode
 number multiple so low-force/near-zero episodes are not concentrated entirely in
@@ -124,7 +123,7 @@ This holds out `EP000010`, `EP000020`, ... and trains on the remaining episodes.
 | `--val-multiple` | — | Hold out episodes whose EP number is a multiple of this value |
 | `--trim-seconds` | `2.0` | Seconds to drop from the start and end of each episode |
 | `--force-keys` | `Fz` | Force channels to predict (e.g. `Fz` or `Fz Fx`) |
-| `--input-mode` | `rgb` | Input channels: `rgb` or `rgb_edge` |
+| `--input-mode` | `rgb` | Input channels: `rgb`, `edge`, or `rgb_edge` |
 | `--epochs` | `100` | Number of training epochs |
 | `--batch-size` | `16` | Batch size |
 | `--lr` | `1e-4` | Initial learning rate (cosine annealed to 1e-6) |
@@ -149,33 +148,29 @@ python scripts/train.py \
 
 The best checkpoint (lowest val MAE) is saved to `checkpoints/run1/best.pt`.
 
----
-
 ## Step 4: Analyze the dataset (optional)
 
-Before training, inspect dataset statistics to understand the force distribution and set expectations for val MAE:
+Before training, inspect dataset statistics to understand the force distribution
+and set expectations for validation MAE:
 
 ```bash
 python scripts/analyze_dataset.py --data-dir data/<dataset_folder>/
 ```
 
-Prints per-episode and global stats including mean, std, range, and the naive-baseline MAE (predicting the mean every time). If val MAE is higher than the naive baseline, the model has not learned anything useful.
+This prints per-episode and global statistics, including mean, standard
+deviation, range, and the naive-baseline MAE from predicting the mean.
 
----
+## Evaluate against a baseline
 
-## Expected val MAE
-
-For a Fz signal with std ≈ 4N and range ≈ 20N:
-
-| val MAE | Assessment |
-|---|---|
-| < 0.5 N | Excellent |
-| 0.5 – 1.5 N | Good — trend prediction is reliable |
-| 1.5 – 3.0 N | Marginal |
-| > 3.0 N | Worse than naive baseline |
-
----
+Validation MAE depends on the sensor range and force distribution, so a fixed
+threshold is not portable across datasets. Compare it with the naive MAE from
+`scripts/analyze_dataset.py`, inspect per-episode errors, and verify response on
+representative contact and no-contact sequences. A model that does not beat the
+naive mean predictor has not learned a useful force signal.
 
 ## Timestamp alignment
 
-Force labels are aligned to video frames via linear interpolation on wall-clock time (`t_wall_s`). The force sensor runs at ~20 Hz and the camera at ~30 fps; each frame's label is interpolated between the two nearest force samples.
+Force labels are aligned to video frames via linear interpolation on wall-clock
+time (`t_wall_s`). The force sensor runs at approximately 20 Hz and the camera
+at approximately 30 fps; each frame's label is interpolated between the two
+nearest force samples.

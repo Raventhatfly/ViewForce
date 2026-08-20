@@ -27,6 +27,8 @@ def analyze_episode(ep_dir, trim_seconds=2.0):
 
     force_rows = load_csv(force_path)
     frame_rows = load_csv(frame_path)
+    if not force_rows or not frame_rows:
+        raise ValueError("force and frame timestamp CSVs must contain data rows")
 
     force_t = np.array([float(r["t_rel_s"]) for r in force_rows])
     frame_t = np.array([float(r["t_rel_s"]) for r in frame_rows])
@@ -49,6 +51,8 @@ def analyze_episode(ep_dir, trim_seconds=2.0):
         vals = np.array([float(r[k]) for r in force_rows])
         vals_trimmed = vals[keep_mask_force]
         force_data[k] = vals_trimmed
+    if not len(force_data[FORCE_KEYS[0]]):
+        raise ValueError("no force samples remain after trimming")
 
     return {
         "duration":       duration,
@@ -67,8 +71,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data-dir", default="data/test_data_4_21_1")
     parser.add_argument("--trim-seconds", type=float, default=2.0)
-    parser.add_argument("--force-key", default="Fz", help="Primary force key to highlight")
+    parser.add_argument(
+        "--force-key",
+        choices=FORCE_KEYS,
+        default="Fz",
+        help="Primary force key to highlight",
+    )
     args = parser.parse_args()
+    if args.trim_seconds < 0:
+        parser.error("--trim-seconds must be non-negative")
 
     ep_dirs = sorted(
         os.path.join(args.data_dir, d)
@@ -85,7 +96,9 @@ def main():
     print("=" * 70)
 
     all_force = {k: [] for k in FORCE_KEYS}
+    target_sequences = []
     total_frames = 0
+    analyzed_episodes = 0
 
     for ep_dir in ep_dirs:
         ep_name = os.path.basename(ep_dir)
@@ -105,11 +118,19 @@ def main():
 
         for k in FORCE_KEYS:
             all_force[k].extend(s["force"][k].tolist())
+        target_sequences.append(fz)
         total_frames += s["n_frames_kept"]
+        analyzed_episodes += 1
+
+    if analyzed_episodes == 0:
+        raise RuntimeError("No episodes could be analyzed")
 
     # Global stats
     print("=" * 70)
-    print(f"GLOBAL  total_frames={total_frames}  episodes={len(ep_dirs)}")
+    print(
+        f"GLOBAL  total_frames={total_frames}  "
+        f"episodes={analyzed_episodes}/{len(ep_dirs)} analyzed"
+    )
     print()
 
     target = np.array(all_force[args.force_key])
@@ -132,10 +153,22 @@ def main():
     print()
 
     # Autocorrelation lag-1 (temporal smoothness)
-    ac = np.corrcoef(target[:-1], target[1:])[0, 1]
+    lagged = [values for values in target_sequences if len(values) > 1]
+    if lagged:
+        lag_x = np.concatenate([values[:-1] for values in lagged])
+        lag_y = np.concatenate([values[1:] for values in lagged])
+        if lag_x.std() > 0 and lag_y.std() > 0:
+            ac = np.corrcoef(lag_x, lag_y)[0, 1]
+        else:
+            ac = float("nan")
+    else:
+        ac = float("nan")
     print(f"--- Temporal structure ---")
-    print(f"  lag-1 autocorrelation of {args.force_key} = {ac:.4f}  "
-          f"({'very smooth' if ac > 0.99 else 'smooth' if ac > 0.95 else 'moderate'})")
+    if np.isfinite(ac):
+        smoothness = "very smooth" if ac > 0.99 else "smooth" if ac > 0.95 else "moderate"
+        print(f"  lag-1 autocorrelation of {args.force_key} = {ac:.4f}  ({smoothness})")
+    else:
+        print(f"  lag-1 autocorrelation of {args.force_key} = unavailable")
     print()
 
     print(f"--- All force/moment channels (global, trimmed) ---")
